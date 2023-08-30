@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:15:45 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/28 20:13:20 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/29 22:42:19 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_double_ptr(void **ptr)
+void	free_double_ptr(char **ptr)
 {
 	int	i;
 

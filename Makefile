@@ -6,12 +6,13 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/08/28 13:06:20 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/08/30 14:05:09 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			=	main.c map_parser/parse1.c gnl/get_next_line.c \
-				gnl/get_next_line_utils.c
+SRC			=	main.c map_parser/parse1.c \
+				map_parser/utils.c map_parser/cub_parse.c \
+				gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJS		=	${SRC:.c=.o}
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -Wunreachable-code -Ofast

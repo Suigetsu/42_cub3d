@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/29 20:01:33 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:03:22 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,28 @@ typedef struct s_cub3d
 	int		c_r;
 	int		c_g;
 	int		c_b;
-	char	**split;
+	int		fd;
 	char	**ids;
+	char	**split;
+	char	**north;
+	char	**south;
+	char	**west;
+	char	**east;
+	char	**floor;
+	char	**ceiling;
+	char	*scene;
 	char	**fc;
 	char	**map;
 	char	*line;
 }				t_cub3d;
 
 int		check_filename(char *filename);
-int		filelen(char *filename);
-void	free_double_ptr(void **ptr);
+void	free_double_ptr(char **ptr);
 int		cub_atoi(const char *str);
+int		check_walls(int fd, int count, t_cub3d *var, char **storage);
+int		check_fc(int fd, int count, t_cub3d *var);
+void	check_map_content(t_cub3d *var, char *filename);
+int		read_map(char *filename, t_cub3d *var);
+int		parse_info(t_cub3d *var);
 
 #endif
