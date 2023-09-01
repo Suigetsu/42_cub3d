@@ -6,16 +6,18 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/08/30 14:05:09 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/09/01 17:32:56 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			=	main.c map_parser/parse1.c \
-				map_parser/utils.c map_parser/cub_parse.c \
+SRC			=	main.c map_parser/cub_parse.c map_parser/utils.c \
+				map_parser/cub_parse2.c map_parser/cub_parse3.c \
+				map_parser/cub_parse4.c map_parser/cub_parse5.c \
+				map_parser/cub_parse6.c map_parser/cub_free.c \
 				gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJS		=	${SRC:.c=.o}
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -Wunreachable-code -Ofast
+CFLAGS		=	-Wall -Wextra -Werror -Wunreachable-code -Ofast -fsanitize=address
 LIBS		=	~/Desktop/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 LIBFT		=	libft/libft.a
 RM			=	rm -rf

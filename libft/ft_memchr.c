@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:23:13 by hrahmane          #+#    #+#             */
-/*   Updated: 2022/10/25 15:15:42 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:37:21 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	*ft_memchr(const void *s, int c, size_t len)
 			return (str + i);
 		}
 		i++;
-	}	
+	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:15:45 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/29 22:42:19 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:07:31 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,16 @@ void	free_double_ptr(char **ptr)
 	int	i;
 
 	i = 0;
+	if (ptr == NULL)
+		return ;
 	while (ptr[i])
-		free(ptr[i++]);
+	{
+		free(ptr[i]);
+		ptr[i] = NULL;
+		i++;
+	}
 	free (ptr);
+	ptr = NULL;
 }
 
 int	cub_atoi(const char *str)

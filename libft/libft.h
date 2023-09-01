@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:03:31 by hrahmane          #+#    #+#             */
-/*   Updated: 2022/10/23 08:05:23 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:37:51 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include<string.h>
-# include<stddef.h>
-# include<stdlib.h>
-# include<unistd.h>
-# include<ctype.h>
+# include <string.h>
+# include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <ctype.h>
 # include <limits.h>
-# include<fcntl.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {

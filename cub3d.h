@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/30 14:03:22 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:21:09 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 
 typedef struct s_cub3d
 {
-	int		i;
+	int		x_max;
+	int		y_max;
 	int		x;
 	int		y;
 	int		f_r;
@@ -55,10 +56,16 @@ typedef struct s_cub3d
 int		check_filename(char *filename);
 void	free_double_ptr(char **ptr);
 int		cub_atoi(const char *str);
-int		check_walls(int fd, int count, t_cub3d *var, char **storage);
-int		check_fc(int fd, int count, t_cub3d *var);
-void	check_map_content(t_cub3d *var, char *filename);
 int		read_map(char *filename, t_cub3d *var);
 int		parse_info(t_cub3d *var);
+int		path_validity(t_cub3d *var);
+int		split_info(t_cub3d *var);
+int		path_validity(t_cub3d *var);
+int		color_validity(t_cub3d *var);
+void	free_for_exit(t_cub3d *var, int exit_status);
+void	free_for_map(t_cub3d *var);
+int		is_map_valid(t_cub3d *var);
+int		around_space(t_cub3d *var, int y, int x);
+int		check_map(char *filename, t_cub3d *var);
 
 #endif
