@@ -6,7 +6,7 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/01 17:32:56 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/09/02 11:46:44 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC			=	main.c map_parser/cub_parse.c map_parser/utils.c \
 				gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJS		=	${SRC:.c=.o}
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -Wunreachable-code -Ofast -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -Wunreachable-code -Ofast #-fsanitize=address
 LIBS		=	~/Desktop/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 LIBFT		=	libft/libft.a
 RM			=	rm -rf

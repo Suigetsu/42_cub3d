@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/01 17:59:06 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/02 12:53:23 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	check_suroundings(t_cub3d *var)
 {
 	while (var->map[0][var->x])
 	{
-		if (var->map[0][var->x] != '1' || var->map[0][var->x] != ' ')
+		if (var->map[0][var->x] != '1' && var->map[0][var->x] != ' ')
 			return (ERROR);
 		var->x++;
 	}
 	var->x = 0;
 	while (var->map[var->y_max - 1][var->x])
 	{
-		if (var->map[var->y_max - 1][var->x] != '1' || \
+		if (var->map[var->y_max - 1][var->x] != '1' && \
 			var->map[var->y_max - 1][var->x] != ' ')
 			return (ERROR);
 		var->x++;
@@ -49,7 +49,7 @@ int	invalid_char(char **map)
 				map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E' && \
 				map[i][j] != 'W')
 				return (ERROR);
-			else if (map[i][j] == 'N' || map[i][j] == 'S' || \
+			if (map[i][j] == 'N' || map[i][j] == 'S' || \
 					map[i][j] == 'E' || map[i][j] == 'W')
 				flag++;
 			j++;
@@ -75,7 +75,7 @@ int	check_inside(t_cub3d *var)
 					var->map[var->y][var->x] != ' ')
 					return (ERROR);
 			}
-			else if (var->map[var->y][var->x] == ' ')
+			if (var->map[var->y][var->x] == ' ')
 			{
 				if (around_space(var, var->y, var->x))
 					return (ERROR);
@@ -89,8 +89,9 @@ int	check_inside(t_cub3d *var)
 
 int	is_map_valid(t_cub3d *var)
 {
-	printf("debug\n");
 	var->map = ft_split(var->scene, '\n');
+	if (invalid_char(var->map))
+		return (ERROR);
 	if (check_suroundings(var))
 		return (ERROR);
 	if (check_inside(var))
