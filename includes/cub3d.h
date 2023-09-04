@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 15:35:25 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:15:59 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "../libs/gnl/get_next_line.h"
 
 # define SIZE 32
-# define WIDTH 700
-# define HEIGHT 400
+# define WIDTH 5120 / 4
+# define HEIGHT 2880 / 4
 # define ERROR -1
 
 typedef struct s_cub3d

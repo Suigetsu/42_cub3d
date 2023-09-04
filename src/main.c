@@ -6,11 +6,26 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:21:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 16:58:11 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:16:40 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void draw_dady(int x, int j, int color, mlx_image_t *img) {
+	int a,b;
+
+	a = 0;
+	b = 0;
+	while (a < 32) {
+		b = 0;
+		while (b < 32) {
+			mlx_put_pixel(img, (j * 32) + a, (x *32 ) + b, color);
+			b++;
+		}
+		a++;
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -42,7 +57,7 @@ int	main(int ac, char **av)
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(mlx, img, 0, 0);
 	int i = 0, j = 0;
-	int x = 0, y = 0;
+	// int x = 0, y = 0;
 	int color;
 	while (var.map[i])
 	{
@@ -50,23 +65,14 @@ int	main(int ac, char **av)
 		while (var.map[i][j])
 		{
 			if (var.map[i][j] == '1')
-				color = 0xFFFFFFFF;
+				color = 0x445FFFFF;
 			else if (var.map[i][j] == '0')
 				color = 0xFFFFFFFF;
 			else if (var.map[i][j] == ' ')
 				color = 0x00000000;
 			else
 				color = 0xF5310446;
-			while (x < (i + 1) * 32)
-			{
-				y = j;
-				while (y < (j + 1) * 32)
-				{
-					mlx_put_pixel(img, x, y, color);
-					y++;
-				}
-				x++;
-			}
+			draw_dady(i, j, color, img);
 			j++;
 		}
 		i++;
