@@ -1,8 +1,8 @@
 F 220,100,0
-NO /Users/mlagrini/Desktop/42_cub3d/north 
-SO /Users/mlagrini/Desktop/42_cub3d/south
-WE /Users/mlagrini/Desktop/42_cub3d/west
-EA /Users/mlagrini/Desktop/42_cub3d/east
+NO ./north 
+SO ./south
+WE ./west
+EA ./east
 
 C 225,30,0
 
