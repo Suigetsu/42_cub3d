@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:04:41 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:35:25 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "../libs/libft/libft.h"
 # include "../libs/gnl/get_next_line.h"
 
+# define SIZE 32
 # define WIDTH 700
 # define HEIGHT 400
 # define ERROR -1

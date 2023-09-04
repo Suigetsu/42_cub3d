@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:07:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:22 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:08:18 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ void	free_for_map(t_cub3d *var)
 
 void	free_for_exit(t_cub3d *var, int exit_status)
 {
-	if (var->ceiling)
-		free_double_ptr(var->ceiling);
-	if (var->floor)
-		free_double_ptr(var->floor);
-	if (var->north)
-		free_double_ptr(var->north);
-	if (var->south)
-		free_double_ptr(var->south);
-	if (var->west)
-		free_double_ptr(var->west);
-	if (var->east)
-		free_double_ptr(var->east);
-	if (var->split)
-		free_double_ptr(var->split);
-	if (var->map)
-		free_double_ptr(var->map);
+	// if (var->ceiling)
+	// 	free_double_ptr(var->ceiling);
+	// if (var->floor)
+	// 	free_double_ptr(var->floor);
+	// if (var->north)
+	// 	free_double_ptr(var->north);
+	// if (var->south)
+	// 	free_double_ptr(var->south);
+	// if (var->west)
+	// 	free_double_ptr(var->west);
+	// if (var->east)
+	// 	free_double_ptr(var->east);
+	// if (var->split)
+	// 	free_double_ptr(var->split);
+	// if (var->map)
+	// 	free_double_ptr(var->map);
 	if (var->line)
 		free(var->line);
 	if (var->scene)
