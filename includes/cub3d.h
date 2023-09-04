@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 17:15:59 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 22:18:47 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "../../MLX42/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
 # include "../libs/gnl/get_next_line.h"
+
 
 # define SIZE 32
 # define WIDTH 5120 / 4
@@ -70,5 +71,7 @@ void	free_for_map(t_cub3d *var);
 int		is_map_valid(t_cub3d *var);
 int		around_space(t_cub3d *var, int y, int x);
 int		check_map(char *filename, t_cub3d *var);
+void	init_vars(t_cub3d *var, int ac, char **av);
+int		run_mlx(t_cub3d *var);
 
 #endif
