@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 12:00:09 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:05:30 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	 store_info(char *info_line, t_cub3d *var)
 {

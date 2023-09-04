@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:03:31 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/08/30 15:37:51 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:03:34 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
 int		ft_isalpha(int n);
 int		ft_isdigit(int n);
 int		ft_isalnum(int n);

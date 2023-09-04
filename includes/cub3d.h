@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/02 18:29:19 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:04:41 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <errno.h>
 # include <string.h>
 # include <math.h>
-# include "../MLX42/include/MLX42/MLX42.h"
-# include "libft/libft.h"
-# include "gnl/get_next_line.h"
+# include "../../MLX42/include/MLX42/MLX42.h"
+# include "../libs/libft/libft.h"
+# include "../libs/gnl/get_next_line.h"
 
 # define WIDTH 700
 # define HEIGHT 400

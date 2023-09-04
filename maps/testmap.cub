@@ -1,8 +1,8 @@
 F 220,100,0
-NO ./north 
-SO ./south
-WE ./west
-EA ./east
+NO ./maps/textures/north
+SO ./maps/textures/south
+WE ./maps/textures/west
+EA ./maps/textures/east
 
 C 225,30,0
 

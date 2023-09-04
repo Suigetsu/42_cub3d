@@ -6,11 +6,11 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:03:19 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/02 12:49:57 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:05:47 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	check_x2(t_cub3d *var, int y, int x, int flag)
 {

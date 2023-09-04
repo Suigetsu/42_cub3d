@@ -6,11 +6,11 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:29:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/01 17:48:59 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:05:34 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	comma_count(char *str)
 {
