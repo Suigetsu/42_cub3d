@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:21:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 16:50:43 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:58:11 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ int	main(int ac, char **av)
 				color = 0x00000000;
 			else
 				color = 0xF5310446;
+			while (x < (i + 1) * 32)
+			{
+				y = j;
+				while (y < (j + 1) * 32)
+				{
+					mlx_put_pixel(img, x, y, color);
+					y++;
+				}
+				x++;
+			}
 			j++;
 		}
 		i++;
