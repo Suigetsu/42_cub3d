@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:07:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/02 11:49:16 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/02 18:20:37 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	free_for_exit(t_cub3d *var, int exit_status)
 		free_double_ptr(var->west);
 	if (var->east)
 		free_double_ptr(var->east);
-	// if (var->split)
-	// 	free_double_ptr(var->split);
+	if (var->split)
+		free_double_ptr(var->split);
 	if (var->map)
 		free_double_ptr(var->map);
 	if (var->line)

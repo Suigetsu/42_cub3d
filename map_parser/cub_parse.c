@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 11:35:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/30 15:38:37 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/02 15:04:35 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	parse_info(t_cub3d *var)
 		ft_strncmp(var->map[i], "EA ", 3) && \
 		ft_strncmp(var->map[i], "F ", 2) && \
 		ft_strncmp(var->map[i], "C ", 2))
-			return (ERROR);
+			return (free_double_ptr(var->map), ERROR);
 		i++;
 	}
 	if (split_info(var))
@@ -58,7 +58,10 @@ int	read_map(char *filename, t_cub3d *var)
 	var->scene = ft_strdup("");
 	while (var->line)
 	{
-		var->scene = ft_strjoin(var->scene, var->line);
+		var->temp = ft_strjoin(var->scene, var->line);
+		free (var->scene);
+		var->scene = ft_strdup(var->temp);
+		free (var->temp);
 		free (var->line);
 		var->line = get_next_line(var->fd);
 	}

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/01 17:21:09 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/02 18:29:19 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <errno.h>
 # include <string.h>
 # include <math.h>
+# include "../MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
 
@@ -51,6 +52,7 @@ typedef struct s_cub3d
 	char	**fc;
 	char	**map;
 	char	*line;
+	char	*temp;
 }				t_cub3d;
 
 int		check_filename(char *filename);
