@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/05 18:16:38 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:01:44 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int		around_space(t_cub3d *var, int y, int x);
 int		check_map(char *filename, t_cub3d *var);
 void	init_vars(t_cub3d *var, int ac, char **av);
 int		run_mlx(t_cub3d *var);
-void	keyhook(mlx_key_data_t keydata, void* param);
+void	keyhook(mlx_key_data_t keydata, void *param);
+void	find_player_pos(t_cub3d *var);
 
 #endif

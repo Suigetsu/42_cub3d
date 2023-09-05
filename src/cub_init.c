@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/05 17:52:15 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:29:31 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,38 @@ void	draw_pixels(int x, int y, int color, mlx_image_t *img)
 	}
 }
 
+void	draw_player_pixels(int x, int y, int color, mlx_image_t *img)
+{
+	int	i;
+	int	j;
+	int	r;
+
+	r = 10;
+	i = r * -1;
+	while (i <= r)
+	{
+		j = round(sqrt(r * r - (i * i)));
+		mlx_put_pixel(img, (y * 32) + i, (x * 32) + j, color);
+		mlx_put_pixel(img, (y * 32) + i, (x * 32) - j, color);
+		i++;
+	}
+}
+
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 {
-	int	color;
-
-	color = 0;
 	while (var->map[var->y])
 	{
 		var->x = 0;
 		while (var->map[var->y][var->x])
 		{
 			if (var->map[var->y][var->x] == '1')
-				color = 0x445FFFFF;
+				draw_pixels(var->y, var->x, 0x445FFFFF, img);
 			else if (var->map[var->y][var->x] == '0')
-				color = 0xFFFFFFFF;
+				draw_pixels(var->y, var->x, 0xFFFFFFFF, img);
 			else if (var->map[var->y][var->x] == ' ')
-				color = 0x00000000;
+				draw_pixels(var->y, var->x, 0x00000000, img);
 			else
-				color = 0xF5310446;
-			draw_pixels(var->y, var->x, color, img);
+				draw_player_pixels(var->y, var->x, 0xF5310446, img);
 			var->x++;
 		}
 		var->y++;
@@ -69,7 +82,7 @@ int	run_mlx(t_cub3d *var)
 	img = mlx_new_image(mlx, var->x_max * 32, var->y_max * 32);
 	mlx_image_to_window(mlx, img, 0, 0);
 	draw_minimap(var, img);
-	mlx_key_hook(mlx, &keyhook, NULL);
+	mlx_key_hook(mlx, &keyhook, var);
 	mlx_loop(mlx);
 	return (0);
 }

@@ -6,15 +6,17 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/05 17:55:17 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:11:04 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	keyhook(mlx_key_data_t keydata, void* param)
+void	keyhook(mlx_key_data_t keydata, void *param)
 {
-	(void)param;
+	t_cub3d *var;
+	var = (t_cub3d *)param;
+	printf("hello %d\n", var->p.p_pos_x);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		exit(0);
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
