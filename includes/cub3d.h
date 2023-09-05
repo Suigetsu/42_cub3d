@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/05 17:52:55 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:16:38 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,40 @@
 # define HEIGHT 2880 / 4
 # define ERROR -1
 
+typedef struct	s_player
+{
+	int		p_pos_x;
+	int		p_pos_y;
+	int		radius;
+}				t_player;
+
 typedef struct s_cub3d
 {
-	int		x_max;
-	int		y_max;
-	int		x;
-	int		y;
-	int		f_r;
-	int		f_g;
-	int		f_b;
-	int		c_r;
-	int		c_g;
-	int		c_b;
-	int		fd;
-	char	**ids;
-	char	**split;
-	char	**north;
-	char	**south;
-	char	**west;
-	char	**east;
-	char	**floor;
-	char	**ceiling;
-	char	*scene;
-	char	**fc;
-	char	**map;
-	char	*line;
-	char	*temp;
+	int			x_max;
+	int			y_max;
+	int			x;
+	int			y;
+	int			f_r;
+	int			f_g;
+	int			f_b;
+	int			c_r;
+	int			c_g;
+	int			c_b;
+	int			fd;
+	char		**ids;
+	char		**split;
+	char		**north;
+	char		**south;
+	char		**west;
+	char		**east;
+	char		**floor;
+	char		**ceiling;
+	char		*scene;
+	char		**fc;
+	char		**map;
+	char		*line;
+	char		*temp;
+	t_player	p;
 }				t_cub3d;
 
 int		check_filename(char *filename);

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:44 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:25:20 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,30 @@ int	check_inside(t_cub3d *var)
 	return (0);
 }
 
+void	find_player_pos(t_cub3d *var)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (var->map[i])
+	{
+		j = 0;
+		while (var->map[i][j])
+		{
+			if (var->map[i][j] == 'N' || var->map[i][j] == 'S' || \
+					var->map[i][j] == 'E' || var->map[i][j] == 'W')
+				{
+					var->p.p_pos_x = j;
+					var->p.p_pos_y = i;
+					return ;
+				}
+			j++;
+		}
+		i++;
+	}
+}
+
 int	is_map_valid(t_cub3d *var)
 {
 	var->map = ft_split(var->scene, '\n');
@@ -96,5 +120,6 @@ int	is_map_valid(t_cub3d *var)
 		return (ERROR);
 	if (check_inside(var))
 		return (ERROR);
+	find_player_pos(var);
 	return (0);
 }
