@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/06 15:34:47 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:19:36 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_pixels(int x, int y, int color, mlx_image_t *img)
+void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 {
 	int	i;
 	int	j;
@@ -31,21 +31,31 @@ void	draw_pixels(int x, int y, int color, mlx_image_t *img)
 	}
 }
 
-// void	draw_player_pixels(int x, int y, int color, mlx_image_t *img)
+// void	draw_player_pixels(float x, float y, int color, mlx_image_t *img)
 // {
-// 	// double pi = 3.1415926535;
-//     // double angle;
-    
-//     // for (angle = 0; angle < 360; angle += 1) {
-//     //     double angle_rad = angle * pi / 180.0;
-//     //     double x1 = 0.5 * sin(angle_rad);
-//     //     double y1 = 0.5 * cos(angle_rad);
+// 	double r = 10;
+//     double angle, x1, y1;
 
-//     //     int pixel_x = (int)((x + x1) * 32);
-//     //     int pixel_y = (int)((y + y1) * 32);
+//     for (int i = 0; i < 360; i++)
+//     {
+//         angle = i;
+//         x1 = r * cos(angle * PI / 180);
+//         y1 = r * sin(angle * PI / 180);
+// 		int px = x + (int)x1;
+//         int py = y + (int)y1;
 
-//     //     mlx_put_pixel(img, pixel_x, pixel_y, color);
-//     // }
+// 		 for (int j = -x1; j <= x1; j++)
+// 		 {
+//         	if (px >= 0 && px < WIDTH && py >= 0 && py < HEIGHT)
+//         	{
+//             	mlx_put_pixel(img, px * 10, py * 10, color);
+//         	}
+// 		 }
+//         // for (int j = -x1; j <= x1; j++)
+//         // {
+//         //     mlx_put_pixel(img, (x + (int) x1) * 32, (y + (int)y1) * 32, color);
+//         // }
+//     }
 // }
 
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)
@@ -64,7 +74,7 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 			else
 			{
 				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
-				// draw_player_pixels(var->p.p_pos_y, var->p.p_pos_x, 0xF5310446, img);
+				// draw_player_pixels(var->p.p_pos_x, var->p.p_pos_y, 0xFF378446, img);
 			}
 			var->x++;
 		}
