@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/05 20:01:44 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:34:26 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,25 @@
 # include "../libs/gnl/get_next_line.h"
 
 
-# define SIZE 32
+# define TILESIZE 32
 # define WIDTH 5120 / 4
 # define HEIGHT 2880 / 4
 # define ERROR -1
+# define PI 3.141592653589793
 
 typedef struct	s_player
 {
-	int		p_pos_x;
-	int		p_pos_y;
-	int		radius;
+	float	p_pos_x;
+	float	p_pos_y;
+	float	radius;
 }				t_player;
 
 typedef struct s_cub3d
 {
-	int			x_max;
-	int			y_max;
-	int			x;
-	int			y;
+	float		x_max;
+	float		y_max;
+	float		x;
+	float		y;
 	int			f_r;
 	int			f_g;
 	int			f_b;

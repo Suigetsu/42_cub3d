@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/05 20:29:31 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:34:47 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,50 +19,53 @@ void	draw_pixels(int x, int y, int color, mlx_image_t *img)
 
 	i = 0;
 	j = 0;
-	while (i < 32)
+	while (i < TILESIZE)
 	{
 		j = 0;
-		while (j < 32)
+		while (j < TILESIZE)
 		{
-			mlx_put_pixel(img, (y * 32) + i, (x * 32) + j, color);
+			mlx_put_pixel(img, (x * TILESIZE) + i, (y * TILESIZE) + j, color);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	draw_player_pixels(int x, int y, int color, mlx_image_t *img)
-{
-	int	i;
-	int	j;
-	int	r;
+// void	draw_player_pixels(int x, int y, int color, mlx_image_t *img)
+// {
+// 	// double pi = 3.1415926535;
+//     // double angle;
+    
+//     // for (angle = 0; angle < 360; angle += 1) {
+//     //     double angle_rad = angle * pi / 180.0;
+//     //     double x1 = 0.5 * sin(angle_rad);
+//     //     double y1 = 0.5 * cos(angle_rad);
 
-	r = 10;
-	i = r * -1;
-	while (i <= r)
-	{
-		j = round(sqrt(r * r - (i * i)));
-		mlx_put_pixel(img, (y * 32) + i, (x * 32) + j, color);
-		mlx_put_pixel(img, (y * 32) + i, (x * 32) - j, color);
-		i++;
-	}
-}
+//     //     int pixel_x = (int)((x + x1) * 32);
+//     //     int pixel_y = (int)((y + y1) * 32);
+
+//     //     mlx_put_pixel(img, pixel_x, pixel_y, color);
+//     // }
+// }
 
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 {
-	while (var->map[var->y])
+	while (var->map[(int)var->y])
 	{
 		var->x = 0;
-		while (var->map[var->y][var->x])
+		while (var->map[(int)var->y][(int)var->x])
 		{
-			if (var->map[var->y][var->x] == '1')
-				draw_pixels(var->y, var->x, 0x445FFFFF, img);
-			else if (var->map[var->y][var->x] == '0')
-				draw_pixels(var->y, var->x, 0xFFFFFFFF, img);
-			else if (var->map[var->y][var->x] == ' ')
-				draw_pixels(var->y, var->x, 0x00000000, img);
+			if (var->map[(int)var->y][(int)var->x] == '1')
+				draw_pixels(var->x, var->y, 0x445FFFFF, img);
+			else if (var->map[(int)var->y][(int)var->x] == '0')
+				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
+			else if (var->map[(int)var->y][(int)var->x] == ' ')
+				draw_pixels(var->x, var->y, 0x00000000, img);
 			else
-				draw_player_pixels(var->y, var->x, 0xF5310446, img);
+			{
+				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
+				// draw_player_pixels(var->p.p_pos_y, var->p.p_pos_x, 0xF5310446, img);
+			}
 			var->x++;
 		}
 		var->y++;

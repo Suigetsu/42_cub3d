@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/05 18:25:20 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:31:30 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	check_suroundings(t_cub3d *var)
 {
-	while (var->map[0][var->x])
+	while (var->map[0][(int)var->x])
 	{
-		if (var->map[0][var->x] != '1' && var->map[0][var->x] != ' ')
+		if (var->map[0][(int)var->x] != '1' && var->map[0][(int)var->x] != ' ')
 			return (ERROR);
 		var->x++;
 	}
 	var->x = 0;
-	while (var->map[var->y_max - 1][var->x])
+	while (var->map[(int)var->y_max - 1][(int)var->x])
 	{
-		if (var->map[var->y_max - 1][var->x] != '1' && \
-			var->map[var->y_max - 1][var->x] != ' ')
+		if (var->map[(int)var->y_max - 1][(int)var->x] != '1' && \
+			var->map[(int)var->y_max - 1][(int)var->x] != ' ')
 			return (ERROR);
 		var->x++;
 	}
@@ -67,15 +67,15 @@ int	check_inside(t_cub3d *var)
 	while (var->y < var->y_max - 2)
 	{
 		var->x = 0;
-		while (var->map[var->y][var->x])
+		while (var->map[(int)var->y][(int)var->x])
 		{
 			if (var->x == 0)
 			{
-				if (var->map[var->y][var->x] != '1' && \
-					var->map[var->y][var->x] != ' ')
+				if (var->map[(int)var->y][(int)var->x] != '1' && \
+					var->map[(int)var->y][(int)var->x] != ' ')
 					return (ERROR);
 			}
-			if (var->map[var->y][var->x] == ' ')
+			if (var->map[(int)var->y][(int)var->x] == ' ')
 			{
 				if (around_space(var, var->y, var->x))
 					return (ERROR);
