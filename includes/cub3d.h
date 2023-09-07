@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/06 15:34:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:33:22 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@
 # define HEIGHT 2880 / 4
 # define ERROR -1
 # define PI 3.141592653589793
+# define FOV 60 * PI / 180
 
 typedef struct	s_player
 {
 	float	p_pos_x;
 	float	p_pos_y;
 	float	radius;
+	float	direction;
 }				t_player;
 
 typedef struct s_cub3d

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
+#    By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/05 17:56:12 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/09/07 10:04:36 by hrahmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,10 @@ NAME		=	cub3d
 
 all:	${NAME} ${LIBFT}
 
-%.o:%.c
+%.o:%.c cub3d.h
 		${CC} ${CFLAGS} -c $< -o $@
 
-${LIBFT}:
+${LIBFT}: 
 		make -C libs/libft
 
 ${NAME}: ${OBJS} ${LIBFT}
