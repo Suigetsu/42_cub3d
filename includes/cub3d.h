@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 10:51:49 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:53:22 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ void	init_vars(t_cub3d *var, int ac, char **av);
 int		run_mlx(t_cub3d *var);
 void	keyhook(mlx_key_data_t keydata, void *param);
 void	find_player_pos(t_cub3d *var);
-void	draw_line(t_cub3d *var, mlx_image_t *img);
+void	draw_line(mlx_image_t *img, float beginX, float beginY, float endX, float endY, int color);
 
 #endif
