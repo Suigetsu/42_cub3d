@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:03:19 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:47 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:12:24 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	check_x2(t_cub3d *var, int y, int x, int flag)
 {
-	var->x_max = ft_strlen(var->map[y]);
-	while (x < var->x_max - 2)
+	while (x < (int)ft_strlen(var->map[y]) - 2)
 	{
 		if (var->map[y][x + 1] == ' ')
 			x += 1;

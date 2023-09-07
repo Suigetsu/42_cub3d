@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 10:52:29 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:02:37 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,30 +84,30 @@ bool check_wall(t_cub3d *var, float x, float y)
 //         // }
 //     }
 // }
-void	draw_line(mlx_image_t *img, float beginX, float beginY, float endX, float endY, int color)
-{
-	float	dx;
-	float	dy;
-	float	pixelx;
-	float	pixely;
-	int		pixels;
+// void	draw_line(mlx_image_t *img, float beginX, float beginY, float endX, float endY, int color)
+// {
+// 	float	dx;
+// 	float	dy;
+// 	float	pixelx;
+// 	float	pixely;
+// 	int		pixels;
 	
-	dx = endX - beginX;
-	dy = endY - beginY;
-	pixels = (int)sqrt((dx * dx) + (dy * dy));
-	dx = dx / pixels;
-	dy = dy / pixels;
-	pixelx = beginX;
-	pixely = beginY;
-	while (pixels)
-	{
-		mlx_put_pixel(img, pixelx, pixely, color);
-		pixelx += dx;
-		pixely += dy;
-		--pixels;
-	}
+// 	dx = endX - beginX;
+// 	dy = endY - beginY;
+// 	pixels = (int)sqrt((dx * dx) + (dy * dy));
+// 	dx = dx / pixels;
+// 	dy = dy / pixels;
+// 	pixelx = beginX;
+// 	pixely = beginY;
+// 	while (pixels)
+// 	{
+// 		mlx_put_pixel(img, pixelx, pixely, color);
+// 		pixelx += dx;
+// 		pixely += dy;
+// 		--pixels;
+// 	}
 	
-}
+// }
 
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 {
@@ -144,6 +144,7 @@ int	run_mlx(t_cub3d *var)
 	var->x = 0;
 	var->y = 0;
 	color = 0;
+	printf("%f %f \n", var->x_max, var->y_max);
 	mlx = mlx_init(var->x_max * T_SIZE, var->y_max * T_SIZE, "test", false);
 	img = mlx_new_image(mlx, var->x_max * T_SIZE, var->y_max * T_SIZE);
 	mlx_image_to_window(mlx, img, 0, 0);
