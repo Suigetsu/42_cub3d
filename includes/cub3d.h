@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 13:33:25 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:42:37 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define HEIGHT 2880 / 4
 # define ERROR -1
 # define PI 3.141592653589793
-# define FOV 60 * PI / 180
-# define FOV 60 * PI / 180
+# define RADIANS PI /180
+# define FOV 60 * RADIANS
 
 typedef struct	s_player
 {
@@ -84,12 +84,13 @@ int		color_validity(t_cub3d *var);
 void	free_for_exit(t_cub3d *var, int exit_status);
 void	free_for_map(t_cub3d *var);
 int		is_map_valid(t_cub3d *var);
+float	get_direction(t_cub3d *var);
 int		around_space(t_cub3d *var, int y, int x);
 int		check_map(char *filename, t_cub3d *var);
 void	init_vars(t_cub3d *var, int ac, char **av);
 int		run_mlx(t_cub3d *var);
 void	keyhook(mlx_key_data_t keydata, void *param);
 void	find_player_pos(t_cub3d *var);
-void	draw_line(mlx_image_t *img, float beginX, float beginY, float endX, float endY, int color);
+void	draw_line(mlx_image_t *img, t_cub3d *var, int color);
 
 #endif
