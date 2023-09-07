@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/06 17:51:39 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:52:29 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 	}
 }
 
+
+bool check_wall(t_cub3d *var, float x, float y)
+{
+	if (var->map[(int)x][(int)y] == '1')
+		return (true);
+	return (false);
+}
+
 // void	draw_player_pixels(float x, float y, int color, mlx_image_t *img)
 // {
 // 	double r = 10;
@@ -76,6 +84,30 @@ void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 //         // }
 //     }
 // }
+void	draw_line(mlx_image_t *img, float beginX, float beginY, float endX, float endY, int color)
+{
+	float	dx;
+	float	dy;
+	float	pixelx;
+	float	pixely;
+	int		pixels;
+	
+	dx = endX - beginX;
+	dy = endY - beginY;
+	pixels = (int)sqrt((dx * dx) + (dy * dy));
+	dx = dx / pixels;
+	dy = dy / pixels;
+	pixelx = beginX;
+	pixely = beginY;
+	while (pixels)
+	{
+		mlx_put_pixel(img, pixelx, pixely, color);
+		pixelx += dx;
+		pixely += dy;
+		--pixels;
+	}
+	
+}
 
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 {
@@ -93,8 +125,7 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 			else
 			{
 				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
-				draw_pixels2(var->p.p_pos_x, var->p.p_pos_y, 0x56F52A23, img);
-				// mlx_put_pixel(img, var->p.p_pos_x, var->p.p_pos_y, 0x56F52A23);
+				// draw_line(img, var->p.p_pos_x, var->p.p_pos_y, 5.5, 5.5, 0xFFFF8700);
 				// draw_player_pixels(var->p.p_pos_x, var->p.p_pos_y, 0xFF378446, img);
 			}
 			var->x++;
@@ -102,6 +133,7 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 		var->y++;
 	}
 }
+
 
 int	run_mlx(t_cub3d *var)
 {

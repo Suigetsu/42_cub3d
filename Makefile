@@ -6,7 +6,7 @@
 #    By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/07 10:40:02 by hrahmane         ###   ########.fr        #
+#    Updated: 2023/09/07 10:51:06 by hrahmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ all:	${NAME} ${LIBFT}
 %.o:%.c $(INCLUDES)
 		${CC} ${CFLAGS} -c $< -o $@
 
-${LIBFT}:
+${LIBFT}: 
 		make -C libs/libft
 
 ${NAME}: ${OBJS} ${LIBFT}
