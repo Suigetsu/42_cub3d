@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 12:05:08 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:33:25 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../libs/gnl/get_next_line.h"
 
 
-# define T_SIZE 30
+# define T_SIZE 80
 # define WIDTH 5120 / 4
 # define HEIGHT 2880 / 4
 # define ERROR -1
@@ -36,8 +36,11 @@ typedef struct	s_player
 {
 	float	p_pos_x;
 	float	p_pos_y;
+	float	h;
+	float	k;
 	float	radius;
 	float	direction;
+	char	dir;
 }				t_player;
 
 typedef struct s_cub3d

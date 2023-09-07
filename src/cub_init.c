@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 12:02:37 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:32:46 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +58,30 @@ bool check_wall(t_cub3d *var, float x, float y)
 	return (false);
 }
 
-// void	draw_player_pixels(float x, float y, int color, mlx_image_t *img)
-// {
-// 	double r = 10;
-//     double angle, x1, y1;
+void	draw_player_pixels(t_cub3d *var, int color, mlx_image_t *img)
+{
+	float	i;
+	float	j;
 
-//     for (int i = 0; i < 360; i++)
-//     {
-//         angle = i;
-//         x1 = r * cos(angle * PI / 180);
-//         y1 = r * sin(angle * PI / 180);
-// 		int px = x + (int)x1;
-//         int py = y + (int)y1;
+	var->p.radius = 7;
+	i = var->p.p_pos_y;
+	j = var->p.p_pos_x;
+	var->p.h = var->p.p_pos_x + (T_SIZE / 2);
+	var->p.k = var->p.p_pos_y + (T_SIZE / 2);
+	while (var->p.p_pos_y < i + T_SIZE)
+	{
+		var->p.p_pos_x = j;
+		while (var->p.p_pos_x < j + T_SIZE)
+		{
+			if (pow(var->p.p_pos_x - var->p.h, 2) + \
+				pow(var->p.p_pos_y - var->p.k, 2) <= pow(var->p.radius, 2))
+				mlx_put_pixel(img, var->p.p_pos_x, var->p.p_pos_y, color);
+			var->p.p_pos_x++;
+		}
+		var->p.p_pos_y++;
+	}
+}
 
-// 		 for (int j = -x1; j <= x1; j++)
-// 		 {
-//         	if (px >= 0 && px < WIDTH && py >= 0 && py < HEIGHT)
-//         	{
-//             	mlx_put_pixel(img, px * 10, py * 10, color);
-//         	}
-// 		 }
-//         // for (int j = -x1; j <= x1; j++)
-//         // {
-//         //     mlx_put_pixel(img, (x + (int) x1) * T_SIZE, (y + (int)y1) * T_SIZE, color);
-//         // }
-//     }
-// }
 // void	draw_line(mlx_image_t *img, float beginX, float beginY, float endX, float endY, int color)
 // {
 // 	float	dx;
@@ -125,8 +123,7 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 			else
 			{
 				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
-				// draw_line(img, var->p.p_pos_x, var->p.p_pos_y, 5.5, 5.5, 0xFFFF8700);
-				// draw_player_pixels(var->p.p_pos_x, var->p.p_pos_y, 0xFF378446, img);
+				draw_player_pixels(var, 0xFF378446, img);
 			}
 			var->x++;
 		}
@@ -144,7 +141,6 @@ int	run_mlx(t_cub3d *var)
 	var->x = 0;
 	var->y = 0;
 	color = 0;
-	printf("%f %f \n", var->x_max, var->y_max);
 	mlx = mlx_init(var->x_max * T_SIZE, var->y_max * T_SIZE, "test", false);
 	img = mlx_new_image(mlx, var->x_max * T_SIZE, var->y_max * T_SIZE);
 	mlx_image_to_window(mlx, img, 0, 0);

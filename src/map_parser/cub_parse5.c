@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/06 15:31:30 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:33:49 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,9 @@ void	find_player_pos(t_cub3d *var)
 			if (var->map[i][j] == 'N' || var->map[i][j] == 'S' || \
 					var->map[i][j] == 'E' || var->map[i][j] == 'W')
 				{
-					var->p.p_pos_x = j;
-					var->p.p_pos_y = i;
+					var->p.p_pos_x = j * T_SIZE;
+					var->p.p_pos_y = i * T_SIZE;
+					var->p.dir = var->map[i][j];
 					return ;
 				}
 			j++;

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:48:07 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 12:09:42 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:47:39 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	copy_map(t_cub3d *var)
 		free (var->scene);
 		var->scene = ft_strdup(var->temp);
 		free (var->temp);
-		printf("%zu, %f\n", ft_strlen(var->line), var->x_max);
 		if (ft_strlen(var->line) > var->x_max)
 			var->x_max = ft_strlen(var->line) - 1;
 		var->y_max++;
