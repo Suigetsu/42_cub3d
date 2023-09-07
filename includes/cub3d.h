@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/06 15:34:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:37:57 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../libs/gnl/get_next_line.h"
 
 
-# define TILESIZE 32
+# define T_SIZE 64
 # define WIDTH 5120 / 4
 # define HEIGHT 2880 / 4
 # define ERROR -1
@@ -84,5 +84,6 @@ void	init_vars(t_cub3d *var, int ac, char **av);
 int		run_mlx(t_cub3d *var);
 void	keyhook(mlx_key_data_t keydata, void *param);
 void	find_player_pos(t_cub3d *var);
+void	draw_line(t_cub3d *var, mlx_image_t *img);
 
 #endif

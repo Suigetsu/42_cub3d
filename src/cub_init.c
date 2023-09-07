@@ -6,11 +6,30 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/06 16:19:36 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:51:39 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	draw_pixels2(float x, float y, int color, mlx_image_t *img)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < T_SIZE/2)
+	{
+		j = 0;
+		while (j < T_SIZE/2)
+		{
+			mlx_put_pixel(img, (x * T_SIZE/2) + i, (y * T_SIZE/2) + j, color);
+			j++;
+		}
+		i++;
+	}
+}
 
 void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 {
@@ -19,12 +38,12 @@ void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 
 	i = 0;
 	j = 0;
-	while (i < TILESIZE)
+	while (i < T_SIZE)
 	{
 		j = 0;
-		while (j < TILESIZE)
+		while (j < T_SIZE)
 		{
-			mlx_put_pixel(img, (x * TILESIZE) + i, (y * TILESIZE) + j, color);
+			mlx_put_pixel(img, (x * T_SIZE) + i, (y * T_SIZE) + j, color);
 			j++;
 		}
 		i++;
@@ -53,7 +72,7 @@ void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 // 		 }
 //         // for (int j = -x1; j <= x1; j++)
 //         // {
-//         //     mlx_put_pixel(img, (x + (int) x1) * 32, (y + (int)y1) * 32, color);
+//         //     mlx_put_pixel(img, (x + (int) x1) * T_SIZE, (y + (int)y1) * T_SIZE, color);
 //         // }
 //     }
 // }
@@ -74,6 +93,8 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 			else
 			{
 				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
+				draw_pixels2(var->p.p_pos_x, var->p.p_pos_y, 0x56F52A23, img);
+				// mlx_put_pixel(img, var->p.p_pos_x, var->p.p_pos_y, 0x56F52A23);
 				// draw_player_pixels(var->p.p_pos_x, var->p.p_pos_y, 0xFF378446, img);
 			}
 			var->x++;
@@ -91,10 +112,11 @@ int	run_mlx(t_cub3d *var)
 	var->x = 0;
 	var->y = 0;
 	color = 0;
-	mlx = mlx_init(var->x_max * 32, var->y_max * 32, "test", false);
-	img = mlx_new_image(mlx, var->x_max * 32, var->y_max * 32);
+	mlx = mlx_init(var->x_max * T_SIZE, var->y_max * T_SIZE, "test", false);
+	img = mlx_new_image(mlx, var->x_max * T_SIZE, var->y_max * T_SIZE);
 	mlx_image_to_window(mlx, img, 0, 0);
 	draw_minimap(var, img);
+	// draw_line(var, img);
 	mlx_key_hook(mlx, &keyhook, var);
 	mlx_loop(mlx);
 	return (0);

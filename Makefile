@@ -6,7 +6,7 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/05 17:56:12 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/09/06 17:25:58 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ SRC			=	src/main.c src/cub_init.c src/cub_hook.c \
 				src/map_parser/cub_parse2.c src/map_parser/cub_parse3.c \
 				src/map_parser/cub_parse4.c src/map_parser/cub_parse5.c \
 				src/map_parser/cub_parse6.c src/map_parser/cub_free.c \
-				libs/gnl/get_next_line.c libs/gnl/get_next_line_utils.c
+				libs/gnl/get_next_line.c libs/gnl/get_next_line_utils.c \
+				src/cub_lines.c
 OBJS		=	${SRC:.c=.o}
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror #-Wunreachable-code -Ofast #-fsanitize=address
