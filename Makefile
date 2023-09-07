@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
+#    By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/06 17:25:58 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/09/07 10:40:02 by hrahmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,11 @@ LIBS		=	~/Desktop/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 LIBFT		=	libs/libft/libft.a
 RM			=	rm -rf
 NAME		=	cub3d
+INCLUDES	=	includes/cub3d.h
 
 all:	${NAME} ${LIBFT}
 
-%.o:%.c
+%.o:%.c $(INCLUDES)
 		${CC} ${CFLAGS} -c $< -o $@
 
 ${LIBFT}:
