@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 15:46:30 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:05:59 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,47 +82,46 @@ void	draw_player_pixels(t_cub3d *var, int color, mlx_image_t *img)
 	}
 }
 
-void draw_line(mlx_image_t *img, t_cub3d *var, int color)
-{
-    float direction = get_direction(var); 
-    float dx = cos(direction);
-    float dy = -sin(direction);
-    float pixelx = var->p.h;
-    float pixely = var->p.k;
-    int pixels = 50; 
-
-    while (pixels > 0)
-    {
-        mlx_put_pixel(img, (int)pixelx, (int)pixely, color);
-        pixelx += dx;
-        pixely += dy;
-        --pixels;
-    }
-}
-
-// void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
+// void draw_line(mlx_image_t *img, t_cub3d *var, int color)
 // {
-// 	float	dx;
-// 	float	dy;
-// 	float	pixelx;
-// 	float	pixely;
-// 	int		pixels;
-	
-// 	dx = (var->p.h + 50) - var->p.h;
-// 	dy = (var->p.k + 50) - var->p.k;
-// 	pixels = (int)sqrt((dx * dx) + (dy * dy));
-// 	dx = dx / pixels;
-// 	dy = dy / pixels;
-// 	pixelx = var->p.h;
-// 	pixely = var->p.k;
-// 	while (pixels)
-// 	{
-// 		mlx_put_pixel(img, pixelx, pixely, color);
-// 		pixelx += dx;
-// 		pixely += dy;
-// 		--pixels;
-// 	}
+//     float direction = get_direction(var); 
+//     float dx = cos(direction);
+//     float dy = -sin(direction);
+//     float pixelx = var->p.h;
+//     float pixely = var->p.k;
+//     int pixels = 50; 
+
+//     while (pixels)
+//     {
+//         mlx_put_pixel(img, (int)pixelx, (int)pixely, color);
+//         pixelx += dx;
+//         pixely += dy;
+//         --pixels;
+//     }
 // }
+
+void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
+{
+	float	dx;
+	float	dy;
+	float	pixelx;
+	float	pixely;
+	int		pixels;
+	
+	get_direction(var);
+	dx = cos(var->p.direction);
+	dy = -sin(var->p.direction);
+	pixelx = var->p.h;
+	pixely = var->p.k;
+	pixels = 50;
+	while (pixels)
+	{
+		mlx_put_pixel(img, pixelx, pixely, color);
+		pixelx += dx;
+		pixely += dy;
+		--pixels;
+	}
+}
 
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 {
