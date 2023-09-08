@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_direction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/08 18:32:36 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/08 20:05:37 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,13 @@ void	cast_rays(t_cub3d *var)
 	int		i;
 
 	i = 0;
-	while (i < T_SIZE)
+	get_direction(var);
+	var->p.ray_dir = var->p.direction + (30 * RADIANS);
+	
+	while (i < (var->x_max * T_SIZE))
 	{
 		draw_line(var->img, var, 0xFFFFFD);
-		var->p.ray_dir += FOV / T_SIZE;
+		var->p.ray_dir -= FOV / (var->x_max * T_SIZE);
 		printf("%f\n", var->p.ray_dir);
 		i++;
 	}

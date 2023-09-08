@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/08 19:15:33 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/08 19:56:42 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define HEIGHT 2880 / 4
 # define ERROR -1
 # define PI 3.141592653589793
-# define RADIANS PI / 180
+# define RADIANS (PI / 180)
 # define FOV 60 * RADIANS
 # define ROT_ANGLE 3
 # define NUM_RAYS (T_SIZE / 2);

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/08 19:47:47 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/08 20:04:38 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 	float	pixely;
 	int		pixels;
 	
-	get_direction(var);
-	if (!var->p.ray_dir)
-		var->p.ray_dir = var->p.direction;
+	// get_direction(var);
+	// if (!var->p.ray_dir)
+	// 	var->p.ray_dir = var->p.direction;
+	
 	dx = cos(var->p.ray_dir);
 	dy = -sin(var->p.ray_dir);
 	pixelx = var->p.h;
