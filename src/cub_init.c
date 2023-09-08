@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/08 12:02:09 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/08 17:12:27 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 	dy = -sin(var->p.direction);
 	pixelx = var->p.h;
 	pixely = var->p.k;
-	pixels = 50;
+	pixels = T_SIZE;
 	while (pixels)
 	{
 		mlx_put_pixel(img, pixelx, pixely, color);
