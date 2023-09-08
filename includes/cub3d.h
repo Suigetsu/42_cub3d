@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/08 11:57:30 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/08 19:15:33 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@
 # define HEIGHT 2880 / 4
 # define ERROR -1
 # define PI 3.141592653589793
-# define RADIANS PI /180
+# define RADIANS PI / 180
 # define FOV 60 * RADIANS
+# define ROT_ANGLE 3
+# define NUM_RAYS (T_SIZE / 2);
 
 typedef struct	s_player
 {
@@ -39,7 +41,9 @@ typedef struct	s_player
 	float	h;
 	float	k;
 	float	radius;
+	float	ray_angle;
 	float	direction;
+	float	ray_dir;
 	char	dir;
 }				t_player;
 
@@ -87,6 +91,7 @@ void	free_for_exit(t_cub3d *var, int exit_status);
 void	free_for_map(t_cub3d *var);
 int		is_map_valid(t_cub3d *var);
 float	get_direction(t_cub3d *var);
+void	cast_rays(t_cub3d *var);
 void	rotate_player(t_cub3d *var, float angle);
 int		around_space(t_cub3d *var, int y, int x);
 int		check_map(char *filename, t_cub3d *var);

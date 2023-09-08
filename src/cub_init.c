@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/08 12:02:09 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/08 18:24:26 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 	int		pixels;
 	
 	get_direction(var);
-	printf("line direction %f\n", var->p.direction);
-	dx = cos(var->p.direction);
-	dy = -sin(var->p.direction);
+	if (!var->p.ray_dir)
+		var->p.ray_dir = var->p.direction;
+	dx = cos(var->p.ray_dir);
+	dy = -sin(var->p.ray_dir);
 	pixelx = var->p.h;
 	pixely = var->p.k;
 	pixels = 50;
@@ -146,8 +147,8 @@ int	run_mlx(t_cub3d *var)
 	mlx_image_to_window(var->mlx, var->img, 0, 0);
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	draw_line(var->img, var, 0x00000000);
-	// draw_line(var, var->img);
+	cast_rays(var);
+	// draw_line(var->img, var, 0x00000000);
 	mlx_key_hook(var->mlx, &keyhook, var);
 	mlx_loop(var->mlx);
 	return (0);
