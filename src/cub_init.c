@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 16:05:59 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:56:52 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,15 @@ void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 		while (j < T_SIZE)
 		{
 			mlx_put_pixel(img, (x * T_SIZE) + i, (y * T_SIZE) + j, color);
+			if (j == T_SIZE - 1)
+				mlx_put_pixel(img, (x * T_SIZE) + i, (y * T_SIZE) + j, 0);
+			if (i == T_SIZE - 1)
+				mlx_put_pixel(img, (x * T_SIZE) + i, (y * T_SIZE) + j, 0);
 			j++;
 		}
 		i++;
 	}
 }
-
 
 bool check_wall(t_cub3d *var, float x, float y)
 {
@@ -68,37 +71,19 @@ void	draw_player_pixels(t_cub3d *var, int color, mlx_image_t *img)
 	j = var->p.p_pos_x;
 	var->p.h = var->p.p_pos_x + (T_SIZE / 2);
 	var->p.k = var->p.p_pos_y + (T_SIZE / 2);
-	while (var->p.p_pos_y < i + T_SIZE)
+	while (i < var->p.p_pos_y + T_SIZE)
 	{
-		var->p.p_pos_x = j;
-		while (var->p.p_pos_x < j + T_SIZE)
+		j = var->p.p_pos_x;
+		while (j < var->p.p_pos_x + T_SIZE)
 		{
-			if (pow(var->p.p_pos_x - var->p.h, 2) + \
-				pow(var->p.p_pos_y - var->p.k, 2) <= pow(var->p.radius, 2))
-				mlx_put_pixel(img, var->p.p_pos_x, var->p.p_pos_y, color);
-			var->p.p_pos_x++;
+			if (pow(j - var->p.h, 2) + \
+				pow(i - var->p.k, 2) <= pow(var->p.radius, 2))
+				mlx_put_pixel(img, j, i, color);
+			j++;
 		}
-		var->p.p_pos_y++;
+		i++;
 	}
 }
-
-// void draw_line(mlx_image_t *img, t_cub3d *var, int color)
-// {
-//     float direction = get_direction(var); 
-//     float dx = cos(direction);
-//     float dy = -sin(direction);
-//     float pixelx = var->p.h;
-//     float pixely = var->p.k;
-//     int pixels = 50; 
-
-//     while (pixels)
-//     {
-//         mlx_put_pixel(img, (int)pixelx, (int)pixely, color);
-//         pixelx += dx;
-//         pixely += dy;
-//         --pixels;
-//     }
-// }
 
 void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 {
@@ -109,6 +94,7 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 	int		pixels;
 	
 	get_direction(var);
+	printf("line direction %f\n", var->p.direction);
 	dx = cos(var->p.direction);
 	dy = -sin(var->p.direction);
 	pixelx = var->p.h;
@@ -125,6 +111,7 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 {
+	var->y = 0;
 	while (var->map[(int)var->y])
 	{
 		var->x = 0;
@@ -137,11 +124,9 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 			else if (var->map[(int)var->y][(int)var->x] == ' ')
 				draw_pixels(var->x, var->y, 0x00000000, img);
 			else
-			{
 				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
-				draw_player_pixels(var, 0xFF378446, img);
-				draw_line(img, var, 0x00000000);
-			}
+			// draw_player_pixels(var, 0xFF378446, img);
+			// draw_line(img, var, 0x00000000);
 			var->x++;
 		}
 		var->y++;
@@ -151,20 +136,20 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 
 int	run_mlx(t_cub3d *var)
 {
-	mlx_t		*mlx;
-	mlx_image_t *img;
 	int			color;
 
 	var->x = 0;
 	var->y = 0;
 	color = 0;
-	mlx = mlx_init(var->x_max * T_SIZE, var->y_max * T_SIZE, "test", false);
-	img = mlx_new_image(mlx, var->x_max * T_SIZE, var->y_max * T_SIZE);
-	mlx_image_to_window(mlx, img, 0, 0);
-	draw_minimap(var, img);
-	// draw_line(var, img);
-	mlx_key_hook(mlx, &keyhook, var);
-	mlx_loop(mlx);
+	var->mlx = mlx_init(var->x_max * T_SIZE, var->y_max * T_SIZE, "test", false);
+	var->img = mlx_new_image(var->mlx, var->x_max * T_SIZE, var->y_max * T_SIZE);
+	mlx_image_to_window(var->mlx, var->img, 0, 0);
+	draw_minimap(var, var->img);
+	draw_player_pixels(var, 0xFF378446, var->img);
+	draw_line(var->img, var, 0x00000000);
+	// draw_line(var, var->img);
+	mlx_key_hook(var->mlx, &keyhook, var);
+	mlx_loop(var->mlx);
 	return (0);
 }
 

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 12:13:53 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:51:26 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
 
 void	keyhook(mlx_key_data_t keydata, void *param)
 {
@@ -28,7 +29,34 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 		printf("left\n");
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		printf("rotate right\n");
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		printf("rotate left\n");
+    {
+        // printf("rotate right\n");
+        rotate_player(var, 30); 
+        // mlx_destroy_image(var->img);
+		// mlx_delete_image(var->mlx, var->img);
+		// var->img = mlx_new_image(var->mlx, var->x_max * T_SIZE, var->y_max * T_SIZE);
+		// mlx_image_to_window(var->mlx, var->img, 0, 0);
+		draw_minimap(var, var->img);
+		draw_player_pixels(var, 0xFF378446, var->img);
+        draw_line(var->img, var, 0x00000000); 
+    }
+    else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+    {
+        // printf("rotate left\n");
+        rotate_player(var, -30);
+        // mlx_destroy_image(var->img);
+		// mlx_delete_image(var->mlx, var->img);
+		// mlx_image_to_window(var->mlx, var->img, 0, 0);
+		// draw_minimap(var, var->img);
+		// mlx_delete_image(var->mlx, var->img);
+		// var->img = mlx_new_image(var->mlx, var->x_max * T_SIZE, var->y_max * T_SIZE);
+		// mlx_image_to_window(var->mlx, var->img, 0, 0);
+		draw_minimap(var, var->img);
+		draw_player_pixels(var, 0xFF378446, var->img);
+        draw_line(var->img, var, 0x00000000);
+    }
+	// else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+	// 	printf("rotate right\n");
+	// else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+	// 	printf("rotate left\n");
 }
