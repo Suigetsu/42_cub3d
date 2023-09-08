@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/08 11:56:52 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:02:09 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	draw_player_pixels(t_cub3d *var, int color, mlx_image_t *img)
 	float	i;
 	float	j;
 
-	var->p.radius = 7;
+	var->p.radius = 3;
 	i = var->p.p_pos_y;
 	j = var->p.p_pos_x;
 	var->p.h = var->p.p_pos_x + (T_SIZE / 2);
