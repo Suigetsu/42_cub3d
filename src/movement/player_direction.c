@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/08 10:38:58 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/08 18:32:36 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,18 @@ void	rotate_player(t_cub3d *var, float angle)
 	else if (var->p.direction >= 2 * PI)
         var->p.direction -= 2 * PI;
 }
+
+void	cast_rays(t_cub3d *var)
+{
+	int		i;
+
+	i = 0;
+	while (i < T_SIZE)
+	{
+		draw_line(var->img, var, 0xFFFFFD);
+		var->p.ray_dir += FOV / T_SIZE;
+		printf("%f\n", var->p.ray_dir);
+		i++;
+	}
+}
+
