@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/08 19:56:42 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/09 12:47:04 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,8 @@ void	find_player_pos(t_cub3d *var);
 void	draw_line(mlx_image_t *img, t_cub3d *var, int color);
 void	draw_minimap(t_cub3d *var, mlx_image_t *img);
 void	draw_player_pixels(t_cub3d *var, int color, mlx_image_t *img);
+void	fix_angle(t_cub3d *var);
+void	draw_pixels(float x, float y, int color, mlx_image_t *img);
+
 
 #endif

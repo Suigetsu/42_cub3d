@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/08 20:05:37 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/09 12:46:12 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,20 @@ float	get_direction(t_cub3d *var)
 	return (var->p.direction);
 }
 
-void	rotate_player(t_cub3d *var, float angle)
+void	fix_angle(t_cub3d *var)
 {
-	// printf("inside rotate\n");
-	printf("old direction %f\n", var->p.direction);
-	var->p.direction += angle;
-	printf("new direction %f\n", var->p.direction);
 	if (var->p.direction < 0)
 		var->p.direction += 2 * PI;
 	else if (var->p.direction >= 2 * PI)
         var->p.direction -= 2 * PI;
+}
+
+void	rotate_player(t_cub3d *var, float angle)
+{
+	printf("old direction %f\n", var->p.direction);
+	var->p.direction += angle;
+	printf("new direction %f\n", var->p.direction);
+	fix_angle(var);
 }
 
 void	cast_rays(t_cub3d *var)
