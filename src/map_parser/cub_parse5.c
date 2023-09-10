@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 13:33:49 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/10 13:05:42 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ int	check_inside(t_cub3d *var)
 				if (around_space(var, var->y, var->x))
 					return (ERROR);
 			}
+			if (var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != '1')
+				return (ERROR);
+
 			var->x++;
 		}
 		var->y++;

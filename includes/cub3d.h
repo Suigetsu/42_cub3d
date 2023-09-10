@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/09 12:47:04 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/10 11:44:27 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 # include "../libs/gnl/get_next_line.h"
 
 
-# define T_SIZE 32
+# define T_SIZE 80
 # define WIDTH 5120 / 4
 # define HEIGHT 2880 / 4
 # define ERROR -1
 # define PI 3.141592653589793
 # define RADIANS (PI / 180)
 # define FOV 60 * RADIANS
-# define ROT_ANGLE 3
+# define ROT_ANGLE 8
 # define NUM_RAYS (T_SIZE / 2);
 
 typedef struct	s_player
