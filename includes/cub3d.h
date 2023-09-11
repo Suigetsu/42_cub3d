@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/10 18:48:19 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:38:05 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define PI 3.141592653589793
 # define RADIANS (PI / 180)
 # define FOV 60 * RADIANS
-# define ROT_ANGLE 8
+# define ROT_ANGLE 3
 # define NUM_RAYS (T_SIZE / 2);
 
 typedef struct	s_player
@@ -97,7 +97,7 @@ int		around_space(t_cub3d *var, int y, int x);
 int		check_map(char *filename, t_cub3d *var);
 void	init_vars(t_cub3d *var, int ac, char **av);
 int		run_mlx(t_cub3d *var);
-void	keyhook(mlx_key_data_t keydata, void *param);
+void	keyhook(void *param);
 void	find_player_pos(t_cub3d *var);
 void	draw_line(mlx_image_t *img, t_cub3d *var, int color);
 void	draw_minimap(t_cub3d *var, mlx_image_t *img);

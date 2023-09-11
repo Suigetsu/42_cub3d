@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/09 12:45:08 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:10:30 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	run_mlx(t_cub3d *var)
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	cast_rays(var);
-	// draw_line(var->img, var, 0x00000000);
-	mlx_key_hook(var->mlx, &keyhook, var);
+	// mlx_key_hook(var->mlx, &keyhook, var);
+	mlx_loop_hook(var->mlx, &keyhook, var);
 	mlx_loop(var->mlx);
 	return (0);
 }
