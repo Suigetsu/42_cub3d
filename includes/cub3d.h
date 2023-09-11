@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/10 11:44:27 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/10 18:48:19 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	free_for_map(t_cub3d *var);
 int		is_map_valid(t_cub3d *var);
 float	get_direction(t_cub3d *var);
 void	cast_rays(t_cub3d *var);
-void	rotate_player(t_cub3d *var, float angle);
+void	rotate_player(t_cub3d *var, float angle, int key);
 int		around_space(t_cub3d *var, int y, int x);
 int		check_map(char *filename, t_cub3d *var);
 void	init_vars(t_cub3d *var, int ac, char **av);

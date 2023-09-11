@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/09 12:46:12 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/10 18:47:21 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,15 @@ void	fix_angle(t_cub3d *var)
         var->p.direction -= 2 * PI;
 }
 
-void	rotate_player(t_cub3d *var, float angle)
+void	rotate_player(t_cub3d *var, float angle, int key)
 {
-	printf("old direction %f\n", var->p.direction);
+	if (key == MLX_KEY_RIGHT)
+		angle *= -1;
 	var->p.direction += angle;
-	printf("new direction %f\n", var->p.direction);
 	fix_angle(var);
+	draw_minimap(var, var->img);
+	draw_player_pixels(var, 0xFF378446, var->img);
+	cast_rays(var);
 }
 
 void	cast_rays(t_cub3d *var)
@@ -51,12 +54,10 @@ void	cast_rays(t_cub3d *var)
 	i = 0;
 	get_direction(var);
 	var->p.ray_dir = var->p.direction + (30 * RADIANS);
-	
 	while (i < (var->x_max * T_SIZE))
 	{
 		draw_line(var->img, var, 0xFFFFFD);
 		var->p.ray_dir -= FOV / (var->x_max * T_SIZE);
-		printf("%f\n", var->p.ray_dir);
 		i++;
 	}
 }
