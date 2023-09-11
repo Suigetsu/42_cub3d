@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/11 11:38:23 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/11 12:18:49 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	down_move(t_cub3d *var)
 
 void	right_move(t_cub3d *var)
 {
-	if (var->map[(int)round(var->p.p_pos_y / T_SIZE)][(int)round((var->p.p_pos_x + 1) / T_SIZE)] == '1')
+	if (var->map[(int)round(var->p.p_pos_y / T_SIZE)]\
+		[(int)round((var->p.p_pos_x + 1) / T_SIZE)] == '1')
 			return ;
-		var->p.p_pos_x += -cos(var->p.direction * (PI / 2)) * 3;
-		var->p.p_pos_y += sin(var->p.direction * (PI / 2)) * 3;
+		printf("%f\n", var->p.direction);
+		var->p.p_pos_x += sin(var->p.direction) * 3;
+		var->p.p_pos_y += cos(var->p.direction) * 3;
 		draw_minimap(var, var->img);
 		draw_player_pixels(var, 0xFF378446, var->img);
 		cast_rays(var);
@@ -49,10 +51,11 @@ void	right_move(t_cub3d *var)
 
 void	left_move(t_cub3d *var)
 {
-	if (var->map[(int)round(var->p.p_pos_y / T_SIZE)][(int)round((var->p.p_pos_x - 1) / T_SIZE)] == '1')
+	if (var->map[(int)round(var->p.p_pos_y / T_SIZE)]\
+		[(int)round((var->p.p_pos_x - 1) / T_SIZE)] == '1')
 			return ;
-		var->p.p_pos_x -= -cos(var->p.direction * (PI / 2)) * 3;
-		var->p.p_pos_y -= sin(var->p.direction * (PI / 2)) * 3;
+		var->p.p_pos_x -= sin(var->p.direction) * 3;
+		var->p.p_pos_y -= cos(var->p.direction) * 3;
 		draw_minimap(var, var->img);
 		draw_player_pixels(var, 0xFF378446, var->img);
 		cast_rays(var);
