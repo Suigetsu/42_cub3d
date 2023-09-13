@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/13 18:01:04 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:10:50 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	up_move(t_cub3d *var)
 {
-	float	temp_x;
-	float	temp_y;
-
-	temp_x = var->p.h + cosf(var->p.direction) * 3;
-	temp_y = var->p.k - sinf(var->p.direction) * 3;
-	if (var->map[(int)temp_y / T_SIZE][(int)temp_x / T_SIZE] == '1')
+	if ((int)((var->p.k - 1) / T_SIZE) == 0 || \
+		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
+		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
 	var->p.p_pos_x += cosf(var->p.direction) * 3;
 	var->p.p_pos_y -= sinf(var->p.direction) * 3;
@@ -30,12 +27,9 @@ void	up_move(t_cub3d *var)
 
 void	down_move(t_cub3d *var)
 {
-	float	temp_x;
-	float	temp_y;
-
-	temp_x = var->p.h - cosf(var->p.direction) * 3;
-	temp_y = var->p.k + sinf(var->p.direction) * 3;
-	if (var->map[(int)temp_y / T_SIZE][(int)temp_x / T_SIZE] == '1')
+	if ((int)((var->p.k + 1) / T_SIZE) == var->y_max - 1 || \
+		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
+		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
 	var->p.p_pos_x -= cosf(var->p.direction) * 3;
 	var->p.p_pos_y += sinf(var->p.direction) * 3;
@@ -46,12 +40,10 @@ void	down_move(t_cub3d *var)
 
 void	right_move(t_cub3d *var)
 {
-	float	temp_x;
-	float	temp_y;
-
-	temp_x = var->p.h + cosf(var->p.direction) * 3;
-	temp_y = var->p.k + sinf(var->p.direction) * 3;
-	if (var->map[(int)temp_y / T_SIZE][(int)temp_x / T_SIZE] == '1')
+	if ((int)((var->p.k - 1) / T_SIZE) == 0 || \
+		(int)((var->p.k + 1) / T_SIZE) == var->y_max - 1 || \
+		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
+		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
 	var->p.p_pos_x += sinf(var->p.direction) * 3;
 	var->p.p_pos_y += cosf(var->p.direction) * 3;
@@ -62,12 +54,10 @@ void	right_move(t_cub3d *var)
 
 void	left_move(t_cub3d *var)
 {
-	float	temp_x;
-	float	temp_y;
-
-	temp_x = var->p.h - cosf(var->p.direction) * 3;
-	temp_y = var->p.k - sinf(var->p.direction) * 3;
-	if (var->map[(int)temp_y / T_SIZE][(int)temp_x / T_SIZE] == '1')
+	if ((int)((var->p.k - 1) / T_SIZE) == 0 || \
+		(int)((var->p.k + 1) / T_SIZE) == var->y_max - 1 || \
+		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
+		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
 	var->p.p_pos_x -= sinf(var->p.direction) * 3;
 	var->p.p_pos_y -= cosf(var->p.direction) * 3;
