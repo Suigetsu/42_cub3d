@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/11 11:38:05 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:20:21 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@
 # define WIDTH 5120 / 4
 # define HEIGHT 2880 / 4
 # define ERROR -1
-# define PI 3.141592653589793
-# define RADIANS (PI / 180)
+# define RADIANS (M_PI / 180)
 # define FOV 60 * RADIANS
-# define ROT_ANGLE 3
+# define ROT_ANGLE M_PI / 2
+# define MOVE_SPEED 3
+# define ROT_SPEED 3 * RADIANS
 # define NUM_RAYS (T_SIZE / 2);
 
 typedef struct	s_player
@@ -41,6 +42,8 @@ typedef struct	s_player
 	float	h;
 	float	k;
 	float	radius;
+	float	turn_dir;
+	float	walk_dir;
 	float	ray_angle;
 	float	direction;
 	float	ray_dir;

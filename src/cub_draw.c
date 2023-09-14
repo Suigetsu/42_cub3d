@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/09 12:46:53 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:37:19 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 	// if (!var->p.ray_dir)
 	// 	var->p.ray_dir = var->p.direction;
 	
-	dx = cos(var->p.ray_dir);
-	dy = -sin(var->p.ray_dir);
+	dx = cos(var->p.direction);
+	dy = sin(var->p.direction);
 	pixelx = var->p.h;
 	pixely = var->p.k;
 	pixels = T_SIZE;

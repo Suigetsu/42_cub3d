@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/10 18:47:21 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:37:14 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 float	get_direction(t_cub3d *var)
 {
 	if (var->p.dir == 'N')
-		var->p.direction = 90 * RADIANS;
-	else if (var->p.dir == 'S')
 		var->p.direction = 270 * RADIANS;
+	else if (var->p.dir == 'S')
+		var->p.direction = 90 * RADIANS;
 	else if (var->p.dir == 'E')
-		var->p.direction = 360 * RADIANS;
-	else if (var->p.dir == 'W')
 		var->p.direction = 180 * RADIANS;
+	else if (var->p.dir == 'W')
+		var->p.direction = 360 * RADIANS;
 	else
 		return (0);
 	var->p.dir = '\0';
@@ -31,9 +31,9 @@ float	get_direction(t_cub3d *var)
 void	fix_angle(t_cub3d *var)
 {
 	if (var->p.direction < 0)
-		var->p.direction += 2 * PI;
-	else if (var->p.direction >= 2 * PI)
-        var->p.direction -= 2 * PI;
+		var->p.direction += 2 * M_PI;
+	else if (var->p.direction >= 2 * M_PI)
+        var->p.direction -= 2 * M_PI;
 }
 
 void	rotate_player(t_cub3d *var, float angle, int key)
