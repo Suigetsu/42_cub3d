@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/14 16:54:45 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 17:02:54 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 bool	check_wall(t_cub3d *var, float x, float y)
 {
-	if (y / T_SIZE < 0 || x / T_SIZE < 0)
+	if (y / T_SIZE < 0 || x / T_SIZE < 0 || y / T_SIZE > var->y_max - 1 \
+		|| x / T_SIZE > var->x_max - 1)
 		return (true);
 	if (var->map[(int)(y / T_SIZE)][(int)(x / T_SIZE)] == '1')
 		return (true);
