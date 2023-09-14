@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/14 13:16:46 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 13:55:15 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,12 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 {
 	float	dx;
 	float	dy;
-	int		sx;
-	int		sy;
-	int		err;
-	int		err2;
-	
-	// get_direction(var);
+	float	pixelx;
+	float	pixely;
+	int		pixels;
+
 	if (!var->p.ray_dir)
 		var->p.ray_dir = var->p.direction;
-	dx = fabs(var->p.end_x - var->p.h);
-	if (var->p.h < var->p.end_x)
-		sx = 1;
-	else
-		sx = -1;
-	dy = -fabs(var->p.end_y - var->p.k);
-	if(var->p.k < var->p.end_y)
-		sy = 1;
-	else
-		sy = -1;
-	
-	err = dx + dy;
-	while (1)
 	dx = cos(var->p.ray_dir);
 	dy = sin(var->p.ray_dir);
 	pixelx = var->p.h;
@@ -92,26 +77,11 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 	pixels = T_SIZE;
 	while (pixels)
 	{
-		mlx_put_pixel(img, var->p.h, var->p.k, color);
-		if (var->p.h == var->p.end_x && var->p.k == var->p.end_y)
-			break;
-		err2 = 2 * err;
-		if(err2 >= dy)
-		{
-			if (var->p.h == var->p.end_x)
-				break;
-			err += dy;
-			var->p.h += sx;
-		}
-		if (err2 <= dx)
-		{
-			if (var->p.k == var->p.end_y)
-				break;
-			err += dx;
-			var->p.k += sy;
-		}
+		mlx_put_pixel(img, pixelx, pixely, color);
+		pixelx += dx;
+		pixely += dy;
+		--pixels;
 	}
-	
 }
 
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)
