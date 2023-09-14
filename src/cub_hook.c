@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/14 10:18:50 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:48:29 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	up_move(t_cub3d *var)
 		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
 		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
-	var->p.p_pos_x -= sinf(var->p.direction) * 3;
-	var->p.p_pos_y -= cosf(var->p.direction) * 3;
+	var->p.p_pos_x -= sinf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_y -= cosf(var->p.direction) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	cast_rays(var);
@@ -31,8 +31,8 @@ void	down_move(t_cub3d *var)
 		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
 		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
-	var->p.p_pos_x += sinf(var->p.direction) * 3;
-	var->p.p_pos_y += cosf(var->p.direction) * 3;
+	var->p.p_pos_x += sinf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_y += cosf(var->p.direction) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	cast_rays(var);
@@ -45,8 +45,8 @@ void	right_move(t_cub3d *var)
 		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
 		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
-	var->p.p_pos_x += cosf(var->p.direction) * 3;
-	var->p.p_pos_y -= sinf(var->p.direction) * 3;
+	var->p.p_pos_x += cosf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_y -= sinf(var->p.direction) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	cast_rays(var);
@@ -59,8 +59,8 @@ void	left_move(t_cub3d *var)
 		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
 		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
-	var->p.p_pos_x -= cosf(var->p.direction) * 3;
-	var->p.p_pos_y += sinf(var->p.direction) * 3;
+	var->p.p_pos_x -= cosf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_y += sinf(var->p.direction) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	cast_rays(var);
@@ -82,7 +82,7 @@ void	keyhook(void *param)
 	else if (mlx_is_key_down(var->mlx, MLX_KEY_A))
 		left_move(var);
 	else if (mlx_is_key_down(var->mlx, MLX_KEY_RIGHT))
-		rotate_player(var, ROT_ANGLE * RADIANS, MLX_KEY_RIGHT);
+		rotate_player(var, ROT_SPEED, MLX_KEY_RIGHT);
 	else if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
-		rotate_player(var, ROT_ANGLE * RADIANS, MLX_KEY_LEFT);
+		rotate_player(var, ROT_SPEED, MLX_KEY_LEFT);
 }

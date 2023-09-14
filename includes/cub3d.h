@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/14 11:35:59 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:47:26 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@
 # define WIDTH 5120 / 4
 # define HEIGHT 2880 / 4
 # define ERROR -1
-# define PI 3.141592653589793
-# define RADIANS (PI / 180)
+# define RADIANS (M_PI / 180)
 # define FOV 60 * RADIANS
-# define ROT_ANGLE 3
+# define ROT_ANGLE M_PI / 2
+# define MOVE_SPEED 3
+# define ROT_SPEED 3 * RADIANS
 # define NUM_RAYS (T_SIZE / 2);
 
 typedef	struct s_ray
@@ -51,6 +52,8 @@ typedef struct	s_player
 	float	end_x;
 	float	end_y;
 	float	radius;
+	float	turn_dir;
+	float	walk_dir;
 	float	ray_angle;
 	float	direction;
 	float	ray_dir;
