@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/14 11:48:29 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 13:17:49 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	up_move(t_cub3d *var)
 		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
 		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
-	var->p.p_pos_x -= sinf(var->p.direction) * MOVE_SPEED;
-	var->p.p_pos_y -= cosf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_x += cosf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_y += sinf(var->p.direction) * MOVE_SPEED;
+	printf ("%f\n", var->p.direction);
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
+	// draw_line(var->img, var, 0xFFFFFD);
 	cast_rays(var);
 }
 
@@ -31,10 +33,11 @@ void	down_move(t_cub3d *var)
 		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
 		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
-	var->p.p_pos_x += sinf(var->p.direction) * MOVE_SPEED;
-	var->p.p_pos_y += cosf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_x -= cosf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_y -= sinf(var->p.direction) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
+	// draw_line(var->img, var, 0xFFFFFD);
 	cast_rays(var);
 }
 
@@ -45,10 +48,11 @@ void	right_move(t_cub3d *var)
 		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
 		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
-	var->p.p_pos_x += cosf(var->p.direction) * MOVE_SPEED;
-	var->p.p_pos_y -= sinf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_x -= cosf(var->p.direction - ROT_ANGLE) * MOVE_SPEED;
+	var->p.p_pos_y -= sinf(var->p.direction - ROT_ANGLE) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
+	// draw_line(var->img, var, 0xFFFFFD);
 	cast_rays(var);
 }
 
@@ -59,10 +63,11 @@ void	left_move(t_cub3d *var)
 		(int)((var->p.h + 1) / T_SIZE) == var->x_max - 1 || \
 		(int)((var->p.h - 1) / T_SIZE) == 0)
 		return ;
-	var->p.p_pos_x -= cosf(var->p.direction) * MOVE_SPEED;
-	var->p.p_pos_y += sinf(var->p.direction) * MOVE_SPEED;
+	var->p.p_pos_x -= cosf(var->p.direction + ROT_ANGLE) * MOVE_SPEED;
+	var->p.p_pos_y -= sinf(var->p.direction + ROT_ANGLE) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
+	// draw_line(var->img, var, 0xFFFFFD);
 	cast_rays(var);
 }
 
@@ -73,16 +78,30 @@ void	keyhook(void *param)
 	var = (t_cub3d *)param;
 	if (mlx_is_key_down(var->mlx, MLX_KEY_ESCAPE))
 		exit(0);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_W))
 		up_move(var);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_S))
 		down_move(var);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_D))
 		right_move(var);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_A))
 		left_move(var);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_RIGHT))
-		rotate_player(var, ROT_SPEED, MLX_KEY_RIGHT);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
-		rotate_player(var, ROT_SPEED, MLX_KEY_LEFT);
+	if (mlx_is_key_down(var->mlx, MLX_KEY_RIGHT))
+	{
+		var->p.direction += ROT_SPEED;
+		draw_minimap(var, var->img);
+		draw_player_pixels(var, 0xFF378446, var->img);
+		// draw_line(var->img, var, 0xFFFFFD);
+		cast_rays(var);
+		//rotate_player(var, ROT_SPEED, MLX_KEY_RIGHT);
+	}
+	if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
+	{
+		var->p.direction -= ROT_SPEED;
+		draw_minimap(var, var->img);
+		draw_player_pixels(var, 0xFF378446, var->img);
+		// draw_line(var->img, var, 0xFFFFFD);
+		cast_rays(var);
+		//rotate_player(var, ROT_SPEED, MLX_KEY_LEFT);
+	}
 }
