@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/14 13:09:43 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:42:57 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	cast_rays(t_cub3d *var)
 	int		i;
 
 	i = 0;
-	// get_direction(var);
 	var->p.ray_dir = var->p.direction + (30 * RADIANS);
 	while (i < (var->x_max * T_SIZE))
 	{
