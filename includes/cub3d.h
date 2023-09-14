@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/11 11:38:05 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:35:59 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,22 @@
 # define ROT_ANGLE 3
 # define NUM_RAYS (T_SIZE / 2);
 
+typedef	struct s_ray
+{
+	float	start;
+	float	end;
+	float	step_x;
+	float	step_y;
+}		t_ray;
+
 typedef struct	s_player
 {
 	float	p_pos_x;
 	float	p_pos_y;
 	float	h;
 	float	k;
+	float	end_x;
+	float	end_y;
 	float	radius;
 	float	ray_angle;
 	float	direction;
@@ -76,6 +86,7 @@ typedef struct s_cub3d
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_player	p;
+	t_ray		ray;
 }				t_cub3d;
 
 int		check_filename(char *filename);

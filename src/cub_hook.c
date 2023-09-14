@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/13 19:16:04 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:18:50 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	up_move(t_cub3d *var)
 	var->p.p_pos_y -= cosf(var->p.direction) * 3;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	// cast_rays(var);
+	cast_rays(var);
 }
 
 void	down_move(t_cub3d *var)
@@ -35,7 +35,7 @@ void	down_move(t_cub3d *var)
 	var->p.p_pos_y += cosf(var->p.direction) * 3;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	// cast_rays(var);
+	cast_rays(var);
 }
 
 void	right_move(t_cub3d *var)
@@ -49,7 +49,7 @@ void	right_move(t_cub3d *var)
 	var->p.p_pos_y -= sinf(var->p.direction) * 3;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	// cast_rays(var);
+	cast_rays(var);
 }
 
 void	left_move(t_cub3d *var)
@@ -63,7 +63,7 @@ void	left_move(t_cub3d *var)
 	var->p.p_pos_y += sinf(var->p.direction) * 3;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	// cast_rays(var);
+	cast_rays(var);
 }
 
 void	keyhook(void *param)
