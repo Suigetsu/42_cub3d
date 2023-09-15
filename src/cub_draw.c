@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/14 13:55:15 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:40:36 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,20 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 		var->p.ray_dir = var->p.direction;
 	dx = cos(var->p.ray_dir);
 	dy = sin(var->p.ray_dir);
+	var->ray.inter_y = ((var->p.p_pos_y / T_SIZE) * (T_SIZE));
+	var->ray.inter_x = var->p.p_pos_x + (var->p.p_pos_y - var->ray.inter_y) / tan(var->p.ray_dir);
+	printf("%d - %d\n", var->ray.inter_y/T_SIZE, var->ray.inter_x/T_SIZE);
+	// var->ray.horizon = (int)(var->ray.inter_y / sin(var->p.ray_dir));
+	while (var->map[(int)var->ray.inter_y / T_SIZE][(int)var->ray.inter_x / T_SIZE] != '1')
+	{
+		var->ray.inter_y -= T_SIZE;
+		var->ray.inter_x += (T_SIZE / tan(var->p.ray_dir));
+		printf("%d - %d\n", var->ray.inter_y/T_SIZE, var->ray.inter_x/T_SIZE);
+	}
+	var->ray.horizon = sqrt(pow(var->p.p_pos_x - var->ray.inter_x, 2) + pow(var->p.p_pos_y - var->ray.inter_y, 2));
 	pixelx = var->p.h;
 	pixely = var->p.k;
-	pixels = T_SIZE;
+	pixels = var->ray.horizon;
 	while (pixels)
 	{
 		mlx_put_pixel(img, pixelx, pixely, color);
