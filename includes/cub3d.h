@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/16 11:40:25 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:18:00 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../libs/gnl/get_next_line.h"
 
 
-# define T_SIZE 80
+# define T_SIZE 64
 # define WIDTH 5120 / 4
 # define HEIGHT 2880 / 4
 # define ERROR -1
@@ -118,7 +118,7 @@ void	free_for_exit(t_cub3d *var, int exit_status);
 void	free_for_map(t_cub3d *var);
 int		is_map_valid(t_cub3d *var);
 float	get_direction(t_cub3d *var);
-void	cast_rays(t_cub3d *var);
+void	cast_rays(t_cub3d *var, mlx_image_t *img);
 void	rotate_player(t_cub3d *var, float angle, int key);
 int		around_space(t_cub3d *var, int y, int x);
 int		check_map(char *filename, t_cub3d *var);
@@ -126,12 +126,15 @@ void	init_vars(t_cub3d *var, int ac, char **av);
 int		run_mlx(t_cub3d *var);
 void	keyhook(void *param);
 void	find_player_pos(t_cub3d *var);
-void	draw_line(mlx_image_t *img, t_cub3d *var, int color);
+void 	draw_line(t_cub3d *var, mlx_image_t *img);
+// void	draw_line(mlx_image_t *img, t_cub3d *var, int color);
 void	draw_minimap(t_cub3d *var, mlx_image_t *img);
 void	draw_player_pixels(t_cub3d *var, int color, mlx_image_t *img);
 void	fix_angle(t_cub3d *var);
 void	draw_pixels(float x, float y, int color, mlx_image_t *img);
 void    draw_line_bresenham(mlx_image_t *img, t_cub3d *var, int color);
 void    draw_line2(t_cub3d *arg, mlx_image_t *image, int color);
+void	get_horizontal_distance(t_cub3d *var, mlx_image_t *img);
+void	test_draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1);
 
 #endif

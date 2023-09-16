@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/16 11:05:05 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:38:29 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	up_move(t_cub3d *var)
 	var->p.p_pos_y += sinf(var->p.direction) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	cast_rays(var);
+	// cast_rays(var);
 	// draw_line(var->img, var, 0xFFFFFD);
 }
 
@@ -44,7 +44,7 @@ void	down_move(t_cub3d *var)
 	var->p.p_pos_y -= sinf(var->p.direction) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	cast_rays(var);
+	// cast_rays(var);
 	// draw_line(var->img, var, 0xFFFFFD);
 }
 
@@ -57,7 +57,7 @@ void	right_move(t_cub3d *var)
 	var->p.p_pos_y -= sinf(var->p.direction - ROT_ANGLE) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	cast_rays(var);
+	// cast_rays(var);
 	// draw_line(var->img, var, 0xFFFFFD);
 }
 
@@ -70,7 +70,7 @@ void	left_move(t_cub3d *var)
 	var->p.p_pos_y -= sinf(var->p.direction + ROT_ANGLE) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
-	cast_rays(var);
+	// cast_rays(var);
 	// draw_line(var->img, var, 0xFFFFFD);
 }
 
@@ -94,7 +94,7 @@ void	keyhook(void *param)
 		var->p.direction += ROT_SPEED;
 		draw_minimap(var, var->img);
 		draw_player_pixels(var, 0xFF378446, var->img);
-		cast_rays(var);
+		// cast_rays(var);
 		// draw_line(var->img, var, 0xFFFFFD);
 	}
 	if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
@@ -102,7 +102,7 @@ void	keyhook(void *param)
 		var->p.direction -= ROT_SPEED;
 		draw_minimap(var, var->img);
 		draw_player_pixels(var, 0xFF378446, var->img);
-		cast_rays(var);
+		// cast_rays(var);
 		// draw_line(var->img, var, 0xFFFFFD);
 	}
 }

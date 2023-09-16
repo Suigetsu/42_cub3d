@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/16 10:31:32 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:14:04 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ void	rotate_player(t_cub3d *var, float angle, int key)
 	// cast_rays(var);
 }
 
-void	cast_rays(t_cub3d *var)
-{
-	int		i;
+// void	cast_rays(t_cub3d *var, mlx_image_t *img)
+// {
+// 	int		i;
 
-	i = 0;
-	var->p.ray_dir = var->p.direction + (30 * RADIANS);
-	while (i < (var->x_max * T_SIZE))
-	{
-		draw_line(var->img, var, 0xFFFFFD);
-		var->p.ray_dir -= FOV / (var->x_max * T_SIZE);
-		i++;
-	}
-}
+// 	i = 0;
+// 	var->p.ray_angle = var->p.direction + (30 * RADIANS);
+// 	while (i < (var->x_max * T_SIZE))
+// 	{
+// 		get_horizontal_distance(var, img);
+// 		var->p.ray_angle -= FOV / (var->x_max * T_SIZE);
+// 		i++;
+// 	}
+// }
 
