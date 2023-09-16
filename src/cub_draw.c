@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/15 18:40:36 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/16 11:41:22 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,31 +68,55 @@ void	draw_line(mlx_image_t *img, t_cub3d *var, int color)
 	float	pixely;
 	int		pixels;
 
-	if (!var->p.ray_dir)
-		var->p.ray_dir = var->p.direction;
-	dx = cos(var->p.ray_dir);
-	dy = sin(var->p.ray_dir);
-	var->ray.inter_y = ((var->p.p_pos_y / T_SIZE) * (T_SIZE));
-	var->ray.inter_x = var->p.p_pos_x + (var->p.p_pos_y - var->ray.inter_y) / tan(var->p.ray_dir);
-	printf("%d - %d\n", var->ray.inter_y/T_SIZE, var->ray.inter_x/T_SIZE);
-	// var->ray.horizon = (int)(var->ray.inter_y / sin(var->p.ray_dir));
-	while (var->map[(int)var->ray.inter_y / T_SIZE][(int)var->ray.inter_x / T_SIZE] != '1')
+	if (!var->p.direction)
+		var->p.direction = var->p.direction;
+	dx = cos(var->p.direction);
+	dy = sin(var->p.direction);
+	var->ray.endy_h = (var->p.p_pos_y / T_SIZE) * T_SIZE;
+	var->ray.endx_h = var->p.p_pos_x + (var->p.p_pos_y - var->ray.endy_h) / tan(var->p.direction);
+	// printf("%d - %d\n", var->ray.endy_h/T_SIZE, var->ray.endx_h/T_SIZE);
+	// var->ray.horizon = (int)(var->ray.endy_h / sin(var->p.direction));
+	while (var->map[(int)var->ray.endy_h / T_SIZE][(int)var->ray.endx_h / T_SIZE] != '1')
 	{
-		var->ray.inter_y -= T_SIZE;
-		var->ray.inter_x += (T_SIZE / tan(var->p.ray_dir));
-		printf("%d - %d\n", var->ray.inter_y/T_SIZE, var->ray.inter_x/T_SIZE);
+		var->ray.endy_h -= T_SIZE;
+		var->ray.endx_h += (T_SIZE / tan(var->p.direction));
+		// printf("HORIZONTAL: %d - %d\n", var->ray.endy_h/T_SIZE, var->ray.endx_h/T_SIZE);
 	}
-	var->ray.horizon = sqrt(pow(var->p.p_pos_x - var->ray.inter_x, 2) + pow(var->p.p_pos_y - var->ray.inter_y, 2));
+	var->ray.horizon = sqrt(pow(var->p.p_pos_x - var->ray.endx_h, 2) + pow(var->p.p_pos_y - var->ray.endy_h, 2));
+	var->ray.endx_v = (var->p.p_pos_x / T_SIZE) * (T_SIZE);
+	var->ray.endy_v = var->p.p_pos_y + ((var->p.p_pos_x - var->ray.endx_v) * tan(var->p.direction));
+	// printf("%d - %d\n", var->ray.endy_v/T_SIZE, var->ray.endx_v/T_SIZE);
+	while (var->map[(int)var->ray.endy_v / T_SIZE][(int)var->ray.endx_v / T_SIZE] != '1')
+	{
+		var->ray.endx_v += T_SIZE;
+		var->ray.endy_v += (T_SIZE * tan(var->p.direction));
+		if (var->ray.endy_v < 0)
+			var->ray.endy_v = 0;
+		// printf("VERTICAL: %d - %d\n", var->ray.endy_v/T_SIZE, var->ray.endx_v/T_SIZE);
+	}
+	var->ray.vertical = sqrt(pow(var->p.p_pos_x - var->ray.endx_v, 2) + pow(var->p.p_pos_y - var->ray.endy_v, 2));
+	if (var->ray.horizon < var->ray.vertical)
+	{
+		pixels = var->ray.horizon;
+		var->ray.inter_x = var->ray.endx_h;
+		var->ray.inter_y = var->ray.endy_h;
+	}
+	else
+	{
+		pixels = var->ray.vertical;
+		var->ray.inter_x = var->ray.endx_v;
+		var->ray.inter_y = var->ray.endy_v;
+	}
 	pixelx = var->p.h;
 	pixely = var->p.k;
-	pixels = var->ray.horizon;
-	while (pixels)
-	{
-		mlx_put_pixel(img, pixelx, pixely, color);
-		pixelx += dx;
-		pixely += dy;
-		--pixels;
-	}
+	draw_line2(var, img, color);
+	// while (pixels)
+	// {
+	// 	mlx_put_pixel(img, pixelx, pixely, color);
+	// 	pixelx += dx;
+	// 	pixely += dy;
+	// 	--pixels;
+	// }
 }
 
 void	draw_minimap(t_cub3d *var, mlx_image_t *img)

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/15 16:20:09 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/16 11:40:25 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,21 @@
 
 typedef	struct s_ray
 {
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
 	int	inter_x;
 	int	inter_y;
 	float	horizon;
 	float	vertical;
 	float	start;
-	float	end;
+	float	endx_h;
+	float	endy_h;
+	float	endx_v;
+	float	endy_v;
 	float	step_x;
 	float	step_y;
 }		t_ray;
@@ -122,6 +131,7 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img);
 void	draw_player_pixels(t_cub3d *var, int color, mlx_image_t *img);
 void	fix_angle(t_cub3d *var);
 void	draw_pixels(float x, float y, int color, mlx_image_t *img);
-
+void    draw_line_bresenham(mlx_image_t *img, t_cub3d *var, int color);
+void    draw_line2(t_cub3d *arg, mlx_image_t *image, int color);
 
 #endif

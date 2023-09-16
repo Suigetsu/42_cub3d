@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/15 18:23:07 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/16 10:31:32 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 float	get_direction(t_cub3d *var)
 {
-	printf("%c\n", var->p.dir);
 	if (var->p.dir == 'N')
 		var->p.direction = 270 * (float)RADIANS;
 	else if (var->p.dir == 'S')
@@ -25,8 +24,6 @@ float	get_direction(t_cub3d *var)
 		var->p.direction = 180 * (float)RADIANS;
 	else
 		return (0);
-	// var->p.dir = '\0';
-	printf ("%f\n", var->p.direction);
 	return (var->p.direction);
 }
 
