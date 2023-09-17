@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/16 19:14:04 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:53:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,25 @@
 float	get_direction(t_cub3d *var)
 {
 	if (var->p.dir == 'N')
-		var->p.direction = 270 * (float)RADIANS;
+		var->p.direction = 270;
 	else if (var->p.dir == 'S')
-		var->p.direction = 90 * (float)RADIANS;
+		var->p.direction = 90;
 	else if (var->p.dir == 'E')
-		var->p.direction = 0 * (float)RADIANS;
+		var->p.direction = 0;
 	else if (var->p.dir == 'W')
-		var->p.direction = 180 * (float)RADIANS;
+		var->p.direction = 180;
 	else
 		return (0);
+	var->p.dir = '\0';
 	return (var->p.direction);
 }
 
 void	fix_angle(t_cub3d *var)
 {
-	if (var->p.direction < 0)
-		var->p.direction += 360;
-	else if (var->p.direction > 360)
-        var->p.direction -= 360;
+	if (var->p.ray_angle < 0)
+		var->p.ray_angle += 360;
+	else if (var->p.ray_angle > 360)
+        var->p.ray_angle -= 360;
 }
 
 void	rotate_player(t_cub3d *var, float angle, int key)

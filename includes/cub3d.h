@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/16 19:18:00 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:25:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # define HEIGHT 2880 / 4
 # define ERROR -1
 # define RADIANS (M_PI / 180)
-# define FOV 60 * RADIANS
+# define FOV 60
 # define ROT_ANGLE M_PI / 2
 # define MOVE_SPEED 3
-# define ROT_SPEED 3 * RADIANS
+# define ROT_SPEED 3
 # define NUM_RAYS (T_SIZE / 2);
 
 typedef	struct s_ray
@@ -136,5 +136,7 @@ void    draw_line_bresenham(mlx_image_t *img, t_cub3d *var, int color);
 void    draw_line2(t_cub3d *arg, mlx_image_t *image, int color);
 void	get_horizontal_distance(t_cub3d *var, mlx_image_t *img);
 void	test_draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1);
+void	get_vertical_distance(t_cub3d *var, mlx_image_t *img);
+void drawLineDDA(int x1, int y1, int x2, int y2, mlx_image_t *img, t_cub3d *var);
 
 #endif
