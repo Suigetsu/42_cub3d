@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/17 15:59:36 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/18 09:39:15 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	right_move(t_cub3d *var)
 
 void	left_move(t_cub3d *var)
 {
-	if (check_wall(var, var->p.h + sinf(var->p.direction) * \
-		MOVE_SPEED, var->p.k - cosf(var->p.direction) * MOVE_SPEED))
+	if (check_wall(var, var->p.h + sinf(var->p.direction * RADIANS) * \
+		MOVE_SPEED, var->p.k - cosf(var->p.direction * RADIANS) * MOVE_SPEED))
 		return ;
 	var->p.p_pos_x += sinf(var->p.direction * RADIANS) * MOVE_SPEED;
 	var->p.p_pos_y -= cosf(var->p.direction * RADIANS) * MOVE_SPEED;
