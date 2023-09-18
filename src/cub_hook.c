@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/18 09:39:15 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:53:02 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	up_move(t_cub3d *var)
 	if (check_wall(var, var->p.h + cosf(var->p.direction * RADIANS) * MOVE_SPEED, \
 		var->p.k + sinf(var->p.direction * RADIANS) * MOVE_SPEED))
 		return ;
+	printf("new %f\n", var->p.direction);
 	var->p.p_pos_x += cosf(var->p.direction * RADIANS) * MOVE_SPEED;
 	var->p.p_pos_y += sinf(var->p.direction * RADIANS) * MOVE_SPEED;
 	draw_minimap(var, var->img);
@@ -53,8 +54,8 @@ void	right_move(t_cub3d *var)
 	if (check_wall(var, var->p.h - sinf(var->p.direction * RADIANS) * \
 		MOVE_SPEED, var->p.k + cosf(var->p.direction * RADIANS) * MOVE_SPEED))
 		return ;
-	var->p.p_pos_x -= sinf(var->p.direction * RADIANS) * MOVE_SPEED;
-	var->p.p_pos_y += cosf(var->p.direction * RADIANS) * MOVE_SPEED;
+	var->p.p_pos_x += cosf((var->p.direction + 90) * RADIANS) * MOVE_SPEED;
+	var->p.p_pos_y -= sinf((var->p.direction + 90) * RADIANS) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	cast_rays(var, var->img);
@@ -66,8 +67,8 @@ void	left_move(t_cub3d *var)
 	if (check_wall(var, var->p.h + sinf(var->p.direction * RADIANS) * \
 		MOVE_SPEED, var->p.k - cosf(var->p.direction * RADIANS) * MOVE_SPEED))
 		return ;
-	var->p.p_pos_x += sinf(var->p.direction * RADIANS) * MOVE_SPEED;
-	var->p.p_pos_y -= cosf(var->p.direction * RADIANS) * MOVE_SPEED;
+	var->p.p_pos_x -= cosf((var->p.direction + 90) * RADIANS) * MOVE_SPEED;
+	var->p.p_pos_y += sinf((var->p.direction + 90) * RADIANS) * MOVE_SPEED;
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	cast_rays(var, var->img);
@@ -91,7 +92,8 @@ void	keyhook(void *param)
 		left_move(var);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_RIGHT))
 	{
-		var->p.direction -= ROT_SPEED;
+		var->p.direction += ROT_SPEED;
+		fix_any_angle(&var->p.direction);
 		draw_minimap(var, var->img);
 		draw_player_pixels(var, 0xFF378446, var->img);
 		cast_rays(var, var->img);
@@ -99,7 +101,8 @@ void	keyhook(void *param)
 	}
 	if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
 	{
-		var->p.direction += ROT_SPEED;
+		var->p.direction -= ROT_SPEED;
+		fix_any_angle(&var->p.direction);
 		draw_minimap(var, var->img);
 		draw_player_pixels(var, 0xFF378446, var->img);
 		cast_rays(var, var->img);

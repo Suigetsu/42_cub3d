@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/18 10:40:46 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:52:10 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,6 @@ void	get_horizontal_distance(t_cub3d *var, mlx_image_t *img);
 void	test_draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1);
 void	get_vertical_distance(t_cub3d *var, mlx_image_t *img);
 void drawLineDDA(int x1, int y1, int x2, int y2, mlx_image_t *img, t_cub3d *var);
+void	fix_any_angle(float *angle);
 
 #endif
