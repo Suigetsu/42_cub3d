@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/18 12:51:39 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:53:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ float	get_direction(t_cub3d *var)
 		return (0);
 	var->p.dir = '\0';
 	return (var->p.direction);
-}
-
-void	fix_any_angle(float *angle)
-{
-	if (*angle < 0)
-		*angle += 360;
-	else if (*angle > 360)
-        *angle -= 360;
 }
 
 void	fix_angle(t_cub3d *var)

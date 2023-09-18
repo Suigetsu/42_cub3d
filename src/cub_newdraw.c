@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:50:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/18 10:59:31 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/18 10:50:24 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,6 @@ void	draw_line(t_cub3d *var, mlx_image_t *img)
 		i++;
 	}
 }
-
-// void	get_horizontal_distance(t_cub3d *var)
-// {
-// 	float	dx;
-// 	float	dy;
-
-// 	if (!is)
-// }
 
 void	get_horizontal_distance(t_cub3d *var, mlx_image_t *img)
 {
