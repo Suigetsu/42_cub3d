@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/17 16:25:06 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/18 10:40:46 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ typedef	struct s_ray
 {
 	int	dx;
 	int	dy;
-	int	sx;
-	int	sy;
 	int	err;
 	int	e2;
 	int	inter_x;
 	int	inter_y;
+	int	step;
+	float	x;
+	float	y;
 	float	horizon;
 	float	vertical;
 	float	start;

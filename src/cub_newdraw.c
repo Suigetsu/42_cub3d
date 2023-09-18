@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:50:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/17 16:35:29 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/18 10:50:24 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ void	cast_rays(t_cub3d *var, mlx_image_t *img)
 		fix_angle(var);
 		get_vertical_distance(var, img);
 		get_horizontal_distance(var, img);
-		// printf("h = %f, v =%f\n", var->ray.horizon, var->ray.vertical);
 		if (var->ray.horizon > var->ray.vertical)
-			drawLineDDA(var->p.h, var->p.k, var->ray.endx_v, var->ray.endy_v, img, var);
+		{
+			var->ray.inter_x = var->ray.endx_v;
+			var->ray.inter_y = var->ray.endy_v;
+		}
 		else
-			drawLineDDA(var->p.h, var->p.k, var->ray.endx_h, var->ray.endy_h, img, var);
+		{
+			var->ray.inter_x = var->ray.endx_h;
+			var->ray.inter_y = var->ray.endy_h;
+		}
+		draw_line(var, img);
 		var->p.ray_angle += FOV / (var->x_max * T_SIZE);
 		i++;
 	}
@@ -36,6 +42,12 @@ void	cast_rays(t_cub3d *var, mlx_image_t *img)
 bool	is_up(t_cub3d *var)
 {
 	if (var->p.ray_angle > 0 && var->p.ray_angle <= 180)
+		return (true);
+	return (false);
+}
+bool	is_down(t_cub3d *var)
+{
+	if (var->p.ray_angle < 0 || var->p.ray_angle >= 180)
 		return (true);
 	return (false);
 }
@@ -54,116 +66,31 @@ bool	is_right(t_cub3d *var)
 	return (false);
 }
 
-void drawLineDDA(int x1, int y1, int x2, int y2, mlx_image_t *img, t_cub3d *var) {
-    int dx = x2 - x1;
-    int dy = y2 - y1;
+void	draw_line(t_cub3d *var, mlx_image_t *img)
+{
+	int	i;
 
-    int steps;
-
-    if (abs(dx) > abs(dy)) {
-        steps = abs(dx);
-    } else {
-        steps = abs(dy);
-    }
-
-    float xIncrement = (float)dx / steps;
-    float yIncrement = (float)dy / steps;
-
-    float x = x1;
-    float y = y1;
-
-    for (int i = 0; i <= steps; i++) {
-		if (x > 0 && x < var->x_max * T_SIZE && y > 0 && y < var->y_max * T_SIZE)
-        	mlx_put_pixel(img, x, y, 0x000000FF); // Assuming you're using a graphics library with putpixel function
-
-        x += xIncrement;
-        y += yIncrement;
-    }
+	i = 0;
+	var->ray.dx = var->ray.inter_x - var->p.h;
+	var->ray.dy = var->ray.inter_y - var->p.k;
+	if (abs(var->ray.dx) > abs(var->ray.dy))
+		var->ray.step = abs(var->ray.dx);
+	else
+		var->ray.step = abs(var->ray.dy);
+	var->ray.step_x = (float)var->ray.dx / var->ray.step;
+	var->ray.step_y = (float)var->ray.dy / var->ray.step;
+	var->ray.x = var->p.h;
+	var->ray.y = var->p.k;
+	while (i <= var->ray.step)
+	{
+		if (var->ray.x > 0 && var->ray.x < var->x_max * T_SIZE && \
+			var->ray.y > 0 && var->ray.y < var->y_max * T_SIZE)
+			mlx_put_pixel(img, var->ray.x, var->ray.y, 0x0000FFFF);
+		var->ray.x += var->ray.step_x;
+		var->ray.y += var->ray.step_y;
+		i++;
+	}
 }
-
-// void draw_line(t_cub3d *var, mlx_image_t *img)
-// {
-// 	var->ray.dx = abs((int)(var->ray.endx_h - var->p.h));
-// 	var->ray.dy = abs((int)(var->ray.endy_h - var->p.k));
-// 	if (var->p.h < var->ray.endx_h)
-// 		var->ray.step_x = 1;
-// 	else
-// 		var->ray.step_x = -1;
-// 	if (var->p.k < var->ray.endy_h)
-// 		var->ray.step_y = 1;
-// 	else
-// 		var->ray.step_y = -1;
-// 	if (var->ray.dx > var->ray.dy)
-// 		var->ray.err = var->ray.dx / 2;
-// 	else
-// 		var->ray.err = (-var->ray.dy) / 2;
-//     while (1)
-//     {
-//         mlx_put_pixel(img, var->p.h, var->p.k, 0xFFFFFF);
-//         if (var->p.h == var->ray.endx_h && var->p.k == var->ray.endy_h)
-//             break ;
-//         var->ray.e2 = var->ray.err;
-//         if (var->ray.e2 > -var->ray.dx)
-//         {
-//             var->ray.err -= var->ray.dy;
-//             var->p.h += var->ray.step_x;
-//         }
-//         if (var->ray.e2 < var->ray.dy)
-//         {
-//             var->ray.err += var->ray.dx;
-//             var->p.k += var->ray.step_y;
-//         }
-//     }
-// }
-
-// void test_draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1)
-// {
-//     int dx = abs(x1 - x0);
-//     int dy = abs(y1 - y0);
-//     int sx, sy;
-
-//     if (x0 < x1) {
-//         sx = 1;
-//     } else {
-//         sx = -1;
-//     }
-
-//     if (y0 < y1) {
-//         sy = 1;
-//     } else {
-//         sy = -1;
-//     }
-
-//     int err;
-//     if (dx > dy) {
-//         err = dx / 2;
-//     } else {
-//         err = -dy / 2;
-//     }
-
-//     int e2;
-
-//     while (1)
-//     {
-//         mlx_put_pixel(img, x0, y0, 0x00000000); // Assuming white color
-
-//         if (x0 == x1 && y0 == y1)
-//             break;
-
-//         e2 = err;
-//         if (e2 > -dx)
-//         {
-//             err -= dy;
-//             x0 += sx;
-//         }
-
-//         if (e2 < dy)
-//         {
-//             err += dx;
-//             y0 += sy;
-//         }
-//     }
-// }
 
 void	get_horizontal_distance(t_cub3d *var, mlx_image_t *img)
 {
