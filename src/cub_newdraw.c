@@ -6,14 +6,11 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:50:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/18 20:46:43 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:39:22 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-/*
-*/
 
 
 void	cast_rays(t_cub3d *var, mlx_image_t *img)
@@ -26,7 +23,8 @@ void	cast_rays(t_cub3d *var, mlx_image_t *img)
 	float distance;
 	float cor_dis;
 	var->p.ray_angle = var->p.direction - 30;
-	distance = (var->x_max / 2) / tan(FOV / 2);
+	distance = ((var->x_max * T_SIZE) / 2) / tan(FOV / 2);
+	printf("%f - %f\n", var->x_max * T_SIZE, var->y_max * T_SIZE);
 	while (i < (var->x_max * T_SIZE))
 	{
 		fix_angle(var);
@@ -49,11 +47,11 @@ void	cast_rays(t_cub3d *var, mlx_image_t *img)
 		wal_projct = (T_SIZE / cor_dis) * distance;
 		x0 = i;
 		x1 = i;
-		y0 = (var->y_max / 2) - (wal_projct / 2);
-		y1 = (var->y_max / 2) + (wal_projct / 2);
+		y0 = ((var->y_max * T_SIZE) / 2) - (wal_projct / 2);
+		y1 = ((var->y_max * T_SIZE) / 2) + (wal_projct / 2);
 		while (y0 < y1)
 		{
-			if (y0 >= 0 && y0 < var->y_max)
+			if (y0 >= 0 && y0 < (var->y_max * T_SIZE))
 				mlx_put_pixel(var->img, x0, y0, 0xFFFFFF);
 			y0++;
 		}

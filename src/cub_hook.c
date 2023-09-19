@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/18 20:51:13 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:35:43 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	left_move(t_cub3d *var)
 void	keyhook(void *param)
 {
 	t_cub3d *var;
+	// int i;
 	
 	var = (t_cub3d *)param;
 	if (mlx_is_key_down(var->mlx, MLX_KEY_ESCAPE))
@@ -96,7 +97,7 @@ void	keyhook(void *param)
 		fix_any_angle(&var->p.direction);
 		// draw_minimap(var, var->img);
 		draw_player_pixels(var, 0xFF378446, var->img);
-		cast_rays(var, var->img);
+		// cast_rays(var, var->img);
 		// draw_line(var->img, var, 0xFFFFFD);
 	}
 	if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
@@ -108,4 +109,10 @@ void	keyhook(void *param)
 		// cast_rays(var, var->img);
 		// draw_line(var->img, var, 0xFFFFFD);
 	}
+	// cast_rays(var, var->img);
+	// if (i == 1)
+	// {
+	// 	//draw;
+	// 	i = 0;
+	// }
 }
