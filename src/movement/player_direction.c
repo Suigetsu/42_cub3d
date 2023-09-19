@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/17 15:53:06 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:19:26 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ void	fix_angle(t_cub3d *var)
         var->p.ray_angle -= 360;
 }
 
-void	rotate_player(t_cub3d *var, float angle, int key)
-{
-	if (key == MLX_KEY_RIGHT)
-		angle *= -1;
-	var->p.direction *= angle;
-	// fix_angle(var);
-	draw_minimap(var, var->img);
-	draw_player_pixels(var, 0xFF378446, var->img);
-	// cast_rays(var);
-}
+// void	rotate_player(t_cub3d *var, float angle, int key)
+// {
+// 	if (key == MLX_KEY_RIGHT)
+// 		angle *= -1;
+// 	var->p.direction *= angle;
+// 	// fix_angle(var);
+// 	// draw_minimap(var, var->img);
+// 	// draw_player_pixels(var, 0xFF378446, var->img);
+// 	// cast_rays(var, var->img);
+// }
 
 // void	cast_rays(t_cub3d *var, mlx_image_t *img)
 // {

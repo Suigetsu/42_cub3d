@@ -1,12 +1,18 @@
+
+
+
+
+
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/18 10:40:46 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:46:14 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +40,7 @@
 # define MOVE_SPEED 3
 # define ROT_SPEED 3
 # define NUM_RAYS (T_SIZE / 2);
+# define MINIMAP_SF 0.2
 
 typedef	struct s_ray
 {
@@ -55,6 +62,7 @@ typedef	struct s_ray
 	float	endy_v;
 	float	step_x;
 	float	step_y;
+	float	distance;
 }		t_ray;
 
 typedef struct	s_player
