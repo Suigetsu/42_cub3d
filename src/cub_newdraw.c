@@ -3,21 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   cub_newdraw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:50:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/18 10:59:31 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:46:43 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+/*
+*/
+
 
 void	cast_rays(t_cub3d *var, mlx_image_t *img)
 {
 	int		i;
 
 	i = 0;
+	int x0, x1, y0, y1;
+	float wal_projct;
+	float distance;
+	float cor_dis;
 	var->p.ray_angle = var->p.direction - 30;
+	distance = (var->x_max / 2) / tan(FOV / 2);
 	while (i < (var->x_max * T_SIZE))
 	{
 		fix_angle(var);
@@ -27,13 +36,28 @@ void	cast_rays(t_cub3d *var, mlx_image_t *img)
 		{
 			var->ray.inter_x = var->ray.endx_v;
 			var->ray.inter_y = var->ray.endy_v;
+			var->ray.distance = var->ray.vertical;
 		}
 		else
 		{
 			var->ray.inter_x = var->ray.endx_h;
 			var->ray.inter_y = var->ray.endy_h;
+			var->ray.distance = var->ray.horizon;
 		}
-		draw_line(var, img);
+		// printf("distance: %f\n", var->ray.distance);
+		cor_dis = var->ray.distance  * cos(var->p.ray_angle - var->p.direction); 
+		wal_projct = (T_SIZE / cor_dis) * distance;
+		x0 = i;
+		x1 = i;
+		y0 = (var->y_max / 2) - (wal_projct / 2);
+		y1 = (var->y_max / 2) + (wal_projct / 2);
+		while (y0 < y1)
+		{
+			if (y0 >= 0 && y0 < var->y_max)
+				mlx_put_pixel(var->img, x0, y0, 0xFFFFFF);
+			y0++;
+		}
+		// draw_line(var, img);
 		var->p.ray_angle += FOV / (var->x_max * T_SIZE);
 		i++;
 	}
@@ -66,31 +90,31 @@ bool	is_right(t_cub3d *var)
 	return (false);
 }
 
-void	draw_line(t_cub3d *var, mlx_image_t *img)
-{
-	int	i;
+// void	draw_line(t_cub3d *var, mlx_image_t *img)
+// {
+// 	int	i;
 
-	i = 0;
-	var->ray.dx = var->ray.inter_x - var->p.h;
-	var->ray.dy = var->ray.inter_y - var->p.k;
-	if (abs(var->ray.dx) > abs(var->ray.dy))
-		var->ray.step = abs(var->ray.dx);
-	else
-		var->ray.step = abs(var->ray.dy);
-	var->ray.step_x = (float)var->ray.dx / var->ray.step;
-	var->ray.step_y = (float)var->ray.dy / var->ray.step;
-	var->ray.x = var->p.h;
-	var->ray.y = var->p.k;
-	while (i <= var->ray.step)
-	{
-		if (var->ray.x > 0 && var->ray.x < var->x_max * T_SIZE && \
-			var->ray.y > 0 && var->ray.y < var->y_max * T_SIZE)
-			mlx_put_pixel(img, var->ray.x, var->ray.y, 0x0000FFFF);
-		var->ray.x += var->ray.step_x;
-		var->ray.y += var->ray.step_y;
-		i++;
-	}
-}
+// 	i = 0;
+// 	var->ray.dx = (var->ray.inter_x - var->p.h);
+// 	var->ray.dy = (var->ray.inter_y - var->p.k);
+// 	if (abs(var->ray.dx) > abs(var->ray.dy))
+// 		var->ray.step = abs(var->ray.dx);
+// 	else
+// 		var->ray.step = abs(var->ray.dy);
+// 	var->ray.step_x = (float)var->ray.dx / var->ray.step;
+// 	var->ray.step_y = (float)var->ray.dy / var->ray.step;
+// 	var->ray.x = var->p.h;
+// 	var->ray.y = var->p.k;
+// 	while (i <= var->ray.step)
+// 	{
+// 		if (var->ray.x > 0 && var->ray.x < var->x_max * T_SIZE && \
+// 			var->ray.y > 0 && var->ray.y < var->y_max * T_SIZE)
+// 			mlx_put_pixel(img, var->ray.x, var->ray.y, 0x0000FFFF);
+// 		var->ray.x += var->ray.step_x;
+// 		var->ray.y += var->ray.step_y;
+// 		i++;
+// 	}
+// }
 
 // void	get_horizontal_distance(t_cub3d *var)
 // {

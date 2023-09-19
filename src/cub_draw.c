@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/16 13:48:22 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:23:13 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	draw_player_pixels(t_cub3d *var, int color, mlx_image_t *img)
 	float	i;
 	float	j;
 
-	var->p.radius = 3;
-	i = var->p.p_pos_y;
-	j = var->p.p_pos_x;
-	var->p.h = var->p.p_pos_x + (T_SIZE / 2);
-	var->p.k = var->p.p_pos_y + (T_SIZE / 2);
+	var->p.radius = 3 * MINIMAP_SF;
+	i = var->p.p_pos_y * MINIMAP_SF;
+	j = var->p.p_pos_x * MINIMAP_SF;
+	var->p.h = (var->p.p_pos_x + (T_SIZE / 2));
+	var->p.k = (var->p.p_pos_y + (T_SIZE / 2));
 	while (i < var->p.p_pos_y + T_SIZE)
 	{
 		j = var->p.p_pos_x;
@@ -170,7 +170,7 @@ void	draw_minimap(t_cub3d *var, mlx_image_t *img)
 		while (var->map[(int)var->y][(int)var->x])
 		{
 			if (var->map[(int)var->y][(int)var->x] == '1')
-				draw_pixels(var->x, var->y, 0x445FFFFF, img);
+				draw_pixels(var->x , var->y, 0x445FFFFF, img);
 			else if (var->map[(int)var->y][(int)var->x] == '0')
 				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
 			else if (var->map[(int)var->y][(int)var->x] == ' ')
