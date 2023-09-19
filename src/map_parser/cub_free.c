@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:07:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 15:08:18 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	free_for_map(t_cub3d *var)
+void	free_for_map(t_cub *var)
 {
 	// if (var->split)
 	// 	free_double_ptr(var->split);
@@ -24,7 +24,7 @@ void	free_for_map(t_cub3d *var)
 		free(var->scene);
 }
 
-void	free_for_exit(t_cub3d *var, int exit_status)
+void	free_for_exit(t_cub *var, int exit_status)
 {
 	// if (var->ceiling)
 	// 	free_double_ptr(var->ceiling);

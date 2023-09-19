@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:29:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:34 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**colors_split(char *str)
 	return (arr);
 }
 
-int	color_validity(t_cub3d *var)
+int	color_validity(t_cub *var)
 {
 	if (comma_count(var->floor[1]) != 2 || comma_count(var->ceiling[1]) != 2)
 		return (ERROR);
@@ -78,7 +78,7 @@ int	color_validity(t_cub3d *var)
 	return (0);
 }
 
-int	path_validity(t_cub3d *var)
+int	path_validity(t_cub *var)
 {
 	var->fd = open(var->north[1], O_RDONLY);
 	if (var->fd < 0)

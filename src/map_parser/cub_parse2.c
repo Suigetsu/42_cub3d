@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:30 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	 store_info(char *info_line, t_cub3d *var)
+int	 store_info(char *info_line, t_cub *var)
 {
 	if (ft_strncmp(info_line, "NO ", 3) == 0)
 	{
@@ -41,7 +41,7 @@ int	 store_info(char *info_line, t_cub3d *var)
 	return (0);
 }
 
-int	store_color_info(char *info_line, t_cub3d *var)
+int	store_color_info(char *info_line, t_cub *var)
 {
 	if (ft_strncmp(info_line, "F ", 2) == 0)
 	{
@@ -58,7 +58,7 @@ int	store_color_info(char *info_line, t_cub3d *var)
 	return (0);
 }
 
-int	split_info(t_cub3d *var)
+int	split_info(t_cub *var)
 {
 	int	i;
 

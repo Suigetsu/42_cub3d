@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/19 16:58:02 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:42:44 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+// #include "../includes/cub3d.h"
 
-bool	check_wall(t_cub3d *var, float x, float y)
+bool	check_wall(t_cub *var, float x, float y)
 {
 	if (y / T_SIZE < 0 || x / T_SIZE < 0 || y / T_SIZE > var->y_max - 1 \
 		|| x / T_SIZE > var->x_max - 1)
@@ -22,7 +22,7 @@ bool	check_wall(t_cub3d *var, float x, float y)
 	return (false);
 }
 
-void	up_move(t_cub3d *var)
+void	up_move(t_cub *var)
 {
 	if (check_wall(var, var->p.h + cosf(var->p.direction * RADIANS) * MOVE_SPEED, \
 		var->p.k + sinf(var->p.direction * RADIANS) * MOVE_SPEED))
@@ -35,7 +35,7 @@ void	up_move(t_cub3d *var)
 	// draw_line(var->img, var, 0xFFFFFD);
 }
 
-void	down_move(t_cub3d *var)
+void	down_move(t_cub *var)
 {
 	if (check_wall(var, var->p.h - cosf(var->p.direction * RADIANS) * MOVE_SPEED, \
 		var->p.k - sinf(var->p.direction * RADIANS) * MOVE_SPEED))
@@ -48,7 +48,7 @@ void	down_move(t_cub3d *var)
 	// draw_line(var->img, var, 0xFFFFFD);
 }
 
-void	right_move(t_cub3d *var)
+void	right_move(t_cub *var)
 {
 	if (check_wall(var, var->p.h - sinf(var->p.direction * RADIANS) * \
 		MOVE_SPEED, var->p.k + cosf(var->p.direction * RADIANS) * MOVE_SPEED))
@@ -61,7 +61,7 @@ void	right_move(t_cub3d *var)
 	// draw_line(var->img, var, 0xFFFFFD);
 }
 
-void	left_move(t_cub3d *var)
+void	left_move(t_cub *var)
 {
 	if (check_wall(var, var->p.h + sinf(var->p.direction * RADIANS) * \
 		MOVE_SPEED, var->p.k - cosf(var->p.direction * RADIANS) * MOVE_SPEED))
@@ -76,10 +76,10 @@ void	left_move(t_cub3d *var)
 
 void	keyhook(void *param)
 {
-	t_cub3d *var;
+	t_cub *var;
 	// int i;
 	
-	var = (t_cub3d *)param;
+	var = (t_cub *)param;
 	if (mlx_is_key_down(var->mlx, MLX_KEY_ESCAPE))
 		exit(0);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_W))

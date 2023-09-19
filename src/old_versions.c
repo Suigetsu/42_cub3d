@@ -1,4 +1,4 @@
-// void drawLineDDA(int x1, int y1, int x2, int y2, mlx_image_t *img, t_cub3d *var) {
+// void drawLineDDA(int x1, int y1, int x2, int y2, mlx_image_t *img, t_cub *var) {
 //     int dx = x2 - x1;
 //     int dy = y2 - y1;
 

@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:48:07 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 12:47:39 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	skip_info(t_cub3d *var)
+void	skip_info(t_cub *var)
 {
 	int	count;
 
@@ -44,7 +44,7 @@ int	is_space_only(char *line)
 	return (1);
 }
 
-int	copy_map(t_cub3d *var)
+int	copy_map(t_cub *var)
 {
 	var->scene = ft_strdup("");
 	while (var->line)
@@ -65,7 +65,7 @@ int	copy_map(t_cub3d *var)
 	return (0);
 }
 
-int	check_map(char *filename, t_cub3d *var)
+int	check_map(char *filename, t_cub *var)
 {
 	int	count;
 

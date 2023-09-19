@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/19 17:19:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 19:31:22 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-float	get_direction(t_cub3d *var)
+float	get_direction(t_cub *var)
 {
 	if (var->p.dir == 'N')
 		var->p.direction = 270;
@@ -28,7 +28,15 @@ float	get_direction(t_cub3d *var)
 	return (var->p.direction);
 }
 
-void	fix_angle(t_cub3d *var)
+void	fix_any_angle(float	*angle)
+{
+	if (*angle < 0)
+		*angle += 360;
+	else if (*angle > 360)
+		*angle -= 360;
+}
+
+void	fix_angle(t_cub *var)
 {
 	if (var->p.ray_angle < 0)
 		var->p.ray_angle += 360;
@@ -36,7 +44,7 @@ void	fix_angle(t_cub3d *var)
         var->p.ray_angle -= 360;
 }
 
-// void	rotate_player(t_cub3d *var, float angle, int key)
+// void	rotate_player(t_cub *var, float angle, int key)
 // {
 // 	if (key == MLX_KEY_RIGHT)
 // 		angle *= -1;
@@ -47,7 +55,7 @@ void	fix_angle(t_cub3d *var)
 // 	// cast_rays(var, var->img);
 // }
 
-// void	cast_rays(t_cub3d *var, mlx_image_t *img)
+// void	cast_rays(t_cub *var, mlx_image_t *img)
 // {
 // 	int		i;
 

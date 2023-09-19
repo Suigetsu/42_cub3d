@@ -6,14 +6,14 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:10:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/18 10:48:07 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 
-// void    init_arg_line(t_cub3d *arg)
+// void    init_arg_line(t_cub *arg)
 // {
 //     arg->ray.dx = fabsf(arg->ray.inter_x - arg->p.h);
 //     arg->ray.dy = fabsf(arg->ray.inter_y - arg->p.k);
@@ -31,7 +31,7 @@
 //         arg->ray.err = -arg->ray.dy / 2;
 // }
 
-// void    draw_line2(t_cub3d *arg, mlx_image_t *image, int color)
+// void    draw_line2(t_cub *arg, mlx_image_t *image, int color)
 // {
 //     init_arg_line(arg);
 //     while (1)
@@ -53,7 +53,7 @@
 //     }
 // }
 
-// void    draw_line_bresenham(mlx_image_t *img, t_cub3d *var, int color)
+// void    draw_line_bresenham(mlx_image_t *img, t_cub *var, int color)
 // {
 // 	float    dx;
 // 	float    dy;

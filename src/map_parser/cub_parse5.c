@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/14 12:34:45 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	check_suroundings(t_cub3d *var)
+int	check_suroundings(t_cub *var)
 {
 	while (var->map[0][(int)var->x])
 	{
@@ -61,7 +61,7 @@ int	invalid_char(char **map)
 	return (0);
 }
 
-int	check_inside(t_cub3d *var)
+int	check_inside(t_cub *var)
 {
 	var->y = 1;
 	while (var->y < var->y_max - 2)
@@ -90,7 +90,7 @@ int	check_inside(t_cub3d *var)
 	return (0);
 }
 
-void	find_player_pos(t_cub3d *var)
+void	find_player_pos(t_cub *var)
 {
 	int	i;
 	int	j;
@@ -115,7 +115,7 @@ void	find_player_pos(t_cub3d *var)
 	}
 }
 
-int	is_map_valid(t_cub3d *var)
+int	is_map_valid(t_cub *var)
 {
 	var->map = ft_split(var->scene, '\n');
 	if (invalid_char(var->map))

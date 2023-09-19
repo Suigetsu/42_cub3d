@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:03:19 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/07 12:12:24 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	check_x2(t_cub3d *var, int y, int x, int flag)
+int	check_x2(t_cub *var, int y, int x, int flag)
 {
 	while (x < (int)ft_strlen(var->map[y]) - 2)
 	{
@@ -27,7 +27,7 @@ int	check_x2(t_cub3d *var, int y, int x, int flag)
 	return (flag);
 }
 
-int	check_x(t_cub3d *var, int y, int x, int flag)
+int	check_x(t_cub *var, int y, int x, int flag)
 {
 	while (x > 0)
 	{
@@ -42,7 +42,7 @@ int	check_x(t_cub3d *var, int y, int x, int flag)
 	return (flag);
 }
 
-int	check_y2(t_cub3d *var, int y, int x, int flag)
+int	check_y2(t_cub *var, int y, int x, int flag)
 {
 	while (y < var->y_max - 2)
 	{
@@ -57,7 +57,7 @@ int	check_y2(t_cub3d *var, int y, int x, int flag)
 	return (flag);
 }
 
-int	check_y(t_cub3d *var, int y, int x, int flag)
+int	check_y(t_cub *var, int y, int x, int flag)
 {
 	while (y > 0)
 	{
@@ -72,7 +72,7 @@ int	check_y(t_cub3d *var, int y, int x, int flag)
 	return (flag);
 }
 
-int	around_space(t_cub3d *var, int y, int x)
+int	around_space(t_cub *var, int y, int x)
 {
 	int	y_flag;
 	int	x_flag;
