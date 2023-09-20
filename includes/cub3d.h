@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/20 11:04:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:09:26 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,4 +152,7 @@ bool	check_wall(t_cub *var, float x, float y);
 void	cast_rays(t_cub *var);
 float	horizontal_distance(t_cub *var);
 float	vertical_distance(t_cub *var);
+void	draw_3d_projection(t_cub *var);
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void init_window(t_cub *var);
 #endif

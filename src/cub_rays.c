@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_rays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/20 18:00:08 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:40:20 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 void	cast_rays(t_cub *var)
 {
 	int	i;
-
+	int		x0, x1, y0, y1;
+	float	wall_project;
+	float	distance;
+	float	correct_dis;
+	
+	distance = ((var->x_max) / 2) / tan(var->p.fov / 2);
 	i = 0;
 	fix_any_angle(&var->p.ray_angle);
 	while (i < var->x_max)
@@ -24,12 +29,15 @@ void	cast_rays(t_cub *var)
 		fix_any_angle(&var->p.ray_angle);
 		horizontal_distance(var);
 		vertical_distance(var);
+		// printf("%f - %f\n", var->ray.vertical, var->ray.horizon);
 		if (var->ray.vertical > var->ray.horizon)
 		{
 			if (var->ray.horizon == INT_MAX)
 				break ;
 			var->ray.inter_x = var->ray.endx_h;
 			var->ray.inter_y = var->ray.endy_h;
+			var->ray.distance = var->ray.horizon;
+			// printf("hdist: %f\n", var->ray.distance);
 		}
 		else
 		{
@@ -37,10 +45,30 @@ void	cast_rays(t_cub *var)
 				break ;
 			var->ray.inter_x = var->ray.endx_v;
 			var->ray.inter_y = var->ray.endy_v;
+			var->ray.distance = var->ray.vertical;
+			// printf("vdist: %f\n", var->ray.distance);
 		}
+		// printf("walp: %f\n", var->ray.distance);
+		correct_dis = var->ray.distance  * cos(var->p.ray_angle - var->p.direction); 
+		wall_project = (T_SIZE / correct_dis) * distance;
+		x0 = i;
+		x1 = i;
+		y0 = ((var->y_max) / 2) - (wall_project / 2);
+		y1 = ((var->y_max) / 2) + (wall_project / 2);
+		while (y0 < y1)
+		{
+			// printf("%d, %d\n", y0, y1);
+			if (y0 >= 0 && y0 < (var->y_max))
+			{
+				// printf("okay\n");
+				mlx_put_pixel(var->img, x0, y0, ft_pixel(255,228,225,255));
+			}
+			y0++;
+		}
+		// draw_3d_projection(var);
 		// printf("inter x %d - inter y %d\n", var->ray.inter_x/T_SIZE, var->ray.inter_y/T_SIZE);
-		draw_line(var, var->img);
-		//var->p.ray_angle += (float)var->p.fov / var->x_max;
+		// draw_line(var, var->img);
+		// var->p.ray_angle += (float)var->p.fov / var->x_max;
 		i++;
 	}
 }

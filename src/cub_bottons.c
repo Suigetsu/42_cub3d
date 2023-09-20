@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bottons.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/20 12:29:03 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:36:54 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,23 +84,24 @@ void	keyhook(void *param)
 	var->i = 0;
 	if (mlx_is_key_down(var->mlx, MLX_KEY_ESCAPE))
 		exit(0);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_W))
 		var->i = up_move(var);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_S))
 		var->i = down_move(var);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_D))
 		var->i = right_move(var);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_A))
 		var->i = left_move(var);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_RIGHT))
 		var->i = rotation_move(var, 1);
-	else if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
 		var->i = rotation_move(var, 0);
 	if (var->i)
 	{
 		fix_any_angle(&var->p.direction);
-		draw_minimap(var , var->img );
+		// draw_minimap(var , var->img );
 		draw_player_pixels(var, 0xFF378446, var->img);
+		init_window(var);
 		cast_rays(var);
 		var->i = 0;
 	}
