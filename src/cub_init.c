@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/19 21:02:55 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:42:33 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	run_mlx(t_cub *var)
 	var->mlx = mlx_init(var->x_max, var->y_max, "test", false);
 	var->img = mlx_new_image(var->mlx, var->x_max, var->y_max);
 	mlx_image_to_window(var->mlx, var->img, 0, 0);
-	draw_minimap(var , var->img );
+	draw_minimap(var , var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	cast_rays(var);
 	mlx_loop_hook(var->mlx, &keyhook, var);
@@ -36,8 +36,8 @@ void	init_variables(t_cub *var)
 	var->x_max *= T_SIZE;
 	var->y_max *= T_SIZE;
 	var->p.radians = M_PI / 180;
-	var->p.fov = 60;
-	var->p.rot_speed = 3;
+	var->p.fov = 60 * var->p.radians;
+	var->p.rot_speed = 0.05;
 	var->p.move_speed = 3;
 	var->p.rotation_angle = M_PI / 2;
 	get_direction(var);

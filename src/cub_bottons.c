@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/19 21:03:06 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/20 12:29:03 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,46 +24,46 @@ bool	check_wall(t_cub *var, float x, float y)
 
 int	up_move(t_cub *var)
 {
-	if (check_wall(var, var->p.x + cosf(var->p.direction * var->p.radians) * \
-		var->p.move_speed, var->p.y + sinf(var->p.direction * var->p.radians) \
+	if (check_wall(var, var->p.x + cosf(var->p.direction) * \
+		var->p.move_speed, var->p.y + sinf(var->p.direction) \
 		* var->p.move_speed))
 		return (0);
-	printf("%f\n", var->p.direction);
-	var->p.p_pos_x += cosf(var->p.direction * var->p.radians) * var->p.move_speed;
-	var->p.p_pos_y += sinf(var->p.direction * var->p.radians) * var->p.move_speed;
+	// printf("%f\n", var->p.direction);
+	var->p.p_pos_x += cosf(var->p.direction) * var->p.move_speed;
+	var->p.p_pos_y += sinf(var->p.direction) * var->p.move_speed;
 	return (1);
 }
 
 int	down_move(t_cub *var)
 {
-	if (check_wall(var, var->p.x - cosf(var->p.direction * var->p.radians) * \
-		var->p.move_speed, var->p.y - sinf(var->p.direction * var->p.radians) \
+	if (check_wall(var, var->p.x - cosf(var->p.direction) * \
+		var->p.move_speed, var->p.y - sinf(var->p.direction) \
 		* var->p.move_speed))
 		return (0);
-	var->p.p_pos_x -= cosf(var->p.direction * var->p.radians) * var->p.move_speed;
-	var->p.p_pos_y -= sinf(var->p.direction * var->p.radians) * var->p.move_speed;
+	var->p.p_pos_x -= cosf(var->p.direction) * var->p.move_speed;
+	var->p.p_pos_y -= sinf(var->p.direction) * var->p.move_speed;
 	return (1);
 }
 
 int	right_move(t_cub *var)
 {
-	if (check_wall(var, var->p.x + cosf((var->p.direction + 90) * var->p.radians) * \
-		var->p.move_speed, var->p.y + sinf((var->p.direction + 90) * var->p.radians) \
+	if (check_wall(var, var->p.x + cosf((var->p.direction + M_PI / 2)) * \
+		var->p.move_speed, var->p.y + sinf((var->p.direction + M_PI / 2)) \
 		* var->p.move_speed))
 		return (0);
-	var->p.p_pos_x += cosf((var->p.direction + 90) * var->p.radians) * var->p.move_speed;
-	var->p.p_pos_y += sinf((var->p.direction + 90) * var->p.radians) * var->p.move_speed;
+	var->p.p_pos_x += cosf((var->p.direction + M_PI / 2)) * var->p.move_speed;
+	var->p.p_pos_y += sinf((var->p.direction + M_PI / 2)) * var->p.move_speed;
 	return (1);
 }
 
 int	left_move(t_cub *var)
 {
-	if (check_wall(var, var->p.x - cosf((var->p.direction + 90) * var->p.radians) * \
-		var->p.move_speed, var->p.y - sinf((var->p.direction + 90) * var->p.radians) \
+	if (check_wall(var, var->p.x - cosf((var->p.direction + M_PI / 2)) * \
+		var->p.move_speed, var->p.y - sinf((var->p.direction + M_PI / 2)) \
 		* var->p.move_speed))
 		return (0);
-	var->p.p_pos_x -= cosf((var->p.direction + 90) * var->p.radians) * var->p.move_speed;
-	var->p.p_pos_y -= sinf((var->p.direction + 90) * var->p.radians) * var->p.move_speed;
+	var->p.p_pos_x -= cosf((var->p.direction + M_PI / 2)) * var->p.move_speed;
+	var->p.p_pos_y -= sinf((var->p.direction + M_PI / 2)) * var->p.move_speed;
 	return (1);
 }
 

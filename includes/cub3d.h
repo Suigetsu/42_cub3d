@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/19 21:03:42 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:04:26 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,5 @@ void	fix_any_angle(float	*angle);
 bool	check_wall(t_cub *var, float x, float y);
 void	cast_rays(t_cub *var);
 float	horizontal_distance(t_cub *var);
-
+float	vertical_distance(t_cub *var);
 #endif
