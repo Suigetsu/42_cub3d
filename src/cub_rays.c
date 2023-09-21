@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/20 19:40:20 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:44:42 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	cast_rays(t_cub *var)
 	float	wall_project;
 	float	distance;
 	float	correct_dis;
-	
+	int		shading;
 	distance = ((var->x_max) / 2) / tan(var->p.fov / 2);
 	i = 0;
 	fix_any_angle(&var->p.ray_angle);
@@ -55,14 +55,12 @@ void	cast_rays(t_cub *var)
 		x1 = i;
 		y0 = ((var->y_max) / 2) - (wall_project / 2);
 		y1 = ((var->y_max) / 2) + (wall_project / 2);
+		shading = 18000 / correct_dis;
 		while (y0 < y1)
 		{
 			// printf("%d, %d\n", y0, y1);
 			if (y0 >= 0 && y0 < (var->y_max))
-			{
-				// printf("okay\n");
-				mlx_put_pixel(var->img, x0, y0, ft_pixel(255,228,225,255));
-			}
+				mlx_put_pixel(var->img, x0, y0, ft_pixel(255,255,255,shading));
 			y0++;
 		}
 		// draw_3d_projection(var);
