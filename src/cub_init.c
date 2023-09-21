@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/20 19:41:38 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/21 11:45:26 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ int	run_mlx(t_cub *var)
 	var->mlx = mlx_init(var->x_max, var->y_max, "test", false);
 	var->img = mlx_new_image(var->mlx, var->x_max, var->y_max);
 	mlx_image_to_window(var->mlx, var->img, 0, 0);
-	// draw_minimap(var , var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	init_window(var);
 	cast_rays(var);
+	draw_minimap(var , var->img);
 	// draw_3d_projection(var);
 	mlx_loop_hook(var->mlx, &keyhook, var);
 	mlx_loop(var->mlx);

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/20 17:18:55 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/21 12:14:15 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 
 	i = 0;
 	j = 0;
-	while (i < T_SIZE)
+	while (i < T_SIZE * MINIMAP_SF)
 	{
 		j = 0;
-		while (j < T_SIZE)
+		while (j < T_SIZE * MINIMAP_SF)
 		{
-			mlx_put_pixel(img, (x * T_SIZE) + i, (y * T_SIZE) + j, color);
-			if (j == T_SIZE - 1)
-				mlx_put_pixel(img, (x * T_SIZE) + i, (y * T_SIZE) + j, 0);
-			if (i == T_SIZE - 1)
-				mlx_put_pixel(img, (x * T_SIZE) + i, (y * T_SIZE) + j, 0);
+			// if ( j == T_SIZE -1 && i == T_SIZE-1 )
+				mlx_put_pixel(img, (x * T_SIZE * MINIMAP_SF) + i, (y * T_SIZE * MINIMAP_SF) + j, color);
+			if (j == (T_SIZE - 1) * MINIMAP_SF)
+				mlx_put_pixel(img, (x * T_SIZE * MINIMAP_SF) + i, (y * T_SIZE * MINIMAP_SF) + j, 0);
+			if (i == (T_SIZE - 1) * MINIMAP_SF)
+				mlx_put_pixel(img, (x * T_SIZE * MINIMAP_SF) + i, (y * T_SIZE * MINIMAP_SF) + j, 0);
 			j++;
 		}
 		i++;
@@ -68,7 +69,7 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 		while (var->map[(int)var->y][(int)var->x])
 		{
 			if (var->map[(int)var->y][(int)var->x] == '1')
-				draw_pixels(var->x , var->y, 0x445FFFFF, img);
+				draw_pixels(var->x, var->y, 0x445FFFFF, img);
 			else if (var->map[(int)var->y][(int)var->x] == ' ')
 				draw_pixels(var->x, var->y, 0x00000000, img);
 			else
@@ -77,4 +78,5 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 		}
 		var->y++;
 	}
+	printf("%f - %f - %f\n", var->y, var->x, MINIMAP_SF);
 }
