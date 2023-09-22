@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/21 11:45:42 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:08:22 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ void	keyhook(void *param)
 	var = (t_cub *)param;
 	var->i = 0;
 	if (mlx_is_key_down(var->mlx, MLX_KEY_ESCAPE))
+	{
+		free_phase1(var, 1);
 		exit(0);
+	}
 	if (mlx_is_key_down(var->mlx, MLX_KEY_W))
 		var->i = up_move(var);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_S))

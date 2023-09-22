@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/22 17:13:25 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:06:09 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int	init_vars(t_cub *var, int ac, char **av)
 		return (free_phase1(var, 1), 1);
 	if (check_map(av[1], var))
 		return (free_phase1(var, 1), 1);
-	// if (is_map_valid(var))
-	// 	return (free_phase1(var, 1), 1);
-	// init_variables(var);
+	if (is_map_valid(var))
+		return (free_phase1(var, 1), 1);
+	init_variables(var);
 	return (0);
 }

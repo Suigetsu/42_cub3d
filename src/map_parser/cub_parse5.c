@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:05:58 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	find_player_pos(t_cub *var)
 
 int	is_map_valid(t_cub *var)
 {
+	free_double_ptr(var->map);
 	var->map = ft_split(var->scene, '\n');
 	if (invalid_char(var->map))
 		return (ERROR);

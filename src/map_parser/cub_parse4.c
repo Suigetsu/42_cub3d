@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:48:07 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/22 17:15:41 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:55:36 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	is_space_only(char *line)
 
 int	copy_map(t_cub *var)
 {
+	free(var->scene);
 	var->scene = ft_strdup("");
 	while (var->line)
 	{

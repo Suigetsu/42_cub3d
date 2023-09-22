@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:15:45 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:51 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:57:38 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	free_double_ptr(char **ptr)
 	int	i;
 
 	i = 0;
-	if (ptr == NULL)
-		return ;
+	// if (ptr == NULL)
+	// 	return ;
 	while (ptr[i])
 	{
 		free(ptr[i]);
