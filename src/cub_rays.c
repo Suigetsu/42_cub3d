@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/21 16:44:42 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:19:45 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	cast_rays(t_cub *var)
 			var->ray.inter_x = var->ray.endx_h;
 			var->ray.inter_y = var->ray.endy_h;
 			var->ray.distance = var->ray.horizon;
+			var->ray.inter_axis = H_AXIS;
 			// printf("hdist: %f\n", var->ray.distance);
 		}
 		else
@@ -46,6 +47,7 @@ void	cast_rays(t_cub *var)
 			var->ray.inter_x = var->ray.endx_v;
 			var->ray.inter_y = var->ray.endy_v;
 			var->ray.distance = var->ray.vertical;
+			var->ray.inter_axis = V_AXIS;
 			// printf("vdist: %f\n", var->ray.distance);
 		}
 		// printf("walp: %f\n", var->ray.distance);
@@ -60,7 +62,7 @@ void	cast_rays(t_cub *var)
 		{
 			// printf("%d, %d\n", y0, y1);
 			if (y0 >= 0 && y0 < (var->y_max))
-				mlx_put_pixel(var->img, x0, y0, ft_pixel(255,255,255,shading));
+				mlx_put_pixel(var->img, x0, y0, ft_pixel(240,255,240,255));
 			y0++;
 		}
 		// draw_3d_projection(var);

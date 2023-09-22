@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/21 12:14:15 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:06:29 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 		while (var->map[(int)var->y][(int)var->x])
 		{
 			if (var->map[(int)var->y][(int)var->x] == '1')
-				draw_pixels(var->x, var->y, 0x445FFFFF, img);
+				draw_pixels(var->x, var->y, ft_pixel(100,149,237,255), img);
 			else if (var->map[(int)var->y][(int)var->x] == ' ')
-				draw_pixels(var->x, var->y, 0x00000000, img);
+				draw_pixels(var->x, var->y, ft_pixel(0,0,0,255), img);
 			else
-				draw_pixels(var->x, var->y, 0xFFFFFFFF, img);
+				draw_pixels(var->x, var->y, ft_pixel(255,255,255,255), img);
 			var->x++;
 		}
 		var->y++;
 	}
-	printf("%f - %f - %f\n", var->y, var->x, MINIMAP_SF);
+	// printf("%f - %f - %f\n", var->y, var->x, MINIMAP_SF);
 }
