@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:51:21 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,25 @@ int	store_color_info(char *info_line, t_cub *var)
 	return (0);
 }
 
+int	textures_extension(t_cub *var)
+{
+	int	i;
+
+	i = ft_strlen(var->north[1]);
+	if (ft_strncmp(&var->north[1][i - 4], ".png", 5))
+		return (ERROR);
+	i = ft_strlen(var->south[1]);
+	if (ft_strncmp(&var->south[1][i - 4], ".png", 5))
+		return (ERROR);
+	i = ft_strlen(var->east[1]);
+	if (ft_strncmp(&var->east[1][i - 4], ".png", 5))
+		return (ERROR);
+	i = ft_strlen(var->west[1]);
+	if (ft_strncmp(&var->west[1][i - 4], ".png", 5))
+		return (ERROR);
+	return (0);
+}
+
 int	split_info(t_cub *var)
 {
 	int	i;
@@ -66,9 +85,9 @@ int	split_info(t_cub *var)
 	while (i < 6)
 	{
 		if (store_info(var->map[i], var))
-			return (free_double_ptr(var->map), ERROR);
+			return (ERROR);
 		if (store_color_info(var->map[i], var))
-			return (free_double_ptr(var->map), ERROR);
+			return (ERROR);
 		i++;
 	}
 	if (var->north[2] || var->south[2] || var->west[2] || var->east[2] || \
@@ -77,6 +96,8 @@ int	split_info(t_cub *var)
 		!var->ceiling[1])
 		return (ERROR);
 	if (path_validity(var) || color_validity(var))
+		return (ERROR);
+	if (textures_extension(var))
 		return (ERROR);
 	return (0);
 }

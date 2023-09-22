@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/22 11:19:12 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:25:40 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ float	get_direction(t_cub *var);
 void	rotate_player(t_cub *var, float angle, int key);
 int		around_space(t_cub *var, int y, int x);
 int		check_map(char *filename, t_cub *var);
-void	init_vars(t_cub *var, int ac, char **av);
+int		init_vars(t_cub *var, int ac, char **av);
 int		run_mlx(t_cub *var);
 void	keyhook(void *param);
 void	find_player_pos(t_cub *var);
@@ -158,4 +158,5 @@ float	vertical_distance(t_cub *var);
 void	draw_3d_projection(t_cub *var);
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void init_window(t_cub *var);
+void	free_phase1(t_cub *var, int status);
 #endif

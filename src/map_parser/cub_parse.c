@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 11:35:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/19 17:22:06 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:17:54 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	parse_info(t_cub *var)
 		ft_strncmp(var->map[i], "EA ", 3) && \
 		ft_strncmp(var->map[i], "F ", 2) && \
 		ft_strncmp(var->map[i], "C ", 2))
-			return (free_double_ptr(var->map), ERROR);
+			return (ERROR);
 		i++;
 	}
 	if (split_info(var))

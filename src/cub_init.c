@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/21 11:45:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:13:25 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,27 +78,21 @@ void	init_variables(t_cub *var)
 	get_direction(var);
 }
 
-void	init_vars(t_cub *var, int ac, char **av)
+int	init_vars(t_cub *var, int ac, char **av)
 {
 	ft_bzero(var, sizeof(t_cub));
 	if (ac != 2)
-	{
-		printf("Wrong number of arguments\n");
-		exit (1);
-	}
+		exit(printf("Wrong number of arguments\n"));
 	if (check_filename(av[1]))
-	{
-		printf("Invalid map extension\n");
-		exit (1);
-	}
+		exit(printf("Invalid map extension\n"));
 	if (read_map(av[1], var))
-		free_for_exit(var, 1);
+		exit(printf("The map you assigned is probably not valid.\n"));
 	if (parse_info(var))
-		free_for_exit(var, 1);
-	free_for_map(var);
+		return (free_phase1(var, 1), 1);
 	if (check_map(av[1], var))
-		free_for_exit(var, 1);
-	if (is_map_valid(var))
-		free_for_exit(var, 1);
-	init_variables(var);
+		return (free_phase1(var, 1), 1);
+	// if (is_map_valid(var))
+	// 	return (free_phase1(var, 1), 1);
+	// init_variables(var);
+	return (0);
 }
