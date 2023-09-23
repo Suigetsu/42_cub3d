@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse5.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 16:59:12 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:26:00 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	check_suroundings(t_cub *var)
 	var->y = 1;
 	while (var->map[(int)var->y])
 	{
-		if (var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != '1' && \
-		var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != ' ' || \
+		if ((var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != '1' && \
+		var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != ' ') || \
 		(var->map[(int)var->y][0] != '1' && var->map[(int)var->y][0] != ' '))
 			return (ERROR);
 		var->y++;

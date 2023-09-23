@@ -1,7 +1,7 @@
 NO ./maps/textures/sw_wall.png
-SO ./maps/textures/south.png
-WE ./maps/textures/west.png
-EA ./maps/textures/east.png
+SO ./maps/textures/wall.png
+WE ./maps/textures/wall.png
+EA ./maps/textures/sw_wall.png
 
 F 220,100,0
 C 225,30,0
