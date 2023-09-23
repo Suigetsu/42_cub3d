@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 11:25:31 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:54:50 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	init_vars(t_cub *var, int ac, char **av)
 		return (free_phase1(var, 1), 1);
 	if (is_map_valid(var))
 		return (free_phase1(var, 1), 1);
-	var->txt = mlx_load_png("src/textures/wall.png");
+	var->txt = mlx_load_png(var->north[1]);
 	if (!var->txt)
 	{
 		printf("can't open file\n");

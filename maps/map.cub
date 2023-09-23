@@ -1,4 +1,4 @@
-NO ./maps/textures/north.png
+NO ./maps/textures/wall.png
 SO ./maps/textures/south.png
 WE ./maps/textures/west.png
 EA ./maps/textures/east.png
