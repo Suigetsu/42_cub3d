@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/22 18:05:58 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:59:12 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,15 @@ int	check_suroundings(t_cub *var)
 			return (ERROR);
 		var->x++;
 	}
-	var->x = 0;
+	var->y = 1;
+	while (var->map[(int)var->y])
+	{
+		if (var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != '1' && \
+		var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != ' ' || \
+		(var->map[(int)var->y][0] != '1' && var->map[(int)var->y][0] != ' '))
+			return (ERROR);
+		var->y++;
+	}
 	return (0);
 }
 
@@ -61,34 +69,53 @@ int	invalid_char(char **map)
 	return (0);
 }
 
-int	check_inside(t_cub *var)
+int	check_zero(t_cub *var, int x, int y)
 {
-	var->y = 1;
-	while (var->y < var->y_max - 2)
-	{
-		var->x = 0;
-		while (var->map[(int)var->y][(int)var->x])
-		{
-			if (var->x == 0)
-			{
-				if (var->map[(int)var->y][(int)var->x] != '1' && \
-					var->map[(int)var->y][(int)var->x] != ' ')
-					return (ERROR);
-			}
-			if (var->map[(int)var->y][(int)var->x] == ' ')
-			{
-				if (around_space(var, var->y, var->x))
-					return (ERROR);
-			}
-			if (var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != '1')
-				return (ERROR);
+	int	ret;
 
-			var->x++;
-		}
-		var->y++;
+	ret = 0;
+	if (var->map[y][x] == '1')
+		return (0);
+	else if (var->map[y][x] == '0')
+	{
+		ret += check_zero(var, x + 1, y);
+		ret += check_zero(var, x - 1, y);
+		ret += check_zero(var, x, y - 1);
+		ret += check_zero(var, x, y + 1);
+		return (ret);
 	}
+	else
+		return (1);
 	return (0);
 }
+
+// int	check_inside(t_cub *var)
+// {
+// 	var->y = 1;
+// 	while (var->y < var->y_max - 2)
+// 	{
+// 		var->x = 0;
+// 		while (var->map[(int)var->y][(int)var->x])
+// 		{
+// 			if (var->x == 0)
+// 			{
+// 				if (var->map[(int)var->y][(int)var->x] != '1' && \
+// 					var->map[(int)var->y][(int)var->x] != ' ')
+// 					return (ERROR);
+// 			}
+// 			if (var->map[(int)var->y][(int)var->x] != '1')
+// 			{
+// 				if (around_space(var, var->y, var->x, var->map[(int)var->y][(int)var->x]))
+// 					return (ERROR);
+// 			}
+// 			// else if (check_zero(var, var->x, var->y))
+// 			// 	return (ERROR);
+// 			var->x++;
+// 		}
+// 		var->y++;
+// 	}
+// 	return (0);
+// }
 
 void	find_player_pos(t_cub *var)
 {
@@ -114,6 +141,29 @@ void	find_player_pos(t_cub *var)
 		i++;
 	}
 }
+int	check_inside(t_cub *var)
+{
+	var->y = 1;
+	while (var->y < var->y_max - 1)
+	{
+		var->x = 0;
+		while (var->map[(int)var->y][(int)var->x])
+		{
+			if (var->map[(int)var->y][(int)var->x] == '0')
+			{
+				if (((int)var->x > ft_strlen(var->map[(int)(var->y - 1)]) - 1)|| \
+					(var->map[(int)var->y + 1][(int)var->x] != '1' && var->map[(int)var->y + 1][(int)var->x] != '0' && var->map[(int)var->y + 1][(int)var->x] != var->p.dir) || \
+					(var->map[(int)var->y - 1][(int)var->x] != '1' && var->map[(int)var->y - 1][(int)var->x] != '0' && var->map[(int)var->y - 1][(int)var->x] != var->p.dir) || \
+					(var->map[(int)var->y][(int)var->x + 1] != '1' && var->map[(int)var->y][(int)var->x + 1] != '0' && var->map[(int)var->y][(int)var->x + 1] != var->p.dir) || \
+					(var->map[(int)var->y][(int)var->x - 1] != '1' && var->map[(int)var->y][(int)var->x - 1] != '0' && var->map[(int)var->y][(int)var->x - 1] != var->p.dir))
+					return (ERROR);
+			}
+			var->x++;
+		}
+		var->y++;
+	}
+	return (0);
+}
 
 int	is_map_valid(t_cub *var)
 {
@@ -123,8 +173,8 @@ int	is_map_valid(t_cub *var)
 		return (ERROR);
 	if (check_suroundings(var))
 		return (ERROR);
+	find_player_pos(var);
 	if (check_inside(var))
 		return (ERROR);
-	find_player_pos(var);
 	return (0);
 }

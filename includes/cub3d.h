@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 11:44:14 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:04:19 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct s_cub
 	char		**map;
 	char		*line;
 	char		*temp;
+	char		**paths;
 	int			x_step;
 	int			y_step;
 	mlx_texture_t *txt;
@@ -142,7 +143,7 @@ int		is_map_valid(t_cub *var);
 float	get_direction(t_cub *var);
 // void	cast_rays(t_cub *var, mlx_image_t *img);
 void	rotate_player(t_cub *var, float angle, int key);
-int		around_space(t_cub *var, int y, int x);
+int		around_space(t_cub *var, int y, int x, char component);
 int		check_map(char *filename, t_cub *var);
 int		init_vars(t_cub *var, int ac, char **av);
 int		run_mlx(t_cub *var);

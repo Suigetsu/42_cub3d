@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 11:54:50 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:04:46 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ void	init_variables(t_cub *var)
 	get_direction(var);
 }
 
+// void	collect_paths(t_cub *var)
+// {
+// 	var
+// }
+
 int	init_vars(t_cub *var, int ac, char **av)
 {
 	ft_bzero(var, sizeof(t_cub));
@@ -93,6 +98,7 @@ int	init_vars(t_cub *var, int ac, char **av)
 		return (free_phase1(var, 1), 1);
 	if (is_map_valid(var))
 		return (free_phase1(var, 1), 1);
+	// collect_paths(var);
 	var->txt = mlx_load_png(var->north[1]);
 	if (!var->txt)
 	{
