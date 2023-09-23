@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 16:04:46 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:07:21 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,13 @@ void	init_variables(t_cub *var)
 	get_direction(var);
 }
 
-// void	collect_paths(t_cub *var)
-// {
-// 	var
-// }
+void	collect_paths(t_cub *var)
+{
+	var->paths[0] = var->north[1];
+	var->paths[1] = var->south[1];
+	var->paths[2] = var->west[1];
+	var->paths[3] = var->east[1];
+}
 
 int	init_vars(t_cub *var, int ac, char **av)
 {
@@ -98,7 +101,7 @@ int	init_vars(t_cub *var, int ac, char **av)
 		return (free_phase1(var, 1), 1);
 	if (is_map_valid(var))
 		return (free_phase1(var, 1), 1);
-	// collect_paths(var);
+	collect_paths(var);
 	var->txt = mlx_load_png(var->north[1]);
 	if (!var->txt)
 	{

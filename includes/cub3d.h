@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 16:04:19 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:05:18 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct s_cub
 	char		**map;
 	char		*line;
 	char		*temp;
-	char		**paths;
+	char		*paths[4];
 	int			x_step;
 	int			y_step;
 	mlx_texture_t *txt;
