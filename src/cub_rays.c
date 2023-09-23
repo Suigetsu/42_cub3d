@@ -6,11 +6,19 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/22 11:19:45 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:20:03 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+uint32_t get_color(mlx_texture_t *txt, int x, int y)
+{
+	uint32_t color;
+	color = ((uint32_t *)txt->pixels)[txt->width * y + x];
+	return ((color & 0xFF000000) >> 24 | (color & 0x00FF0000) >> 8
+		| (color & 0x0000FF00) << 8 | (color & 0x000000FF) << 24);
+}
 
 void	cast_rays(t_cub *var)
 {
@@ -20,6 +28,7 @@ void	cast_rays(t_cub *var)
 	float	distance;
 	float	correct_dis;
 	int		shading;
+	int y;
 	distance = ((var->x_max) / 2) / tan(var->p.fov / 2);
 	i = 0;
 	fix_any_angle(&var->p.ray_angle);
@@ -58,11 +67,18 @@ void	cast_rays(t_cub *var)
 		y0 = ((var->y_max) / 2) - (wall_project / 2);
 		y1 = ((var->y_max) / 2) + (wall_project / 2);
 		shading = 18000 / correct_dis;
+		if (!var->ray.inter_axis)
+			var->x_step = (var->txt->width / T_SIZE) * (var->ray.inter_y - (int)((var->ray.inter_y / T_SIZE) * T_SIZE));
+		else
+			var->x_step = (var->txt->width / T_SIZE) * (var->ray.inter_x - (int)((var->ray.inter_x / T_SIZE) * T_SIZE));
+		y = y0;
 		while (y0 < y1)
 		{
 			// printf("%d, %d\n", y0, y1);
+			var->y_step = (y0 - y) * (var->txt->height / wall_project); 
+			
 			if (y0 >= 0 && y0 < (var->y_max))
-				mlx_put_pixel(var->img, x0, y0, ft_pixel(240,255,240,255));
+				mlx_put_pixel(var->img, x0, y0, get_color(var->txt, var->x_step, var->y_step));
 			y0++;
 		}
 		// draw_3d_projection(var);
