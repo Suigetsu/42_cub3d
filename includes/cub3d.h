@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 17:05:18 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:11:21 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "../../MLX42/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
 # include "../libs/gnl/get_next_line.h"
-
 
 # define T_SIZE 64
 # define WIDTH 5120 / 4
@@ -40,13 +39,17 @@
 
 typedef	struct s_ray
 {
-	int	dx;
-	int	dy;
-	int	err;
-	int	e2;
-	int	inter_x;
-	int	inter_y;
-	int	step;
+	int		dx;
+	int		dy;
+	int		err;
+	int		e2;
+	int		inter_x;
+	int		inter_y;
+	int		step;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
 	float	x;
 	float	y;
 	float	horizon;
@@ -84,13 +87,6 @@ typedef struct	s_player
 	char	dir;
 }				t_player;
 
-// typedef	struct	s_tex
-// {
-// 	float	width;
-// 	float	height;
-// 	int		**bitmap;
-// }				t_tex;
-
 typedef struct s_cub
 {
 	float		x_max;
@@ -121,7 +117,8 @@ typedef struct s_cub
 	char		*paths[4];
 	int			x_step;
 	int			y_step;
-	mlx_texture_t *txt;
+	mlx_texture_t *txt[4];
+	char		**paths;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_player	p;

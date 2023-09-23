@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 12:03:43 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:00:35 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@ uint32_t get_color(mlx_texture_t *txt, int x, int y)
 		| (color & 0x0000FF00) << 8 | (color & 0x000000FF) << 24);
 }
 
+
 void	cast_rays(t_cub *var)
 {
-	int	i;
-	int		x0, x1, y0, y1;
+	int		i;
+	int		y;
+	// int		x0, x1, y0, y1;
 	float	wall_project;
 	float	distance;
 	float	correct_dis;
 	int		shading;
-	int y;
+	
 	distance = ((var->x_max) / 2) / tan(var->p.fov / 2);
 	i = 0;
 	fix_any_angle(&var->p.ray_angle);
@@ -38,7 +40,6 @@ void	cast_rays(t_cub *var)
 		fix_any_angle(&var->p.ray_angle);
 		horizontal_distance(var);
 		vertical_distance(var);
-		// printf("%f - %f\n", var->ray.vertical, var->ray.horizon);
 		if (var->ray.vertical > var->ray.horizon)
 		{
 			if (var->ray.horizon == INT_MAX)
@@ -47,7 +48,6 @@ void	cast_rays(t_cub *var)
 			var->ray.inter_y = var->ray.endy_h;
 			var->ray.distance = var->ray.horizon;
 			var->ray.inter_axis = H_AXIS;
-			// printf("hdist: %f\n", var->ray.distance);
 		}
 		else
 		{
@@ -57,34 +57,29 @@ void	cast_rays(t_cub *var)
 			var->ray.inter_y = var->ray.endy_v;
 			var->ray.distance = var->ray.vertical;
 			var->ray.inter_axis = V_AXIS;
-			// printf("vdist: %f\n", var->ray.distance);
 		}
-		// printf("walp: %f\n", var->ray.distance);
 		correct_dis = var->ray.distance  * cos(var->p.ray_angle - var->p.direction); 
 		wall_project = (T_SIZE / correct_dis) * distance;
-		x0 = i;
-		x1 = i;
-		y0 = ((var->y_max) / 2) - (wall_project / 2);
-		y1 = ((var->y_max) / 2) + (wall_project / 2);
+		//put x0 y0 x1 y1 in the struct
+		var->ray.x0 = i;
+		var->ray.x1 = i;
+		var->ray.y0 = ((var->y_max) / 2) - (wall_project / 2);
+		var->ray.y1 = ((var->y_max) / 2) + (wall_project / 2);
 		shading = 18000 / correct_dis;
 		if (!var->ray.inter_axis)
 			var->x_step = (var->txt->width / T_SIZE) * (var->ray.inter_y - (int)((var->ray.inter_y / T_SIZE) * T_SIZE));
 		else
 			var->x_step = (var->txt->width / T_SIZE) * (var->ray.inter_x - (int)((var->ray.inter_x / T_SIZE) * T_SIZE));
-		y = y0;
+		y = var->ray.y0;
 		while (y0 < y1)
 		{
-			// printf("%d, %d\n", y0, y1);
-			var->y_step = (y0 - y) * (var->txt->height / wall_project); 
+			var->y_step = (var->ray.y0 - y) * (var->txt->height / wall_project); 
 			if (var->y_step < (int)var->txt->height)
-				if (y0 >= 0 && y0 < (var->y_max))
-					mlx_put_pixel(var->img, x0, y0, get_color(var->txt, var->x_step, var->y_step));
-				y0++;
+				if (var->ray.y0 >= 0 && var->ray.y0 < (var->y_max))
+					mlx_put_pixel(var->img, var->ray.x0, var->ray.y0, get_color(var->txt, var->x_step, var->y_step));
+				var->ray.y0++;
 		}
 		// draw_3d_projection(var);
-		// printf("inter x %d - inter y %d\n", var->ray.inter_x/T_SIZE, var->ray.inter_y/T_SIZE);
-		// draw_line(var, var->img);
-		// var->p.ray_angle += (float)var->p.fov / var->x_max;
 		i++;
 	}
 }
