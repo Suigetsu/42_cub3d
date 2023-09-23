@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 11:54:50 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:39:50 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void init_window(t_cub *var)
 		j = 0;
 		while (j < var->y_max / 2)
 		{
-			mlx_put_pixel(var->img, i , j, ft_pixel(135,206,235, 255));
+			mlx_put_pixel(var->img, i , j, ft_pixel(135,206,250, 255));
 			j++;
 		}
 		i++;
@@ -39,7 +39,7 @@ void init_window(t_cub *var)
 		j = var->y_max / 2;
 		while (j < var->y_max)
 		{
-			mlx_put_pixel(var->img, i , j, ft_pixel(25,25,112, 255));
+			mlx_put_pixel(var->img, i , j, ft_pixel(192,192,192, 255));
 			j++;
 		}
 		i++;
@@ -72,8 +72,8 @@ void	init_variables(t_cub *var)
 	var->y_max *= T_SIZE;
 	var->p.radians = M_PI / 180;
 	var->p.fov = 60 * var->p.radians;
-	var->p.rot_speed = 0.05;
-	var->p.move_speed = 3;
+	var->p.rot_speed = 0.07;
+	var->p.move_speed = 5;
 	var->p.rotation_angle = M_PI / 2;
 	get_direction(var);
 }
@@ -93,7 +93,8 @@ int	init_vars(t_cub *var, int ac, char **av)
 		return (free_phase1(var, 1), 1);
 	if (is_map_valid(var))
 		return (free_phase1(var, 1), 1);
-	var->txt = mlx_load_png(var->north[1]);
+	// get_images(path);
+	// var->txt = mlx_load_png(var->north[1]);
 	if (!var->txt)
 	{
 		printf("can't open file\n");
