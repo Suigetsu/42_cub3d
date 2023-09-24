@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 11:35:56 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:11:10 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WIDTH 1280
 # define HEIGHT 640
 # define ERROR -1
-# define MINIMAP_SF 0.2
+# define MINIMAP_SF 0.15
 # define V_AXIS 0
 # define H_AXIS 1
 
@@ -109,9 +109,9 @@ typedef struct s_cub
 	char			*line;
 	char			*temp;
 	char			*paths[4];
-	int				x_step;
-	int				y_step;
-	float		wall_project;
+	float				x_step;
+	float				y_step;
+	float			wall_project;
 	mlx_texture_t	*txt[4];
 	mlx_t			*mlx;
 	mlx_image_t		*img;
