@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_rays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 16:08:54 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 17:00:00 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,36 +60,27 @@ void	cast_rays(t_cub *var)
 		var->ray.x1 = i;
 		var->ray.y0 = ((HEIGHT) / 2) - (var->wall_project / 2);
 		var->ray.y1 = ((HEIGHT) / 2) + (var->wall_project / 2);
-		// shading = 18000 / correct_dis;
 		int flag = -1;
 		if (var->ray.inter_axis == 1 && facing_up_down(var) == 1)
 		{
-			//facing north
-			var->x_step = (var->txt[0]->width / T_SIZE) * (var->ray.inter_x - (int)((var->ray.inter_x / T_SIZE) * T_SIZE));
+			var->x_step = (var->txt[0]->width / T_SIZE) * fmod(var->ray.inter_x, T_SIZE);
 			flag = 0;
 		}
 		else if (var->ray.inter_axis == 1 && !facing_up_down(var) )
 		{
-			//facing south
-			var->x_step = (var->txt[1]->width / T_SIZE) * (var->ray.inter_x - (int)((var->ray.inter_x / T_SIZE) * T_SIZE));
+			var->x_step = (var->txt[1]->width / T_SIZE) * fmod(var->ray.inter_x, T_SIZE);
 			flag = 1;
 		}
 		else if (!var->ray.inter_axis && facing_right_left(var) == 1)
 		{
-			//facing west
-			var->x_step = (var->txt[2]->width / T_SIZE) * (var->ray.inter_y - ((var->ray.inter_y / T_SIZE) * T_SIZE));
+			var->x_step = (var->txt[2]->width / T_SIZE) * fmod(var->ray.inter_y, T_SIZE);
 			flag = 2;
 		}
 		else if (!var->ray.inter_axis && !facing_right_left(var))
 		{
-			//facing east
-			var->x_step = (var->txt[3]->width / T_SIZE) * (var->ray.inter_y - ((var->ray.inter_y / T_SIZE) * T_SIZE));
+			var->x_step = (var->txt[3]->width / T_SIZE) * fmod(var->ray.inter_y, T_SIZE);
 			flag = 3;
 		}
-		// if (!var->ray.inter_axis)
-		// 	var->x_step = (var->txt[0]->width / T_SIZE) * (var->ray.inter_y - (int)((var->ray.inter_y / T_SIZE) * T_SIZE));
-		// else
-		// 	var->x_step = (var->txt[0]->width / T_SIZE) * (var->ray.inter_x - (int)((var->ray.inter_x / T_SIZE) * T_SIZE));
 		y = var->ray.y0;
 		while (var->ray.y0 < var->ray.y1)
 		{

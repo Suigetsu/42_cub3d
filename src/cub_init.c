@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 16:26:47 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 17:34:10 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_window(t_cub *var)
 		j = 0;
 		while (j < HEIGHT / 2)
 		{
-			mlx_put_pixel(var->img, i, j, ft_pixel(135, 206, 250, 255));
+			mlx_put_pixel(var->img, i, j, ft_pixel(158, 207, 255, 255));
 			j++;
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 16:08:38 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:53:29 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_ray
 	int		dy;
 	int		err;
 	int		e2;
-	int		inter_x;
-	int		inter_y;
+	float		inter_x;
+	float		inter_y;
 	int		step;
 	int		x0;
 	int		y0;

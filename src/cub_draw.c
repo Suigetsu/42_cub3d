@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 14:59:10 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 17:37:31 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 		while (var->map[(int)var->y][(int)var->x])
 		{
 			if (var->map[(int)var->y][(int)var->x] == '1')
-				draw_pixels(var->x, var->y, ft_pixel(100,149,237,255), img);
+				draw_pixels(var->x, var->y, ft_pixel(139, 145, 151,255), img);
 			// else if (var->map[(int)var->y][(int)var->x] == ' ')
 			// 	draw_pixels(var->x, var->y, ft_pixel(0,0,0,255), img);
 			else if (var->map[(int)var->y][(int)var->x] == '0' || var->map[(int)var->y][(int)var->x] == 'N')
