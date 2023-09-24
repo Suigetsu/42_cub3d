@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 12:26:36 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:51:55 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ int	checkwalls(t_cub *var, float x, float y, int flag)
 	temp_y = (int)y / T_SIZE;
 	if (temp_x < 0 || temp_x > (int)var->x_max / T_SIZE || temp_y < 0 || temp_y > (int)var->y_max / T_SIZE)
 		return (0);
-	printf("%d , %d\n", temp_x, temp_y);
 	if (var->map[temp_y][temp_x] == '1')
 		return (1);
 	return (0);

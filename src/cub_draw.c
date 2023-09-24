@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 12:45:50 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:59:10 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void	draw_player_pixels(t_cub *var, int color, mlx_image_t *img)
 	float	i;
 	float	j;
 
-	i = var->p.p_pos_y;
-	j = var->p.p_pos_x;
-	var->p.x = (var->p.p_pos_x + (T_SIZE / 2));
-	var->p.y = (var->p.p_pos_y + (T_SIZE / 2));
-	while (i < var->p.p_pos_y + T_SIZE)
+	i = var->p.p_pos_y * MINIMAP_SF;
+	j = var->p.p_pos_x * MINIMAP_SF;
+	var->minix = ((var->p.p_pos_x * MINIMAP_SF) + ((T_SIZE * MINIMAP_SF) / 2));
+	var->miniy = ((var->p.p_pos_y * MINIMAP_SF) + ((T_SIZE * MINIMAP_SF) / 2));
+	while (i < (var->p.p_pos_y * MINIMAP_SF) + (T_SIZE * MINIMAP_SF))
 	{
-		j = var->p.p_pos_x;
-		while (j < var->p.p_pos_x + T_SIZE)
+		j = (var->p.p_pos_x * MINIMAP_SF);
+		while (j < (var->p.p_pos_x * MINIMAP_SF) + (T_SIZE * MINIMAP_SF))
 		{
-			if (pow(j - var->p.x, 2) + \
-				pow(i - var->p.y, 2) <= pow(var->p.radius, 2))
+			if (pow(j - var->minix, 2) + \
+				pow(i - var->miniy, 2) <= pow(var->p.radius, 2))
 				mlx_put_pixel(img, j, i, color);
 			j++;
 		}

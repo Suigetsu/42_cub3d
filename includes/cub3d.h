@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 12:46:29 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:02:47 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct s_cub
 	float			y_max;
 	float			x;
 	float			y;
+	int			minix;
+	int			miniy;
 	int				i;
 	int				f_r;
 	int				f_g;

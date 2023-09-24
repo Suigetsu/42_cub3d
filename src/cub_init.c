@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 13:02:47 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:00:02 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,18 @@ int	run_mlx(t_cub *var)
 {
 	int	color;
 
-	var->x = 0;
-	var->y = 0;
+	var->p.x = (var->p.p_pos_x + (T_SIZE / 2));
+	var->p.y = (var->p.p_pos_y + (T_SIZE / 2));
 	color = 0;
 	var->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	var->img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(var->mlx, var->img, 0, 0);
-	draw_player_pixels(var, 0xFF378446, var->img);
+	// draw_player_pixels(var, 0xFF378446, var->img);
 	init_window(var);
+	get_tex(var);
 	cast_rays(var);
 	draw_minimap(var, var->img);
+	draw_player_pixels(var, 0xFF378446, var->img);
 	mlx_loop_hook(var->mlx, &keyhook, var);
 	mlx_loop(var->mlx);
 	return (0);
@@ -102,7 +104,7 @@ int	init_vars(t_cub *var, int ac, char **av)
 	if (is_map_valid(var))
 		return (free_phase1(var), 1);
 	collect_paths(var);
-	get_tex(var);
+	// get_tex(var);
 	// get_images(path);
 	// var->txt = mlx_load_png(var->north[1]);
 	// if (!var->txt)

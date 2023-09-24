@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 10:01:11 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:51:09 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	down_move(t_cub *var)
 int	right_move(t_cub *var)
 {
 	if (check_wall(var, var->p.x + cosf((var->p.direction + M_PI / 2)) * \
-		var->p.move_speed, var->p.y + sinf((var->p.direction + M_PI / 2)) \
+		var->p.move_speed,var->p.y + sinf((var->p.direction + M_PI / 2)) \
 		* var->p.move_speed))
 		return (0);
 	var->p.p_pos_x += cosf((var->p.direction + M_PI / 2)) * var->p.move_speed;
@@ -101,11 +101,13 @@ void	keyhook(void *param)
 		var->i = rotation_move(var, 0);
 	if (var->i)
 	{
+		var->p.x = (var->p.p_pos_x + (T_SIZE / 2));
+		var->p.y = (var->p.p_pos_y + (T_SIZE / 2));
 		fix_any_angle(&var->p.direction);
-		draw_player_pixels(var, 0xFF378446, var->img);
 		init_window(var);
 		cast_rays(var);
 		draw_minimap(var , var->img );
+		draw_player_pixels(var, 0xFF378446, var->img);
 		var->i = 0;
 	}
 }
