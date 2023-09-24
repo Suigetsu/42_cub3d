@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 16:08:30 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:26:47 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	run_mlx(t_cub *var)
 {
 	int	color;
 
-	var->x = 0.0;
-	var->y = 0.0;
+	var->p.x = (var->p.p_pos_x + (T_SIZE / 2));
+	var->p.y = (var->p.p_pos_y + (T_SIZE / 2));
 	color = 0;
 	var->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	var->img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
@@ -104,7 +104,7 @@ int	init_vars(t_cub *var, int ac, char **av)
 	if (is_map_valid(var))
 		return (free_phase1(var), 1);
 	collect_paths(var);
-	get_tex(var);
+	// get_tex(var);
 	init_variables(var);
 	return (0);
 }
