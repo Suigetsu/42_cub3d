@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:48:07 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 12:29:43 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:10:40 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	check_map(char *filename, t_cub *var)
 		{
 			if (copy_map(var))
 			{
+				free(var->line);
 				close (var->fd);
 				return (ERROR);
 			}
