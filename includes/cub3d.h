@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 10:01:04 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 11:11:15 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_cub
 	char			*paths[4];
 	int				x_step;
 	int				y_step;
+	float		wall_project;
 	mlx_texture_t	*txt[4];
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -151,6 +152,8 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	init_window(t_cub *var);
 void	free_phase1(t_cub *var);
 void	get_tex(t_cub *var);
+int		facing_up_down(t_cub *var);
+int		facing_right_left(t_cub *var);
 int		facing_up_down(t_cub *var);
 int		facing_right_left(t_cub *var);
 #endif

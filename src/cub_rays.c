@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 18:23:02 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 11:06:28 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ void	cast_rays(t_cub *var)
 	int		i;
 	int		y;
 	// int		x0, x1, y0, y1;
-	float	wall_project;
+	// float	wall_project;
 	float	distance;
 	float	correct_dis;
-	int		shading;
 	
 	distance = ((var->x_max) / 2) / tan(var->p.fov / 2);
 	i = 0;
@@ -59,13 +58,12 @@ void	cast_rays(t_cub *var)
 			var->ray.inter_axis = V_AXIS;
 		}
 		correct_dis = var->ray.distance  * cos(var->p.ray_angle - var->p.direction); 
-		wall_project = (T_SIZE / correct_dis) * distance;
+		var->wall_project = (T_SIZE / correct_dis) * distance;
 		//put x0 y0 x1 y1 in the struct
 		var->ray.x0 = i;
 		var->ray.x1 = i;
-		var->ray.y0 = ((var->y_max) / 2) - (wall_project / 2);
-		var->ray.y1 = ((var->y_max) / 2) + (wall_project / 2);
-		shading = 18000 / correct_dis;
+		var->ray.y0 = ((var->y_max) / 2) - (var->wall_project / 2);
+		var->ray.y1 = ((var->y_max) / 2) + (var->wall_project / 2);
 		int flag = -1;
 		if (var->ray.inter_axis == 1 && facing_up_down(var) == 1)
 		{
@@ -82,13 +80,13 @@ void	cast_rays(t_cub *var)
 		else if (!var->ray.inter_axis && facing_right_left(var) == 1)
 		{
 			//facing west
-			var->x_step = (var->txt[2]->width / T_SIZE) * (var->ray.inter_y - (int)((var->ray.inter_y / T_SIZE) * T_SIZE));
+			var->x_step = (var->txt[2]->width / T_SIZE) * (var->ray.inter_y - ((var->ray.inter_y / T_SIZE) * T_SIZE));
 			flag = 2;
 		}
 		else if (!var->ray.inter_axis && !facing_right_left(var))
 		{
 			//facing east
-			var->x_step = (var->txt[3]->width / T_SIZE) * (var->ray.inter_y - (int)((var->ray.inter_y / T_SIZE) * T_SIZE));
+			var->x_step = (var->txt[3]->width / T_SIZE) * (var->ray.inter_y - ((var->ray.inter_y / T_SIZE) * T_SIZE));
 			flag = 3;
 		}
 		
@@ -99,9 +97,9 @@ void	cast_rays(t_cub *var)
 		y = var->ray.y0;
 		while (var->ray.y0 < var->ray.y1)
 		{
-			var->y_step = (var->ray.y0 - y) * (var->txt[flag]->height / wall_project); 
+			var->y_step = (var->ray.y0 - y) * (var->txt[flag]->height / var->wall_project); 
 			
-			if (var->y_step < (int)var->txt[flag]->height)
+			if (var->y_step < var->txt[flag]->height)
 				if (var->ray.y0 >= 0 && var->ray.y0 < (var->y_max))
 					mlx_put_pixel(var->img, var->ray.x0, var->ray.y0, get_color(var->txt[flag], var->x_step, var->y_step));
 				var->ray.y0++;
