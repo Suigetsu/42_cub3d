@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_rays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 18:23:02 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 11:34:22 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	cast_rays(t_cub *var)
 {
 	int		i;
 	int		y;
-	// int		x0, x1, y0, y1;
+	// int		x0, x1, y0, y1
 	float	wall_project;
 	float	distance;
 	float	correct_dis;
 	int		shading;
 	
-	distance = ((var->x_max) / 2) / tan(var->p.fov / 2);
+	distance = ((WIDTH) / 2) / tan(var->p.fov / 2);
 	i = 0;
 	fix_any_angle(&var->p.ray_angle);
-	while (i < var->x_max)
+	while (i < WIDTH)
 	{
-		var->p.ray_angle = var->p.direction - (var->p.fov / 2) + i * (float)var->p.fov / var->x_max;
+		var->p.ray_angle = var->p.direction - (var->p.fov / 2) + i * (float)var->p.fov / WIDTH;
 		fix_any_angle(&var->p.ray_angle);
 		horizontal_distance(var);
 		vertical_distance(var);
@@ -63,8 +63,8 @@ void	cast_rays(t_cub *var)
 		//put x0 y0 x1 y1 in the struct
 		var->ray.x0 = i;
 		var->ray.x1 = i;
-		var->ray.y0 = ((var->y_max) / 2) - (wall_project / 2);
-		var->ray.y1 = ((var->y_max) / 2) + (wall_project / 2);
+		var->ray.y0 = ((HEIGHT) / 2) - (wall_project / 2);
+		var->ray.y1 = ((HEIGHT) / 2) + (wall_project / 2);
 		shading = 18000 / correct_dis;
 		int flag = -1;
 		if (var->ray.inter_axis == 1 && facing_up_down(var) == 1)
@@ -101,8 +101,8 @@ void	cast_rays(t_cub *var)
 		{
 			var->y_step = (var->ray.y0 - y) * (var->txt[flag]->height / wall_project); 
 			
-			if (var->y_step < (int)var->txt[flag]->height)
-				if (var->ray.y0 >= 0 && var->ray.y0 < (var->y_max))
+			if (var->y_step < var->txt[flag]->height)
+				if (var->ray.y0 >= 0 && var->ray.y0 < (HEIGHT))
 					mlx_put_pixel(var->img, var->ray.x0, var->ray.y0, get_color(var->txt[flag], var->x_step, var->y_step));
 				var->ray.y0++;
 		}
@@ -131,19 +131,20 @@ int	facing_right_left(t_cub *var)
 
 int	checkwalls(t_cub *var, float x, float y, int flag)
 {
-	// printf("%d - %d\n", (int)(var->y_max - 1)/T_SIZE, (int)(var->x_max - 1)/T_SIZE);
-	if (x < 0 || x > (int)(var->x_max - 1) || y < 0 || y > (int)(var->y_max - 1))
-		return (0);
+	int	temp_x;
+	int	temp_y;
+
 	if (flag == 0)
-	{
-		if (var->map[(int)((y - facing_up_down(var)) / T_SIZE)][(int)(x / T_SIZE)] == '1')
-			return (1);
-	}
+		y -= facing_up_down(var);
 	else
-	{
-		if (var->map[(int)(y / T_SIZE)][(int)((x - facing_right_left(var)) / T_SIZE)] == '1')
-			return (1);
-	}
+		x -= facing_right_left(var);
+	temp_x = (int)x / T_SIZE;
+	temp_y = (int)y / T_SIZE;
+	if (temp_x < 0 || temp_x > (int)var->x_max / T_SIZE || temp_y < 0 || temp_y > (int)var->y_max / T_SIZE)
+		return (0);
+	printf("%d , %d\n", temp_x, temp_y);
+	if (var->map[temp_y][temp_x] == '1')
+		return (1);
 	return (0);
 }
 

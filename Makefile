@@ -6,7 +6,7 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/24 09:59:30 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/09/24 10:11:54 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC			=	src/main.c src/movement/player_direction.c src/cub_init.c src/cub_botton
 				src/projection.c src/cub_texture.c
 OBJS		=	${SRC:.c=.o}
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 LIBS		=	~/Desktop/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 LIBFT		=	libs/libft/libft.a
 RM			=	rm -rf

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 10:01:21 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 10:45:15 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void init_window(t_cub *var)
 	int j;
 
 	i = 0;
-	while (i < var->x_max)
+	while (i < WIDTH)
 	{
 		j = 0;
-		while (j < var->y_max / 2)
+		while (j < HEIGHT / 2)
 		{
 			mlx_put_pixel(var->img, i , j, ft_pixel(135,206,250, 255));
 			j++;
@@ -34,10 +34,10 @@ void init_window(t_cub *var)
 		i++;
 	}
 	i = 0;
-	while (i < var->x_max)
+	while (i < WIDTH)
 	{
-		j = var->y_max / 2;
-		while (j < var->y_max)
+		j = HEIGHT / 2;
+		while (j < HEIGHT)
 		{
 			mlx_put_pixel(var->img, i , j, ft_pixel(192,192,192, 255));
 			j++;
@@ -52,8 +52,8 @@ int	run_mlx(t_cub *var)
 	var->x = 0;
 	var->y = 0;
 	color = 0;
-	var->mlx = mlx_init(var->x_max, var->y_max, "test", false);
-	var->img = mlx_new_image(var->mlx, var->x_max, var->y_max);
+	var->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
+	var->img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(var->mlx, var->img, 0, 0);
 	draw_player_pixels(var, 0xFF378446, var->img);
 	init_window(var);

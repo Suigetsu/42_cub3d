@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 10:01:04 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 10:09:35 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define T_SIZE 64
 # define WIDTH 1280
-# define HEIGHT 720
+# define HEIGHT 640
 # define ERROR -1
 # define MINIMAP_SF 0.2
 # define V_AXIS 0
