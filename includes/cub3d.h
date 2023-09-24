@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 15:02:47 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:08:38 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WIDTH 1280
 # define HEIGHT 640
 # define ERROR -1
-# define MINIMAP_SF 0.2
+# define MINIMAP_SF 0.15
 # define V_AXIS 0
 # define H_AXIS 1
 
@@ -111,8 +111,9 @@ typedef struct s_cub
 	char			*line;
 	char			*temp;
 	char			*paths[4];
-	int				x_step;
-	int				y_step;
+	float				x_step;
+	float				y_step;
+	float			wall_project;
 	mlx_texture_t	*txt[4];
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -153,6 +154,8 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	init_window(t_cub *var);
 void	free_phase1(t_cub *var);
 void	get_tex(t_cub *var);
+int		facing_up_down(t_cub *var);
+int		facing_right_left(t_cub *var);
 int		facing_up_down(t_cub *var);
 int		facing_right_left(t_cub *var);
 void	complete_map(t_cub *var);

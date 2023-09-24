@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 15:51:55 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:08:54 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,15 @@ uint32_t get_color(mlx_texture_t *txt, int x, int y)
 		| (color & 0x0000FF00) << 8 | (color & 0x000000FF) << 24);
 }
 
-
 void	cast_rays(t_cub *var)
 {
-	int		i;
-	int		y;
-	// int		x0, x1, y0, y1
-	float	wall_project;
+	float		i;
+	float		y;
 	float	distance;
 	float	correct_dis;
-	int		shading;
 	
-	distance = ((WIDTH) / 2) / tan(var->p.fov / 2);
-	i = 0;
+	distance = ((WIDTH) / 2) / tan((float)var->p.fov / 2);
+	i = 0.0;
 	fix_any_angle(&var->p.ray_angle);
 	while (i < WIDTH)
 	{
@@ -59,13 +55,12 @@ void	cast_rays(t_cub *var)
 			var->ray.inter_axis = V_AXIS;
 		}
 		correct_dis = var->ray.distance  * cos(var->p.ray_angle - var->p.direction); 
-		wall_project = (T_SIZE / correct_dis) * distance;
-		//put x0 y0 x1 y1 in the struct
+		var->wall_project = (T_SIZE / correct_dis) * distance;
 		var->ray.x0 = i;
 		var->ray.x1 = i;
-		var->ray.y0 = ((HEIGHT) / 2) - (wall_project / 2);
-		var->ray.y1 = ((HEIGHT) / 2) + (wall_project / 2);
-		shading = 18000 / correct_dis;
+		var->ray.y0 = ((HEIGHT) / 2) - (var->wall_project / 2);
+		var->ray.y1 = ((HEIGHT) / 2) + (var->wall_project / 2);
+		// shading = 18000 / correct_dis;
 		int flag = -1;
 		if (var->ray.inter_axis == 1 && facing_up_down(var) == 1)
 		{
@@ -82,16 +77,15 @@ void	cast_rays(t_cub *var)
 		else if (!var->ray.inter_axis && facing_right_left(var) == 1)
 		{
 			//facing west
-			var->x_step = (var->txt[2]->width / T_SIZE) * (var->ray.inter_y - (int)((var->ray.inter_y / T_SIZE) * T_SIZE));
+			var->x_step = (var->txt[2]->width / T_SIZE) * (var->ray.inter_y - ((var->ray.inter_y / T_SIZE) * T_SIZE));
 			flag = 2;
 		}
 		else if (!var->ray.inter_axis && !facing_right_left(var))
 		{
 			//facing east
-			var->x_step = (var->txt[3]->width / T_SIZE) * (var->ray.inter_y - (int)((var->ray.inter_y / T_SIZE) * T_SIZE));
+			var->x_step = (var->txt[3]->width / T_SIZE) * (var->ray.inter_y - ((var->ray.inter_y / T_SIZE) * T_SIZE));
 			flag = 3;
 		}
-		
 		// if (!var->ray.inter_axis)
 		// 	var->x_step = (var->txt[0]->width / T_SIZE) * (var->ray.inter_y - (int)((var->ray.inter_y / T_SIZE) * T_SIZE));
 		// else
@@ -99,8 +93,7 @@ void	cast_rays(t_cub *var)
 		y = var->ray.y0;
 		while (var->ray.y0 < var->ray.y1)
 		{
-			var->y_step = (var->ray.y0 - y) * (var->txt[flag]->height / wall_project); 
-			
+			var->y_step = (var->ray.y0 - y) * ((float)var->txt[flag]->height / var->wall_project);
 			if (var->y_step < (int)var->txt[flag]->height)
 				if (var->ray.y0 >= 0 && var->ray.y0 < (HEIGHT))
 					mlx_put_pixel(var->img, var->ray.x0, var->ray.y0, get_color(var->txt[flag], var->x_step, var->y_step));
@@ -169,7 +162,6 @@ float	horizontal_distance(t_cub *var)
 	while (var->ray.endx_h >= 0 && var->ray.endx_h < var->x_max - 1 
 		&& var->ray.endy_h >= 0 && var->ray.endy_h < var->y_max - 1)
 	{
-		// printf("%f - %f\n", var->ray.endx_h / T_SIZE, var->ray.endy_h / T_SIZE);
 		if (checkwalls(var, var->ray.endx_h, var->ray.endy_h, 0))
 			return (var->ray.horizon = sqrt(pow(var->p.x - var->ray.endx_h, 2) + pow(var->p.y - var->ray.endy_h, 2)));
 		var->ray.endx_h += dx;
@@ -183,7 +175,7 @@ float	vertical_distance(t_cub *var)
 	float	dx;
 	float	dy;
 
-	
+
 	dx = T_SIZE;
 	dy = T_SIZE * tan(var->p.ray_angle);
 	var->ray.endx_v = floor(var->p.x / T_SIZE) * T_SIZE;
@@ -202,10 +194,7 @@ float	vertical_distance(t_cub *var)
 		&& var->ray.endy_v >= 0 && var->ray.endy_v < var->y_max)
 	{
 		if (var->map[(int)((var->ray.endy_v)/ T_SIZE)][(int)((var->ray.endx_v - facing_right_left(var)) / T_SIZE)] == '1')
-		{
-			// printf("%f - %f\n", var->ray.endx_v / T_SIZE, var->ray.endy_v / T_SIZE);
 			return (var->ray.vertical = sqrt(pow(var->p.x - var->ray.endx_v, 2) + pow(var->p.y - var->ray.endy_v, 2)));
-		}
 		var->ray.endx_v += dx;
 		var->ray.endy_v += dy;
 	}

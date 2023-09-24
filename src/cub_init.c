@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 16:00:02 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:08:30 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	run_mlx(t_cub *var)
 {
 	int	color;
 
-	var->p.x = (var->p.p_pos_x + (T_SIZE / 2));
-	var->p.y = (var->p.p_pos_y + (T_SIZE / 2));
+	var->x = 0.0;
+	var->y = 0.0;
 	color = 0;
 	var->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	var->img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
@@ -69,14 +69,14 @@ int	run_mlx(t_cub *var)
 
 void	init_variables(t_cub *var)
 {
-	var->p.radius = 3;
+	var->p.radius = 3.0;
 	var->x_max *= T_SIZE;
 	var->y_max *= T_SIZE;
-	var->p.radians = M_PI / 180;
+	var->p.radians = (float)( M_PI / 180);
 	var->p.fov = 60 * var->p.radians;
 	var->p.rot_speed = 0.07;
-	var->p.move_speed = 5;
-	var->p.rotation_angle = M_PI / 2;
+	var->p.move_speed = 5.0;
+	var->p.rotation_angle = (float)(M_PI / 2);
 	get_direction(var);
 }
 
@@ -104,14 +104,7 @@ int	init_vars(t_cub *var, int ac, char **av)
 	if (is_map_valid(var))
 		return (free_phase1(var), 1);
 	collect_paths(var);
-	// get_tex(var);
-	// get_images(path);
-	// var->txt = mlx_load_png(var->north[1]);
-	// if (!var->txt)
-	// {
-	// 	printf("can't open file\n");
-	// 	exit(1);
-	// }
+	get_tex(var);
 	init_variables(var);
 	return (0);
 }
