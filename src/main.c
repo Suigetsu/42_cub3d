@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:21:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 13:52:34 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 09:47:01 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	mmain(int ac, char **av)
 {
 	t_cub		var;
 
-	if(init_vars(&var, ac, av))
+	if (init_vars(&var, ac, av))
 		return (1);
 	if (run_mlx(&var))
 		free_for_exit(&var, 1);

@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/22 13:51:21 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 09:47:26 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	 store_info(char *info_line, t_cub *var)
+int	store_info(char *info_line, t_cub *var)
 {
 	if (ft_strncmp(info_line, "NO ", 3) == 0)
 	{

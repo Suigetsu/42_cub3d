@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse5.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 18:26:00 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 09:58:44 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ int	check_suroundings(t_cub *var)
 	var->y = 1;
 	while (var->map[(int)var->y])
 	{
-		if ((var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != '1' && \
-		var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != ' ') || \
-		(var->map[(int)var->y][0] != '1' && var->map[(int)var->y][0] != ' '))
+		if ((var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != '1' 
+			&& var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] 
+			!= ' ') 
+		|| (var->map[(int)var->y][0] != '1' && var->map[(int)var->y][0] != ' '))
 			return (ERROR);
 		var->y++;
 	}
@@ -69,54 +70,6 @@ int	invalid_char(char **map)
 	return (0);
 }
 
-int	check_zero(t_cub *var, int x, int y)
-{
-	int	ret;
-
-	ret = 0;
-	if (var->map[y][x] == '1')
-		return (0);
-	else if (var->map[y][x] == '0')
-	{
-		ret += check_zero(var, x + 1, y);
-		ret += check_zero(var, x - 1, y);
-		ret += check_zero(var, x, y - 1);
-		ret += check_zero(var, x, y + 1);
-		return (ret);
-	}
-	else
-		return (1);
-	return (0);
-}
-
-// int	check_inside(t_cub *var)
-// {
-// 	var->y = 1;
-// 	while (var->y < var->y_max - 2)
-// 	{
-// 		var->x = 0;
-// 		while (var->map[(int)var->y][(int)var->x])
-// 		{
-// 			if (var->x == 0)
-// 			{
-// 				if (var->map[(int)var->y][(int)var->x] != '1' && \
-// 					var->map[(int)var->y][(int)var->x] != ' ')
-// 					return (ERROR);
-// 			}
-// 			if (var->map[(int)var->y][(int)var->x] != '1')
-// 			{
-// 				if (around_space(var, var->y, var->x, var->map[(int)var->y][(int)var->x]))
-// 					return (ERROR);
-// 			}
-// 			// else if (check_zero(var, var->x, var->y))
-// 			// 	return (ERROR);
-// 			var->x++;
-// 		}
-// 		var->y++;
-// 	}
-// 	return (0);
-// }
-
 void	find_player_pos(t_cub *var)
 {
 	int	i;
@@ -129,18 +82,19 @@ void	find_player_pos(t_cub *var)
 		while (var->map[i][j])
 		{
 			if (var->map[i][j] == 'N' || var->map[i][j] == 'S' || \
-					var->map[i][j] == 'E' || var->map[i][j] == 'W')
-				{
-					var->p.p_pos_x = j * T_SIZE;
-					var->p.p_pos_y = i * T_SIZE;
-					var->p.dir = var->map[i][j];
-					return ;
-				}
+				var->map[i][j] == 'E' || var->map[i][j] == 'W')
+			{
+				var->p.p_pos_x = j * T_SIZE;
+				var->p.p_pos_y = i * T_SIZE;
+				var->p.dir = var->map[i][j];
+				return ;
+			}
 			j++;
 		}
 		i++;
 	}
 }
+
 int	check_inside(t_cub *var)
 {
 	var->y = 1;
@@ -151,11 +105,7 @@ int	check_inside(t_cub *var)
 		{
 			if (var->map[(int)var->y][(int)var->x] == '0')
 			{
-				if (((int)var->x > ft_strlen(var->map[(int)(var->y - 1)]) - 1)|| \
-					(var->map[(int)var->y + 1][(int)var->x] != '1' && var->map[(int)var->y + 1][(int)var->x] != '0' && var->map[(int)var->y + 1][(int)var->x] != var->p.dir) || \
-					(var->map[(int)var->y - 1][(int)var->x] != '1' && var->map[(int)var->y - 1][(int)var->x] != '0' && var->map[(int)var->y - 1][(int)var->x] != var->p.dir) || \
-					(var->map[(int)var->y][(int)var->x + 1] != '1' && var->map[(int)var->y][(int)var->x + 1] != '0' && var->map[(int)var->y][(int)var->x + 1] != var->p.dir) || \
-					(var->map[(int)var->y][(int)var->x - 1] != '1' && var->map[(int)var->y][(int)var->x - 1] != '0' && var->map[(int)var->y][(int)var->x - 1] != var->p.dir))
+				if (check_zero(var, var->x, var->y))
 					return (ERROR);
 			}
 			var->x++;

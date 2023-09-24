@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 09:44:36 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 09:51:53 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	free_for_exit(t_cub *var, int exit_status);
 void	free_for_map(t_cub *var);
 int		is_map_valid(t_cub *var);
 float	get_direction(t_cub *var);
-int		around_space(t_cub *var, int y, int x, char component);
+int		check_zero(t_cub *var, float x, float y);
 int		check_map(char *filename, t_cub *var);
 int		init_vars(t_cub *var, int ac, char **av);
 int		run_mlx(t_cub *var);
