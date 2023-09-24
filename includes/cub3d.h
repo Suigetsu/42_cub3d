@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 10:09:35 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:46:29 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,4 +153,6 @@ void	free_phase1(t_cub *var);
 void	get_tex(t_cub *var);
 int		facing_up_down(t_cub *var);
 int		facing_right_left(t_cub *var);
+void	complete_map(t_cub *var);
+
 #endif

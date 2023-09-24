@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 11:34:22 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:26:36 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	cast_rays(t_cub *var)
 		{
 			var->y_step = (var->ray.y0 - y) * (var->txt[flag]->height / wall_project); 
 			
-			if (var->y_step < var->txt[flag]->height)
+			if (var->y_step < (int)var->txt[flag]->height)
 				if (var->ray.y0 >= 0 && var->ray.y0 < (HEIGHT))
 					mlx_put_pixel(var->img, var->ray.x0, var->ray.y0, get_color(var->txt[flag], var->x_step, var->y_step));
 				var->ray.y0++;
