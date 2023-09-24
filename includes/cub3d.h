@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 11:11:15 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 11:35:56 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define T_SIZE 64
 # define WIDTH 1280
-# define HEIGHT 720
+# define HEIGHT 640
 # define ERROR -1
 # define MINIMAP_SF 0.2
 # define V_AXIS 0
