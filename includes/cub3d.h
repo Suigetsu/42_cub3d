@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 18:13:39 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 08:30:23 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_cub
 	char		*paths[4];
 	int			x_step;
 	int			y_step;
+	float		wall_project;
 	mlx_texture_t *txt[4];
 	// char		**paths;
 	mlx_t		*mlx;
@@ -157,7 +158,7 @@ void    draw_line2(t_cub *arg, mlx_image_t *image, int color);
 void	get_horizontal_distance(t_cub *var, mlx_image_t *img);
 void	test_draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1);
 void	get_vertical_distance(t_cub *var, mlx_image_t *img);
-void drawLineDDA(int x1, int y1, int x2, int y2, mlx_image_t *img, t_cub *var);
+void	drawLineDDA(int x1, int y1, int x2, int y2, mlx_image_t *img, t_cub *var);
 void	fix_any_angle(float	*angle);
 bool	check_wall(t_cub *var, float x, float y);
 void	cast_rays(t_cub *var);
@@ -168,6 +169,6 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	init_window(t_cub *var);
 void	free_phase1(t_cub *var, int status);
 void	get_tex(t_cub *var);
-int	facing_up_down(t_cub *var);
-int	facing_right_left(t_cub *var);
+int		facing_up_down(t_cub *var);
+int		facing_right_left(t_cub *var);
 #endif
