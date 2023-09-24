@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 18:13:39 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 09:44:36 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,14 @@
 # include "../libs/gnl/get_next_line.h"
 
 # define T_SIZE 64
-# define WIDTH 5120 / 4
-# define HEIGHT 2880 / 4
+# define WIDTH 1280
+# define HEIGHT 720
 # define ERROR -1
-# define RADIANS (M_PI / 180)
-# define FOV 60
-# define ROT_ANGLE M_PI / 2
-# define MOVE_SPEED 3
-# define ROT_SPEED 3
-# define NUM_RAYS (T_SIZE / 2);
 # define MINIMAP_SF 0.2
 # define V_AXIS 0
 # define H_AXIS 1
 
-typedef	struct s_ray
+typedef struct s_ray
 {
 	int		dx;
 	int		dy;
@@ -65,7 +59,7 @@ typedef	struct s_ray
 	float	inter_axis;
 }		t_ray;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	float	radians;
 	float	fov;
@@ -89,40 +83,39 @@ typedef struct	s_player
 
 typedef struct s_cub
 {
-	float		x_max;
-	float		y_max;
-	float		x;
-	float		y;
-	int			i;
-	int			f_r;
-	int			f_g;
-	int			f_b;
-	int			c_r;
-	int			c_g;
-	int			c_b;
-	int			fd;
-	char		**ids;
-	char		**split;
-	char		**north;
-	char		**south;
-	char		**west;
-	char		**east;
-	char		**floor;
-	char		**ceiling;
-	char		*scene;
-	char		**fc;
-	char		**map;
-	char		*line;
-	char		*temp;
-	char		*paths[4];
-	int			x_step;
-	int			y_step;
-	mlx_texture_t *txt[4];
-	// char		**paths;
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_player	p;
-	t_ray		ray;
+	float			x_max;
+	float			y_max;
+	float			x;
+	float			y;
+	int				i;
+	int				f_r;
+	int				f_g;
+	int				f_b;
+	int				c_r;
+	int				c_g;
+	int				c_b;
+	int				fd;
+	char			**ids;
+	char			**split;
+	char			**north;
+	char			**south;
+	char			**west;
+	char			**east;
+	char			**floor;
+	char			**ceiling;
+	char			*scene;
+	char			**fc;
+	char			**map;
+	char			*line;
+	char			*temp;
+	char			*paths[4];
+	int				x_step;
+	int				y_step;
+	mlx_texture_t	*txt[4];
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	t_player		p;
+	t_ray			ray;
 }				t_cub;
 
 int		check_filename(char *filename);
@@ -138,36 +131,26 @@ void	free_for_exit(t_cub *var, int exit_status);
 void	free_for_map(t_cub *var);
 int		is_map_valid(t_cub *var);
 float	get_direction(t_cub *var);
-// void	cast_rays(t_cub *var, mlx_image_t *img);
-void	rotate_player(t_cub *var, float angle, int key);
 int		around_space(t_cub *var, int y, int x, char component);
 int		check_map(char *filename, t_cub *var);
 int		init_vars(t_cub *var, int ac, char **av);
 int		run_mlx(t_cub *var);
 void	keyhook(void *param);
 void	find_player_pos(t_cub *var);
-void 	draw_line(t_cub *var, mlx_image_t *img);
-// void	draw_line(mlx_image_t *img, t_cub *var, int color);
+void	draw_line(t_cub *var, mlx_image_t *img);
 void	draw_minimap(t_cub *var, mlx_image_t *img);
 void	draw_player_pixels(t_cub *var, int color, mlx_image_t *img);
-void	fix_angle(t_cub *var);
 void	draw_pixels(float x, float y, int color, mlx_image_t *img);
-void    draw_line_bresenham(mlx_image_t *img, t_cub *var, int color);
-void    draw_line2(t_cub *arg, mlx_image_t *image, int color);
-void	get_horizontal_distance(t_cub *var, mlx_image_t *img);
-void	test_draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1);
-void	get_vertical_distance(t_cub *var, mlx_image_t *img);
-void drawLineDDA(int x1, int y1, int x2, int y2, mlx_image_t *img, t_cub *var);
 void	fix_any_angle(float	*angle);
 bool	check_wall(t_cub *var, float x, float y);
 void	cast_rays(t_cub *var);
 float	horizontal_distance(t_cub *var);
 float	vertical_distance(t_cub *var);
 void	draw_3d_projection(t_cub *var);
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	init_window(t_cub *var);
 void	free_phase1(t_cub *var, int status);
 void	get_tex(t_cub *var);
-int	facing_up_down(t_cub *var);
-int	facing_right_left(t_cub *var);
+int		facing_up_down(t_cub *var);
+int		facing_right_left(t_cub *var);
 #endif

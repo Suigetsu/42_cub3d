@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:13:36 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/21 15:57:41 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 09:42:42 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_3d_projection(t_cub *var)
 	float	correct_dis;
 	
 	i = -1;
-	distance = ((var->x_max) / 2) / tan(FOV / 2);
+	distance = ((var->x_max) / 2) / tan(var->p.fov / 2);
 	while (i < var->x_max)
 	{
 		correct_dis = var->ray.distance  * cos(var->p.ray_angle - var->p.direction); 
@@ -36,7 +36,7 @@ void	draw_3d_projection(t_cub *var)
 				mlx_put_pixel(var->img, x0, y0, 0xFFFFFF);
 			y0++;
 		}
-		var->p.ray_angle += FOV / (var->x_max);
+		var->p.ray_angle += var->p.fov / (var->x_max);
 		i++;
 	}
 }
