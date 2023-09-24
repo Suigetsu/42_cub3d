@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 15:50:56 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:04:08 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ float	vertical_distance(t_cub *var)
 {
 	float	dx;
 	float	dy;
+
 
 	dx = T_SIZE;
 	dy = T_SIZE * tan(var->p.ray_angle);

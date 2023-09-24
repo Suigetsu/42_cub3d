@@ -6,21 +6,21 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 13:27:22 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:05:15 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void init_window(t_cub *var)
+void	init_window(t_cub *var)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < WIDTH)
@@ -28,7 +28,7 @@ void init_window(t_cub *var)
 		j = 0;
 		while (j < HEIGHT / 2)
 		{
-			mlx_put_pixel(var->img, i , j, ft_pixel(135,206,250, 255));
+			mlx_put_pixel(var->img, i, j, ft_pixel(135, 206, 250, 255));
 			j++;
 		}
 		i++;
@@ -39,15 +39,16 @@ void init_window(t_cub *var)
 		j = HEIGHT / 2;
 		while (j < HEIGHT)
 		{
-			mlx_put_pixel(var->img, i , j, ft_pixel(192,192,192, 255));
+			mlx_put_pixel(var->img, i, j, ft_pixel(192, 192, 192, 255));
 			j++;
 		}
 		i++;
 	}
 }
+
 int	run_mlx(t_cub *var)
 {
-	int			color;
+	int	color;
 
 	var->x = 0.0;
 	var->y = 0.0;
@@ -58,8 +59,7 @@ int	run_mlx(t_cub *var)
 	draw_player_pixels(var, 0xFF378446, var->img);
 	init_window(var);
 	cast_rays(var);
-	draw_minimap(var , var->img);
-	// draw_3d_projection(var);
+	draw_minimap(var, var->img);
 	mlx_loop_hook(var->mlx, &keyhook, var);
 	mlx_loop(var->mlx);
 	return (0);

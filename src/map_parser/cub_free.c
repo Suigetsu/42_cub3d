@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:07:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 10:01:30 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:48:36 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	free_for_map(t_cub *var)
 {
-	// if (var->split)
-	// 	free_double_ptr(var->split);
 	if (var->map)
 		free_double_ptr(var->map);
 	if (var->line)
@@ -48,22 +46,6 @@ void	free_phase1(t_cub *var)
 
 void	free_for_exit(t_cub *var, int exit_status)
 {
-	// if (var->ceiling)
-	// 	free_double_ptr(var->ceiling);
-	// if (var->floor)
-	// 	free_double_ptr(var->floor);
-	// if (var->north)
-	// 	free_double_ptr(var->north);
-	// if (var->south)
-	// 	free_double_ptr(var->south);
-	// if (var->west)
-	// 	free_double_ptr(var->west);
-	// if (var->east)
-	// 	free_double_ptr(var->east);
-	// if (var->split)
-	// 	free_double_ptr(var->split);
-	// if (var->map)
-	// 	free_double_ptr(var->map);
 	if (var->line)
 		free(var->line);
 	if (var->scene)

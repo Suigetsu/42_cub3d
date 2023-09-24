@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 09:58:44 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:46:03 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int	is_map_valid(t_cub *var)
 {
 	free_double_ptr(var->map);
 	var->map = ft_split(var->scene, '\n');
+	complete_map(var);
 	if (invalid_char(var->map))
 		return (ERROR);
 	if (check_suroundings(var))

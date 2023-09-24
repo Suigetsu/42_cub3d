@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:21:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 09:47:01 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:49:29 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int	mmain(int ac, char **av)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int i = mmain(ac, av);
-	// system("leaks cub3d");
+	int	i;
+
+	i = mmain(ac, av);
+	system("leaks cub3d");
 	return (i);
 }

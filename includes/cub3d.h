@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 12:11:10 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:05:06 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,4 +156,6 @@ int		facing_up_down(t_cub *var);
 int		facing_right_left(t_cub *var);
 int		facing_up_down(t_cub *var);
 int		facing_right_left(t_cub *var);
+void	complete_map(t_cub *var);
+
 #endif
