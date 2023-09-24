@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/23 17:51:40 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 10:01:21 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ int	init_vars(t_cub *var, int ac, char **av)
 	if (read_map(av[1], var))
 		exit(printf("The map you assigned is probably not valid.\n"));
 	if (parse_info(var))
-		return (free_phase1(var, 1), 1);
+		return (free_phase1(var), 1);
 	if (check_map(av[1], var))
-		return (free_phase1(var, 1), 1);
+		return (free_phase1(var), 1);
 	if (is_map_valid(var))
-		return (free_phase1(var, 1), 1);
+		return (free_phase1(var), 1);
 	collect_paths(var);
 	get_tex(var);
 	// get_images(path);

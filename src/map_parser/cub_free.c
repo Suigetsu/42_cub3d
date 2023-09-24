@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:07:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 10:00:05 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 10:01:30 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ void	free_for_map(t_cub *var)
 		free(var->scene);
 }
 
-void	free_phase1(t_cub *var, int status)
+void	free_phase1(t_cub *var)
 {
-	(void)status;
 	if (var->scene)
 		free (var->scene);
 	if (var->north)
