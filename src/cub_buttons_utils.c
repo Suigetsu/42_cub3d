@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_buttons_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:04:48 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/27 11:21:02 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:30:16 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ void	keyhook(void *param)
 		fix_any_angle(&var->p.direction);
 		init_window(var);
 		cast_rays(var);
-		draw_minimap(var , var->img );
-		draw_player_pixels(var, 0xFF378446, var->img);
+		mlx_delete_image(var->mlx, var->mini_img);
+		var->mini_img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
+		mlx_image_to_window(var->mlx, var->mini_img, 0, 0);
+		draw_minimap(var , var->mini_img);
+		draw_player_pixels(var, 0xFF378446, var->mini_img);
 		var->i = 0;
 	}
 }

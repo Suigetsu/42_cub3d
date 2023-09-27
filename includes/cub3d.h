@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 08:51:53 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:05:26 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WIDTH 1280
 # define HEIGHT 640
 # define ERROR -1
-# define MINIMAP_SF 0.15
+# define MINIMAP_SF 0.06
 # define V_AXIS 0
 # define H_AXIS 1
 
@@ -120,6 +120,7 @@ typedef struct s_cub
 	mlx_texture_t	*txt[4];
 	mlx_t			*mlx;
 	mlx_image_t		*img;
+	mlx_image_t		*mini_img;
 	t_player		p;
 	t_ray			ray;
 	mlx_win_cursor_t	*cursor;

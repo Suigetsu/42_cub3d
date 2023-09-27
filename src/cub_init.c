@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 09:34:52 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:23:26 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,16 @@ int	run_mlx(t_cub *var)
 	color = 0;
 	var->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	var->img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
+	var->mini_img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(var->mlx, var->img, 0, 0);
+	mlx_image_to_window(var->mlx, var->mini_img, 0, 0);
 	// draw_player_pixels(var, 0xFF378446, var->img);
 	init_window(var);
 	get_tex(var);
 	cast_rays(var);
-	draw_minimap(var, var->img);
-	draw_player_pixels(var, 0xFF378446, var->img);
+	draw_minimap(var, var->mini_img);
+	// draw_minimap(var, var->img);
+	draw_player_pixels(var, 0xFF378446, var->mini_img);
 	mlx_loop_hook(var->mlx, &keyhook, var);
 	// mlx_mouse_hook(var->mlx, move_mouse, var);
 	mlx_loop(var->mlx);
