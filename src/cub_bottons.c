@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/26 15:07:23 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:25:11 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	down_move(t_cub *var)
 int	right_move(t_cub *var)
 {
 	if (check_wall(var, var->p.x + cosf((var->p.direction + M_PI / 2)) * \
-		var->p.move_speed,var->p.y + sinf((var->p.direction + M_PI / 2)) \
+		var->p.move_speed, var->p.y + sinf((var->p.direction + M_PI / 2)) \
 		* var->p.move_speed))
 		return (0);
 	var->p.p_pos_x += cosf((var->p.direction + M_PI / 2)) * var->p.move_speed;

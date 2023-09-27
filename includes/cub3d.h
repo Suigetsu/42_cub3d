@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 15:05:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:24:17 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ typedef struct s_cub
 	float			y_max;
 	float			x;
 	float			y;
-	int			minix;
-	int			miniy;
+	int				minix;
+	int				miniy;
 	int				i;
 	int				f_r;
 	int				f_g;
@@ -120,10 +120,8 @@ typedef struct s_cub
 	mlx_texture_t	*txt[4];
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_image_t		*mini_img;
 	t_player		p;
 	t_ray			ray;
-	mlx_win_cursor_t	*cursor;
 }				t_cub;
 
 int		check_filename(char *filename);

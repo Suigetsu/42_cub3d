@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:21:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 11:41:36 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:22:45 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	mmain(int ac, char **av)
 	i = 0;
 	if (init_vars(&var, ac, av))
 		return (1);
-	if (run_mlx(&var))
-		free_for_exit(&var, 1);
+	run_mlx(&var);
 	free_phase1(&var);
 	mlx_delete_image(var.mlx, var.img);
 	while (i < 4)
@@ -35,6 +34,6 @@ int	main(int ac, char **av)
 	int	i;
 
 	i = mmain(ac, av);
-	system("leaks -q cub3d");
+	system("leaks -q cub3D");
 	return (i);
 }
