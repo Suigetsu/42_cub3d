@@ -6,7 +6,7 @@
 #    By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/27 16:54:35 by hrahmane         ###   ########.fr        #
+#    Updated: 2023/09/27 18:36:31 by hrahmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRC			=	src/main.c src/movement/player_direction.c src/cub_init.c src/cub_botton
 				src/map_parser/cub_parse6.c src/map_parser/cub_free.c \
 				libs/gnl/get_next_line.c libs/gnl/get_next_line_utils.c \
 				src/cub_draw.c src/cub_newdraw.c src/cub_rays.c \
-				src/projection.c src/cub_texture.c src/cub_buttons_utils.c
+				src/projection.c src/cub_texture.c src/cub_buttons_utils.c \
+				src/cub_rays_utils.c src/cub_rays_utils2.c
 OBJS		=	${SRC:.c=.o}
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror #-g -fsanitize=address

@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 16:48:40 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:40:51 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,33 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 			var->x++;
 		}
 		var->y++;
+	}
+}
+
+void	draw_textures(t_cub *var)
+{
+	if (var->ray.inter_axis == 1 && facing_up_down(var) == 1)
+	{
+		var->x_step = (var->txt[0]->width / T_SIZE) * \
+		fmod(var->ray.inter_x, T_SIZE);
+		var->intxt = 0;
+	}
+	else if (var->ray.inter_axis == 1 && !facing_up_down(var))
+	{
+		var->x_step = (var->txt[1]->width / T_SIZE) * \
+		fmod(var->ray.inter_x, T_SIZE);
+		var->intxt = 1;
+	}
+	else if (!var->ray.inter_axis && facing_right_left(var) == 1)
+	{
+		var->x_step = (var->txt[2]->width / T_SIZE) * \
+		fmod(var->ray.inter_y, T_SIZE);
+		var->intxt = 2;
+	}
+	else if (!var->ray.inter_axis && !facing_right_left(var))
+	{
+		var->x_step = (var->txt[3]->width / T_SIZE) * \
+		fmod(var->ray.inter_y, T_SIZE);
+		var->intxt = 3;
 	}
 }

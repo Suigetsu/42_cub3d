@@ -6,141 +6,37 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 17:18:13 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:35:49 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-uint32_t	get_color(mlx_texture_t *txt, int x, int y)
-{
-	uint32_t	color;
-
-	color = ((uint32_t *)txt->pixels)[(txt->width * y) + x];
-	return ((color & 0xFF000000) >> 24 | (color & 0x00FF0000) >> 8
-		| (color & 0x0000FF00) << 8 | (color & 0x000000FF) << 24);
-}
-
 void	cast_rays(t_cub *var)
 {
-	float		i;
-	float		y;
-	float		distance;
-	float		correct_dis;
-	int			flag;
-
-	flag = -1;
-	distance = ((WIDTH) / 2) / tan((float)var->p.fov / 2);
-	i = 0.0;
+	var->intxt = -1;
+	var->index = 0.0;
+	var->dist = ((WIDTH) / 2) / tan((float)var->p.fov / 2);
 	fix_any_angle(&var->p.ray_angle);
-	while (i < WIDTH)
+	while (var->index < WIDTH)
 	{
 		var->p.ray_angle = var->p.direction - (var->p.fov / 2) + 
-			i * (float)var->p.fov / WIDTH;
+			var->index * (float)var->p.fov / WIDTH;
 		fix_any_angle(&var->p.ray_angle);
-		horizontal_distance(var);
-		vertical_distance(var);
-		if (var->ray.vertical > var->ray.horizon)
-		{
-			if (var->ray.horizon == INT_MAX)
-				break ;
-			var->ray.inter_x = var->ray.endx_h;
-			var->ray.inter_y = var->ray.endy_h;
-			var->ray.distance = var->ray.horizon;
-			var->ray.inter_axis = H_AXIS;
-		}
-		else
-		{
-			if (var->ray.vertical == INT_MAX)
-				break ;
-			var->ray.inter_x = var->ray.endx_v;
-			var->ray.inter_y = var->ray.endy_v;
-			var->ray.distance = var->ray.vertical;
-			var->ray.inter_axis = V_AXIS;
-		}
-		correct_dis = var->ray.distance * \
+		if (get_right_distance(var))
+			break ;
+		var->corr_dis = var->ray.distance * \
 			cos(var->p.ray_angle - var->p.direction);
-		var->wall_project = (T_SIZE / correct_dis) * distance;
-		var->ray.x0 = i;
-		var->ray.x1 = i;
+		var->wall_project = (T_SIZE / var->corr_dis) * var->dist;
+		var->ray.x0 = var->index;
+		var->ray.x1 = var->index;
 		var->ray.y0 = ((HEIGHT) / 2) - (var->wall_project / 2);
 		var->ray.y1 = ((HEIGHT) / 2) + (var->wall_project / 2);
-		if (var->ray.inter_axis == 1 && facing_up_down(var) == 1)
-		{
-			var->x_step = (var->txt[0]->width / T_SIZE) * \
-				fmod(var->ray.inter_x, T_SIZE);
-			flag = 0;
-		}
-		else if (var->ray.inter_axis == 1 && !facing_up_down(var))
-		{
-			var->x_step = (var->txt[1]->width / T_SIZE) * \
-				fmod(var->ray.inter_x, T_SIZE);
-			flag = 1;
-		}
-		else if (!var->ray.inter_axis && facing_right_left(var) == 1)
-		{
-			var->x_step = (var->txt[2]->width / T_SIZE) * \
-				fmod(var->ray.inter_y, T_SIZE);
-			flag = 2;
-		}
-		else if (!var->ray.inter_axis && !facing_right_left(var))
-		{
-			var->x_step = (var->txt[3]->width / T_SIZE) * \
-				fmod(var->ray.inter_y, T_SIZE);
-			flag = 3;
-		}
-		y = var->ray.y0;
-		while (var->ray.y0 < var->ray.y1)
-		{
-			var->y_step = (var->ray.y0 - y) * \
-				((float)var->txt[flag]->height / var->wall_project);
-			if (var->y_step < (int)var->txt[flag]->height)
-			{
-				if (var->ray.y0 >= 0 && var->ray.y0 < (HEIGHT))
-					mlx_put_pixel(var->img, var->ray.x0, var->ray.y0, \
-						get_color(var->txt[flag], var->x_step, var->y_step));
-			}
-			var->ray.y0++;
-		}
-		i++;
+		draw_textures(var);
+		var->ny = var->ray.y0;
+		put_texture(var);
+		var->index++;
 	}
-}
-
-int	facing_up_down(t_cub *var)
-{
-	if (var->p.ray_angle >= M_PI && var->p.ray_angle < 2 * M_PI)
-		return (1);
-	else if (var->p.ray_angle > 0 && var->p.ray_angle < M_PI)
-		return (0);
-	return (-1);
-}
-
-int	facing_right_left(t_cub *var)
-{
-	if (var->p.ray_angle >= M_PI / 2 && var->p.ray_angle < 3 * M_PI / 2)
-		return (1);
-	else if (var->p.ray_angle < M_PI / 2 || var->p.ray_angle > 3 * M_PI / 2)
-		return (0);
-	return (-1);
-}
-
-int	checkwalls(t_cub *var, float x, float y, int flag)
-{
-	int	temp_x;
-	int	temp_y;
-
-	if (flag == 0)
-		y -= facing_up_down(var);
-	else
-		x -= facing_right_left(var);
-	temp_x = (int)x / T_SIZE;
-	temp_y = (int)y / T_SIZE;
-	if (temp_x < 0 || temp_x > (int)var->x_max / T_SIZE || \
-		temp_y < 0 || temp_y > (int)var->y_max / T_SIZE)
-		return (0);
-	if (var->map[temp_y][temp_x] == '1')
-		return (1);
-	return (0);
 }
 
 float	cal_distance(t_cub *var, int flag)
