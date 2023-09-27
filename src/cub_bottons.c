@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bottons.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:25:27 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 19:07:19 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:07:23 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	up_move(t_cub *var)
 		var->p.move_speed, var->p.y + sinf(var->p.direction) \
 		* var->p.move_speed))
 		return (0);
-	// printf("%f\n", var->p.direction);
 	var->p.p_pos_x += cosf(var->p.direction) * var->p.move_speed;
 	var->p.p_pos_y += sinf(var->p.direction) * var->p.move_speed;
 	return (1);
@@ -65,48 +64,4 @@ int	left_move(t_cub *var)
 	var->p.p_pos_x -= cosf((var->p.direction + M_PI / 2)) * var->p.move_speed;
 	var->p.p_pos_y -= sinf((var->p.direction + M_PI / 2)) * var->p.move_speed;
 	return (1);
-}
-
-int	rotation_move(t_cub *var, int flag)
-{
-	if (flag == 1)
-		var->p.direction += var->p.rot_speed;
-	else
-		var->p.direction -= var->p.rot_speed;
-	return (1);
-}
-
-void	keyhook(void *param)
-{
-	t_cub	*var;
-	int		i;
-
-	i = 0;
-	var = (t_cub *)param;
-	var->i = 0;
-	if (mlx_is_key_down(var->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(var->mlx);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_W))
-		var->i = up_move(var);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_S))
-		var->i = down_move(var);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_D))
-		var->i = right_move(var);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_A))
-		var->i = left_move(var);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_RIGHT))
-		var->i = rotation_move(var, 1);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
-		var->i = rotation_move(var, 0);
-	if (var->i)
-	{
-		var->p.x = (var->p.p_pos_x + (T_SIZE / 2));
-		var->p.y = (var->p.p_pos_y + (T_SIZE / 2));
-		fix_any_angle(&var->p.direction);
-		init_window(var);
-		cast_rays(var);
-		draw_minimap(var , var->img );
-		draw_player_pixels(var, 0xFF378446, var->img);
-		var->i = 0;
-	}
 }

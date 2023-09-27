@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 17:37:31 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:23:48 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	draw_pixels(float x, float y, int color, mlx_image_t *img)
 		j = 0;
 		while (j < T_SIZE * MINIMAP_SF)
 		{
-			// if ( j == T_SIZE -1 && i == T_SIZE-1 )
 				mlx_put_pixel(img, (x * T_SIZE * MINIMAP_SF) + i, (y * T_SIZE * MINIMAP_SF) + j, color);
 			if (j == (T_SIZE - 1) * MINIMAP_SF)
 				mlx_put_pixel(img, (x * T_SIZE * MINIMAP_SF) + i, (y * T_SIZE * MINIMAP_SF) + j, 0);
@@ -78,5 +77,4 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 		}
 		var->y++;
 	}
-	// printf("%f - %f - %f\n", var->y, var->x, MINIMAP_SF);
 }

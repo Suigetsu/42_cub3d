@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/24 18:42:17 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/27 08:51:53 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_ray
 	int		dy;
 	int		err;
 	int		e2;
-	float		inter_x;
-	float		inter_y;
+	float	inter_x;
+	float	inter_y;
 	int		step;
 	int		x0;
 	int		y0;
@@ -111,9 +111,12 @@ typedef struct s_cub
 	char			*line;
 	char			*temp;
 	char			*paths[4];
-	float				x_step;
-	float				y_step;
+	float			x_step;
+	float			y_step;
 	float			wall_project;
+	int				mouse_x;
+	int				mouse_y;
+	int				mouse_pos;
 	mlx_texture_t	*txt[4];
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -160,5 +163,10 @@ int		facing_right_left(t_cub *var);
 int		facing_up_down(t_cub *var);
 int		facing_right_left(t_cub *var);
 void	complete_map(t_cub *var);
+int		left_move(t_cub *var);
+int		right_move(t_cub *var);
+int		down_move(t_cub *var);
+int		up_move(t_cub *var);
+int		move_mouse(int x, int y, void *param);
 
 #endif

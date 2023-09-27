@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mouse_movement.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 10:21:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/26 15:18:28 by hrahmane         ###   ########.fr       */
+/*   Created: 2023/09/25 08:43:07 by hrahmane          #+#    #+#             */
+/*   Updated: 2023/09/27 08:04:55 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	mmain(int ac, char **av)
+int	move_mouse(int x, int y, void *param)
 {
-	t_cub		var;
-	int			i;
-
-	i = 0;
-	if (init_vars(&var, ac, av))
-		return (1);
-	if (run_mlx(&var))
-		free_for_exit(&var, 1);
-	free_phase1(&var);
-	mlx_delete_image(var.mlx, var.img);
-	while (i < 4)
-		mlx_delete_texture(var.txt[i++]);
-	mlx_terminate(var.mlx);
+	t_cub	*var;
+	int		delta_x;
+	int		delta_y;
+	
+	var = (t_cub *)param;
+	delta_x = x - (WIDTH / 2);
+	delta_y = y - (HEIGHT / 2);
+	
+	var->p.direction += delta_x * var->p.rot_speed;
 	return (0);
-}
-
-int	main(int ac, char **av)
-{
-	int	i;
-
-	i = mmain(ac, av);
-	// system("leaks -q cub3d");
-	return (i);
+	// mlx_get_mouse_pos(var->mlx, (int)var->p.p_pos_x, (int)var->p.p_pos_y);
 }

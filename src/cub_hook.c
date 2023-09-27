@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:51:47 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/19 18:42:44 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:01:40 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 bool	check_wall(t_cub *var, float x, float y)
 {
