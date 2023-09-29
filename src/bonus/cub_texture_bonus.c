@@ -1,34 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub_texture_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 10:21:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 20:06:58 by mlagrini         ###   ########.fr       */
+/*   Created: 2023/09/20 08:57:09 by hrahmane          #+#    #+#             */
+/*   Updated: 2023/09/29 20:24:17 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main(int ac, char **av)
+mlx_texture_t	*get_image(char *path)
 {
-	t_cub		var;
-	int			i;
+	mlx_texture_t	*img;
+
+	img = mlx_load_png(path);
+	if (!img)
+	{
+		printf("Error\ninvalid texture.\n");
+		return (NULL);
+	}
+	if (img->width != img->height)
+	{
+		printf("Error\ninvalid texture.\n");
+		mlx_delete_texture(img);
+		return (NULL);
+	}
+	return (img);
+}
+
+int	get_tex(t_cub *var)
+{
+	int	i;
 
 	i = 0;
-	if (init_vars(&var, ac, av))
-		return (1);
-	run_mlx(&var);
-	free_phase1(&var);
-	mlx_delete_image(var.mlx, var.img);
 	while (i < 4)
 	{
-		if (var.txt[i])
-			mlx_delete_texture(var.txt[i]);
+		var->txt[i] = get_image(var->paths[i]);
+		if (!var->txt[i])
+			return (ERROR);
 		i++;
 	}
-	mlx_terminate(var.mlx);
 	return (0);
 }

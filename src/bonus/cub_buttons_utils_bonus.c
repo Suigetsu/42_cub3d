@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_buttons_utils.c                                :+:      :+:    :+:   */
+/*   cub_buttons_utils_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:04:48 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/29 20:13:39 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 20:24:17 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	rotation_move(t_cub *var, int flag)
 {
@@ -53,6 +53,8 @@ void	update_player(void *param)
 	fix_any_angle(&var->p.direction);
 	init_window(var);
 	cast_rays(var);
+	draw_minimap(var, var->img);
+	draw_player_pixels(var, 0xFF378446, var->img);
 }
 
 void	keyhook(void *param)
@@ -60,6 +62,7 @@ void	keyhook(void *param)
 	t_cub	*var;
 
 	var = (t_cub *)param;
+	mouse_rotation(var);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(var->mlx);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_W))
