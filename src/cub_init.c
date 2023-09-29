@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 16:48:30 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/29 10:27:35 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,6 @@ void	init_variables(t_cub *var)
 	get_direction(var);
 }
 
-void	collect_paths(t_cub *var)
-{
-	var->paths[0] = var->north[1];
-	var->paths[1] = var->south[1];
-	var->paths[2] = var->west[1];
-	var->paths[3] = var->east[1];
-}
-
 int	init_vars(t_cub *var, int ac, char **av)
 {
 	ft_bzero(var, sizeof(t_cub));
@@ -97,7 +89,6 @@ int	init_vars(t_cub *var, int ac, char **av)
 		return (free_phase1(var), 1);
 	if (is_map_valid(var))
 		return (free_phase1(var), 1);
-	collect_paths(var);
 	init_variables(var);
 	return (0);
 }

@@ -1,15 +1,18 @@
-NO ./maps/textures/wall.png
-SO ./maps/textures/south.png
-WE ./maps/textures/west.png
-EA ./maps/textures/east.png
+
+
+
+NO ./maps/textures/mlagrini.png       
+SO ./maps/textures/sw_wallmod.png
+WE ./maps/textures/sw2_wall.png
+EA ./maps/textures/sw_wall88.png
 
 F 220,100,0
 C 225,30,0
 
 
 1111111111111111111
+1S00000000000000001
 1000000000000000001
-1N00000000000000001
 1000000000000000001
 1000000000000000001
 1000000000000000001
