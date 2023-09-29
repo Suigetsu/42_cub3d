@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:04:48 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/29 12:57:09 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:52:17 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ void	mouse_rotation(t_cub *var)
 	}
 }
 
-void	update_player(t_cub *var)
+void	update_player(void *param)
 {
+	t_cub	*var;
+
+	var = (t_cub *)param;
 	var->p.x = (var->p.p_pos_x + (T_SIZE / 2));
 	var->p.y = (var->p.p_pos_y + (T_SIZE / 2));
 	fix_any_angle(&var->p.direction);
@@ -57,26 +60,21 @@ void	update_player(t_cub *var)
 void	keyhook(void *param)
 {
 	t_cub	*var;
-	int		i;
 
-	i = 0;
 	var = (t_cub *)param;
 	mouse_rotation(var);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(var->mlx);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_W))
-		var->i = up_move(var);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_S))
-		var->i = down_move(var);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_D))
-		var->i = right_move(var);
-	if (mlx_is_key_down(var->mlx, MLX_KEY_A))
-		var->i = left_move(var);
+		up_move(var);
+	else if (mlx_is_key_down(var->mlx, MLX_KEY_S))
+		down_move(var);
+	else if (mlx_is_key_down(var->mlx, MLX_KEY_D))
+		right_move(var);
+	else if (mlx_is_key_down(var->mlx, MLX_KEY_A))
+		left_move(var);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_RIGHT))
-		var->i = rotation_move(var, 1);
+		rotation_move(var, 1);
 	if (mlx_is_key_down(var->mlx, MLX_KEY_LEFT))
-		var->i = rotation_move(var, 0);
-	if (var->i)
-		update_player(var);
-	var->i = 0;
+		rotation_move(var, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_rays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 18:35:49 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:53:08 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@ void	cast_rays(t_cub *var)
 	while (var->index < WIDTH)
 	{
 		var->p.ray_angle = var->p.direction - (var->p.fov / 2) + 
-			var->index * (float)var->p.fov / WIDTH;
+			(var->index * (float)var->p.fov / WIDTH);
 		fix_any_angle(&var->p.ray_angle);
 		if (get_right_distance(var))
 			break ;
-		var->corr_dis = var->ray.distance * \
-			cos(var->p.ray_angle - var->p.direction);
-		var->wall_project = (T_SIZE / var->corr_dis) * var->dist;
+		var->ray.distance *= cos(var->p.ray_angle - var->p.direction);
+		var->wall_project = (T_SIZE / var->ray.distance) * var->dist;
 		var->ray.x0 = var->index;
-		var->ray.x1 = var->index;
 		var->ray.y0 = ((HEIGHT) / 2) - (var->wall_project / 2);
 		var->ray.y1 = ((HEIGHT) / 2) + (var->wall_project / 2);
 		draw_textures(var);

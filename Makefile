@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+         #
+#    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/27 18:36:31 by hrahmane         ###   ########.fr        #
+#    Updated: 2023/09/29 19:53:46 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC			=	src/main.c src/movement/player_direction.c src/cub_init.c src/cub_botton
 				src/cub_rays_utils.c src/cub_rays_utils2.c
 OBJS		=	${SRC:.c=.o}
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror #-O3 -Ofast -flto#-g -fsanitize=address
 LIBS		=	~/Desktop/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 LIBFT		=	libs/libft/libft.a
 RM			=	rm -rf

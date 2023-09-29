@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_rays_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:35:13 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/27 18:36:57 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:53:24 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,23 @@ void	put_texture(t_cub *var)
 	{
 		var->y_step = (var->ray.y0 - var->ny) * \
 			((float)var->txt[var->intxt]->height / var->wall_project);
-		if (var->y_step < (int)var->txt[var->intxt]->height)
+		if (var->y_step < (int)var->txt[var->intxt]->height && \
+			(var->intxt == 1 || var->intxt == 2))
 		{
 			if (var->ray.y0 >= 0 && var->ray.y0 < (HEIGHT))
+			{
+				mlx_put_pixel(var->img, var->ray.x0, var->ray.y0, \
+				get_color(var->txt[var->intxt], var->txt[var->intxt]->width \
+					- var->x_step, var->y_step));
+			}
+		}
+		else if (var->y_step < (int)var->txt[var->intxt]->height)
+		{
+			if (var->ray.y0 >= 0 && var->ray.y0 < (HEIGHT))
+			{
 				mlx_put_pixel(var->img, var->ray.x0, var->ray.y0, \
 				get_color(var->txt[var->intxt], var->x_step, var->y_step));
+			}
 		}
 		var->ray.y0++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_newdraw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:50:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 16:52:35 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:52:49 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	draw_line(t_cub *var, mlx_image_t *img)
 	int	i;
 
 	i = 0;
-	var->ray.dx = var->ray.inter_x - var->p.x;
-	var->ray.dy = var->ray.inter_y - var->p.y;
+	var->ray.dx = var->ray.inter_x - (var->p.x);
+	var->ray.dy = var->ray.inter_y - (var->p.y);
 	if (abs(var->ray.dx) > abs(var->ray.dy))
 		var->ray.step = abs(var->ray.dx);
 	else

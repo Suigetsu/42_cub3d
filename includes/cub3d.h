@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 13:24:54 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:13:20 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "../libs/gnl/get_next_line.h"
 
 # define T_SIZE 64
-# define WIDTH 1280
-# define HEIGHT 640
+# define WIDTH 1920
+# define HEIGHT 1080
 # define ERROR -1
 # define MINIMAP_SF 0.06
 # define V_AXIS 0
@@ -40,10 +40,10 @@ typedef struct s_ray
 	float	inter_x;
 	float	inter_y;
 	int		step;
-	int		x0;
-	int		y0;
-	int		x1;
-	int		y1;
+	float	x0;
+	float	y0;
+	float	x1;
+	float	y1;
 	float	x;
 	float	y;
 	float	horizon;
@@ -61,7 +61,7 @@ typedef struct s_ray
 
 typedef struct s_player
 {
-	float	radians;
+	double	radians;
 	float	fov;
 	float	rot_speed;
 	float	move_speed;
@@ -173,5 +173,6 @@ int			get_right_distance(t_cub *var);
 void		draw_textures(t_cub *var);
 uint32_t	get_color(mlx_texture_t *txt, int x, int y);
 int			get_tex(t_cub *var);
+void		update_player(void *param);
 
 #endif
