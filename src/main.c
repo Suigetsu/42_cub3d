@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:21:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 16:22:45 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:27:55 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	mmain(int ac, char **av)
 	free_phase1(&var);
 	mlx_delete_image(var.mlx, var.img);
 	while (i < 4)
-		mlx_delete_texture(var.txt[i++]);
+	{
+		if (var.txt[i])
+			mlx_delete_texture(var.txt[i]);
+		i++;
+	}
 	mlx_terminate(var.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 08:57:09 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/24 12:51:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:30:39 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ mlx_texture_t	*get_image(char *path)
 
 	img = mlx_load_png(path);
 	if (img->width != img->height)
-		printf("invalid texture.\n");
+	{
+		printf("Error: invalid texture.\n");
+		mlx_delete_texture(img);
+		return (NULL);
+	}
 	return (img);
 }
 
-void	get_tex(t_cub *var)
+int	get_tex(t_cub *var)
 {
 	int	i;
 
@@ -30,6 +34,9 @@ void	get_tex(t_cub *var)
 	while (i < 4)
 	{
 		var->txt[i] = get_image(var->paths[i]);
+		if (!var->txt[i])
+			return (ERROR);
 		i++;
 	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/27 18:41:57 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:24:54 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,6 @@ int			path_validity(t_cub *var);
 int			split_info(t_cub *var);
 int			path_validity(t_cub *var);
 int			color_validity(t_cub *var);
-void		free_for_exit(t_cub *var, int exit_status);
-void		free_for_map(t_cub *var);
 int			is_map_valid(t_cub *var);
 float		get_direction(t_cub *var);
 int			check_zero(t_cub *var, float x, float y);
@@ -157,11 +155,9 @@ bool		check_wall(t_cub *var, float x, float y);
 void		cast_rays(t_cub *var);
 float		horizontal_distance(t_cub *var);
 float		vertical_distance(t_cub *var);
-void		draw_3d_projection(t_cub *var);
 int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		init_window(t_cub *var);
 void		free_phase1(t_cub *var);
-void		get_tex(t_cub *var);
 int			facing_up_down(t_cub *var);
 int			facing_right_left(t_cub *var);
 int			facing_up_down(t_cub *var);
@@ -171,11 +167,11 @@ int			left_move(t_cub *var);
 int			right_move(t_cub *var);
 int			down_move(t_cub *var);
 int			up_move(t_cub *var);
-int			move_mouse(int x, int y, void *param);
 int			checkwalls(t_cub *var, float x, float y, int flag);
 void		put_texture(t_cub *var);
 int			get_right_distance(t_cub *var);
 void		draw_textures(t_cub *var);
 uint32_t	get_color(mlx_texture_t *txt, int x, int y);
+int			get_tex(t_cub *var);
 
 #endif

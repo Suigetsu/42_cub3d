@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 12:57:08 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:29:41 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ int	run_mlx(t_cub *var)
 	var->img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(var->mlx, var->img, 0, 0);
 	init_window(var);
-	get_tex(var);
+	if (get_tex(var))
+	{
+		mlx_close_window(var->mlx);
+		return (ERROR);
+	}
 	cast_rays(var);
 	draw_minimap(var, var->img);
 	draw_player_pixels(var, 0xFF378446, var->img);
@@ -72,17 +76,20 @@ int	init_vars(t_cub *var, int ac, char **av)
 {
 	ft_bzero(var, sizeof(t_cub));
 	if (ac != 2)
-		exit(printf("Wrong number of arguments\n"));
+		exit(printf("Error: Wrong number of arguments\n"));
 	if (check_filename(av[1]))
-		exit(printf("Invalid map extension\n"));
+		exit(printf("Error: Invalid map extension\n"));
 	if (read_map(av[1], var))
-		exit(printf("The map you assigned is probably not valid.\n"));
+		exit(printf("Error: The map you assigned is probably not valid.\n"));
 	if (parse_info(var))
-		return (free_phase1(var), 1);
+		return (free_phase1(var), \
+		printf("Error: The map you assigned is probably not valid.\n"));
 	if (check_map(av[1], var))
-		return (free_phase1(var), 1);
+		return (free_phase1(var), \
+		printf("Error: The map you assigned is probably not valid.\n"));
 	if (is_map_valid(var))
-		return (free_phase1(var), 1);
+		return (free_phase1(var), \
+		printf("Error: The map you assigned is probably not valid.\n"));
 	init_variables(var);
 	return (0);
 }
