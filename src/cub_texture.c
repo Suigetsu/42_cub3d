@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 08:57:09 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/29 13:33:37 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:48:59 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ mlx_texture_t	*get_image(char *path)
 	mlx_texture_t	*img;
 
 	img = mlx_load_png(path);
+	if (!img)
+	{
+		printf("Error\ninvalid texture.\n");
+		return (NULL);
+	}
 	if (img->width != img->height)
 	{
 		printf("Error\ninvalid texture.\n");

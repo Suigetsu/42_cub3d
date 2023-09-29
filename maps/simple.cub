@@ -1,7 +1,7 @@
 
 
 
-NO ./maps/textures/sw_wall4.png       
+NO ./maps/textures/east.png       
 SO ./maps/textures/sw_wallmod.png
 WE ./maps/textures/sw2_wall.png
 EA ./maps/textures/sw_wall88.png
