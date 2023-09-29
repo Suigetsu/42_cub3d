@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 13:29:41 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:34:02 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,20 @@ int	init_vars(t_cub *var, int ac, char **av)
 {
 	ft_bzero(var, sizeof(t_cub));
 	if (ac != 2)
-		exit(printf("Error: Wrong number of arguments\n"));
+		exit(printf("Error\nWrong number of arguments\n"));
 	if (check_filename(av[1]))
-		exit(printf("Error: Invalid map extension\n"));
+		exit(printf("Error\nInvalid map extension\n"));
 	if (read_map(av[1], var))
-		exit(printf("Error: The map you assigned is probably not valid.\n"));
+		exit(printf("Error\nThe map you assigned is probably not valid.\n"));
 	if (parse_info(var))
 		return (free_phase1(var), \
-		printf("Error: The map you assigned is probably not valid.\n"));
+		printf("Error\nThe map you assigned is probably not valid.\n"));
 	if (check_map(av[1], var))
 		return (free_phase1(var), \
-		printf("Error: The map you assigned is probably not valid.\n"));
+		printf("Error\nThe map you assigned is probably not valid.\n"));
 	if (is_map_valid(var))
 		return (free_phase1(var), \
-		printf("Error: The map you assigned is probably not valid.\n"));
+		printf("Error\nThe map you assigned is probably not valid.\n"));
 	init_variables(var);
 	return (0);
 }
