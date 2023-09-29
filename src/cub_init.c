@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 10:27:35 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 12:57:08 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,21 @@ void	init_window(t_cub *var)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < WIDTH)
+	i = -1;
+	while (++i < WIDTH)
 	{
-		j = 0;
-		while (j < HEIGHT / 2)
-		{
-			mlx_put_pixel(var->img, i, j, ft_pixel(158, 207, 255, 255));
-			j++;
-		}
-		i++;
+		j = -1;
+		while (++j < HEIGHT / 2)
+			mlx_put_pixel(var->img, i, j, \
+				ft_pixel(var->c_r, var->c_g, var->c_b, 255));
 	}
-	i = 0;
-	while (i < WIDTH)
+	i = -1;
+	while (++i < WIDTH)
 	{
-		j = HEIGHT / 2;
-		while (j < HEIGHT)
-		{
-			mlx_put_pixel(var->img, i, j, ft_pixel(192, 192, 192, 255));
-			j++;
-		}
-		i++;
+		j = (HEIGHT / 2) - 1;
+		while (++j < HEIGHT)
+			mlx_put_pixel(var->img, i, j, \
+				ft_pixel(var->f_r, var->f_g, var->f_b, 255));
 	}
 }
 
