@@ -6,7 +6,7 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/29 20:29:10 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/09/30 09:34:06 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC			=	src/main.c src/movement/player_direction.c src/cub_init.c src/cub_botton
 				src/map_parser/cub_parse6.c src/map_parser/cub_free.c \
 				libs/gnl/get_next_line.c libs/gnl/get_next_line_utils.c \
 				src/cub_draw.c src/cub_newdraw.c src/cub_rays.c \
-				src/projection.c src/cub_texture.c src/cub_buttons_utils.c \
+				src/cub_texture.c src/cub_buttons_utils.c \
 				src/cub_rays_utils.c src/cub_rays_utils2.c
 BSRC		=	src/bonus/main_bonus.c src/bonus/movement/player_direction_bonus.c src/bonus/cub_init_bonus.c src/bonus/cub_bottons_bonus.c \
 				src/bonus/map_parser/cub_parse_bonus.c src/bonus/map_parser/utils_bonus.c \
@@ -26,7 +26,7 @@ BSRC		=	src/bonus/main_bonus.c src/bonus/movement/player_direction_bonus.c src/b
 				src/bonus/map_parser/cub_parse6_bonus.c src/bonus/map_parser/cub_free_bonus.c \
 				libs/gnl/get_next_line.c libs/gnl/get_next_line_utils.c \
 				src/bonus/cub_draw_bonus.c src/bonus/cub_newdraw_bonus.c src/bonus/cub_rays_bonus.c \
-				src/bonus/projection_bonus.c src/bonus/cub_texture_bonus.c src/bonus/cub_buttons_utils_bonus.c \
+				src/bonus/cub_texture_bonus.c src/bonus/cub_buttons_utils_bonus.c \
 				src/bonus/cub_rays_utils_bonus.c src/bonus/cub_rays_utils2_bonus.c
 OBJS		=	${SRC:.c=.o}
 OBJS_BONUS	=	${BSRC:.c=.o}
