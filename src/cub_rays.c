@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:34:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 20:26:45 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/30 15:58:57 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,24 @@ void	cast_rays(t_cub *var)
 {
 	var->intxt = -1;
 	var->index = 0.0;
-	var->dist = ((WIDTH) / 2) / tan((float)var->p.fov / 2);
+	var->dist = ((WIDTH) / 2) / tan(var->p.fov / 2);
+	var->p.ray_angle = var->p.direction - (var->p.fov / 2);
 	fix_any_angle(&var->p.ray_angle);
 	while (var->index < WIDTH)
 	{
-		var->p.ray_angle = var->p.direction - (var->p.fov / 2) + 
-			(var->index * (float)var->p.fov / WIDTH);
 		fix_any_angle(&var->p.ray_angle);
 		if (get_right_distance(var))
 			break ;
-		var->ray.distance *= cos(var->p.ray_angle - var->p.direction);
-		var->wall_project = (T_SIZE / var->ray.distance) * var->dist;
+		var->corr_dis = var->ray.distance * \
+			cos(var->p.ray_angle - var->p.direction);
+		var->wall_project = (T_SIZE / var->corr_dis) * var->dist;
 		var->ray.x0 = var->index;
 		var->ray.y0 = ((HEIGHT) / 2) - (var->wall_project / 2);
 		var->ray.y1 = ((HEIGHT) / 2) + (var->wall_project / 2);
 		draw_textures(var);
 		var->ny = var->ray.y0;
 		put_texture(var);
+		var->p.ray_angle += var->p.fov / WIDTH;
 		var->index++;
 	}
 }

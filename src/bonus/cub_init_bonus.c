@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:03:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 20:24:17 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:48:46 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	init_window(t_cub *var)
 {
@@ -42,7 +42,7 @@ int	run_mlx(t_cub *var)
 	var->p.x = (var->p.p_pos_x + (T_SIZE / 2));
 	var->p.y = (var->p.p_pos_y + (T_SIZE / 2));
 	color = 0;
-	var->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
+	var->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D Bonus", false);
 	var->img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(var->mlx, var->img, 0, 0);
 	init_window(var);

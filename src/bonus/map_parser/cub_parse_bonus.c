@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 11:35:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 20:24:51 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:48:46 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3d.h"
+#include "../../../includes/cub3d_bonus.h"
 
 int	check_filename(char *filename)
 {

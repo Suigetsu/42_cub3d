@@ -6,7 +6,7 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:35:13 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/29 20:47:44 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/30 14:40:58 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	put_texture(t_cub *var)
 {
-	while (var->ray.y0 < var->ray.y1)
+	while (var->ray.y0 <= var->ray.y1)
 	{
 		var->y_step = (var->ray.y0 - var->ny) * \
-			((float)var->txt[var->intxt]->height / var->wall_project);
+			(var->txt[var->intxt]->height / var->wall_project);
 		if (var->y_step < (int)var->txt[var->intxt]->height)
 		{
 			if (var->ray.y0 >= 0 && var->ray.y0 < (HEIGHT) && \

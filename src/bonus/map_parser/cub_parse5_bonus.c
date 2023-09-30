@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse5_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/30 10:01:01 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:48:46 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3d.h"
+#include "../../../includes/cub3d_bonus.h"
 
 int	check_suroundings(t_cub *var)
 {

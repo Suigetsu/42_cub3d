@@ -6,11 +6,11 @@
 /*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:35:13 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/29 20:48:46 by hrahmane         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:48:46 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	put_texture(t_cub *var)
 {

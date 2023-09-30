@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 19:52:25 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:52:42 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 			if (var->map[(int)var->y][(int)var->x] == '1')
 				draw_pixels(var->x, var->y, ft_pixel(139, 145, 151, 255), img);
 			else if (var->map[(int)var->y][(int)var->x] == '0' || \
-				var->map[(int)var->y][(int)var->x] == 'N')
+				var->map[(int)var->y][(int)var->x] == var->p.dir)
 				draw_pixels(var->x, var->y, ft_pixel(255, 255, 255, 255), img);
 			var->x++;
 		}
@@ -87,27 +87,17 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 void	draw_textures(t_cub *var)
 {
 	if (var->ray.inter_axis == 1 && facing_up_down(var) == 1)
-	{
-		var->x_step = (var->txt[0]->width / T_SIZE) * \
-		fmod(var->ray.inter_x, T_SIZE);
 		var->intxt = 0;
-	}
 	else if (var->ray.inter_axis == 1 && !facing_up_down(var))
-	{
-		var->x_step = (var->txt[1]->width / T_SIZE) * \
-		fmod(var->ray.inter_x, T_SIZE);
 		var->intxt = 1;
-	}
 	else if (!var->ray.inter_axis && facing_right_left(var) == 1)
-	{
-		var->x_step = (var->txt[2]->width / T_SIZE) * \
-		fmod(var->ray.inter_y, T_SIZE);
 		var->intxt = 2;
-	}
 	else if (!var->ray.inter_axis && !facing_right_left(var))
-	{
-		var->x_step = (var->txt[3]->width / T_SIZE) * \
-		fmod(var->ray.inter_y, T_SIZE);
 		var->intxt = 3;
-	}
+	if (var->ray.inter_axis == 1)
+		var->x_step = (var->txt[var->intxt]->width / T_SIZE) * \
+		fmod(var->ray.inter_x, T_SIZE);
+	else
+		var->x_step = (var->txt[var->intxt]->width / T_SIZE) * \
+		fmod(var->ray.inter_y, T_SIZE);
 }

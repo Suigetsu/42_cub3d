@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_buttons_utils_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:04:48 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/29 20:24:17 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:48:46 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	rotation_move(t_cub *var, int flag)
 {

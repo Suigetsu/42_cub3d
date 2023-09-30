@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
+#    By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 17:46:30 by mlagrini          #+#    #+#              #
-#    Updated: 2023/09/30 09:34:06 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/09/30 15:56:59 by hrahmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ BSRC		=	src/bonus/main_bonus.c src/bonus/movement/player_direction_bonus.c src/b
 OBJS		=	${SRC:.c=.o}
 OBJS_BONUS	=	${BSRC:.c=.o}
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -Ofast
 LIBS		=	~/Desktop/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 LIBFT		=	libs/libft/libft.a
 RM			=	rm -rf

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_texture_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 08:57:09 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/29 20:24:17 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:48:46 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 mlx_texture_t	*get_image(char *path)
 {
@@ -22,7 +22,9 @@ mlx_texture_t	*get_image(char *path)
 		printf("Error\ninvalid texture.\n");
 		return (NULL);
 	}
-	if (img->width != img->height)
+	if (img->width != img->height || img->width < TEXT_MIN \
+		|| img->height < TEXT_MIN || img->width > TEXT_MAX \
+		|| img->height > TEXT_MAX)
 	{
 		printf("Error\ninvalid texture.\n");
 		mlx_delete_texture(img);

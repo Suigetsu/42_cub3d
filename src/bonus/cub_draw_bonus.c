@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_draw_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:43:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 20:24:17 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:48:46 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
@@ -78,7 +78,7 @@ void	draw_minimap(t_cub *var, mlx_image_t *img)
 			if (var->map[(int)var->y][(int)var->x] == '1')
 				draw_pixels(var->x, var->y, ft_pixel(139, 145, 151, 255), img);
 			else if (var->map[(int)var->y][(int)var->x] == '0' || \
-				var->map[(int)var->y][(int)var->x] == 'N')
+				var->map[(int)var->y][(int)var->x] == var->p.dir)
 				draw_pixels(var->x, var->y, ft_pixel(255, 255, 255, 255), img);
 			var->x++;
 		}

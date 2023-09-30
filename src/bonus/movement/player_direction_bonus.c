@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_direction_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:52:37 by hrahmane          #+#    #+#             */
-/*   Updated: 2023/09/29 20:24:51 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:56:05 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3d.h"
+#include "../../../includes/cub3d_bonus.h"
 
 float	get_direction(t_cub *var)
 {
@@ -24,7 +24,6 @@ float	get_direction(t_cub *var)
 		var->p.direction = 180 * var->p.radians;
 	else
 		return (0);
-	var->p.dir = '\0';
 	return (var->p.direction);
 }
 

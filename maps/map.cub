@@ -1,8 +1,7 @@
-NO ./maps/textures/sw_wall6.png
-SO ./maps/textures/sw_wall88.png
-
-WE ./maps/textures/sw_wallmod.png
-EA ./maps/textures/sw2_wall.png
+NO ./maps/textures/sw_wall.png
+SO ./maps/textures/sw2_wall.png
+WE ./maps/textures/sw_wall88.png
+EA ./maps/textures/sw_wallmod.png
 F 192,192,192
 C 158,207,255
 
