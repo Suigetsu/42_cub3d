@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 20:24:51 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 10:01:01 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,11 @@ int	check_inside(t_cub *var)
 			if (var->map[(int)var->y][(int)var->x] == '0')
 			{
 				if (check_zero(var, var->x, var->y))
+					return (ERROR);
+			}
+			else if (var->map[(int)var->y][(int)var->x] == var->p.dir)
+			{
+				if (check_player(var, var->x, var->y))
 					return (ERROR);
 			}
 			var->x++;

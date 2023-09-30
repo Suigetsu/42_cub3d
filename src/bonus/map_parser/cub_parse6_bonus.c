@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:03:19 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 20:24:51 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 10:01:36 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,21 @@ int	check_zero(t_cub *var, float x, float y)
 		(var->map[(int)y][(int)x - 1] != '1' && \
 		var->map[(int)y][(int)x - 1] != '0' && \
 		var->map[(int)y][(int)x - 1] != var->p.dir))
+		return (ERROR);
+	return (0);
+}
+
+int	check_player(t_cub *var, float x, float y)
+{
+	if (((int)x > (int)ft_strlen(var->map[(int)(y - 1)]) - 1) || \
+		(var->map[(int)y + 1][(int)x] != '1' && \
+		var->map[(int)y + 1][(int)x] != '0') || \
+		(var->map[(int)y - 1][(int)x] != '1' && \
+		var->map[(int)y - 1][(int)x] != '0') || \
+		(var->map[(int)y][(int)x + 1] != '1' && \
+		var->map[(int)y][(int)x + 1] != '0') || \
+		(var->map[(int)y][(int)x - 1] != '1' && \
+		var->map[(int)y][(int)x - 1] != '0'))
 		return (ERROR);
 	return (0);
 }

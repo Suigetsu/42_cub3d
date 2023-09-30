@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/29 19:13:20 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 09:56:14 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,6 @@ void		draw_textures(t_cub *var);
 uint32_t	get_color(mlx_texture_t *txt, int x, int y);
 int			get_tex(t_cub *var);
 void		update_player(void *param);
+int			check_player(t_cub *var, float x, float y);
 
 #endif
