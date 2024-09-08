@@ -6,29 +6,38 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:40:49 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:44 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 09:57:54 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	check_suroundings(t_cub3d *var)
+int	check_suroundings(t_cub *var)
 {
-	while (var->map[0][var->x])
+	while (var->map[0][(int)var->x])
 	{
-		if (var->map[0][var->x] != '1' && var->map[0][var->x] != ' ')
+		if (var->map[0][(int)var->x] != '1' && var->map[0][(int)var->x] != ' ')
 			return (ERROR);
 		var->x++;
 	}
 	var->x = 0;
-	while (var->map[var->y_max - 1][var->x])
+	while (var->map[(int)var->y_max - 1][(int)var->x])
 	{
-		if (var->map[var->y_max - 1][var->x] != '1' && \
-			var->map[var->y_max - 1][var->x] != ' ')
+		if (var->map[(int)var->y_max - 1][(int)var->x] != '1' && \
+			var->map[(int)var->y_max - 1][(int)var->x] != ' ')
 			return (ERROR);
 		var->x++;
 	}
-	var->x = 0;
+	var->y = 1;
+	while (var->map[(int)var->y])
+	{
+		if ((var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] != '1' 
+			&& var->map[(int)var->y][ft_strlen(var->map[(int)var->y]) - 1] 
+			!= ' ') 
+		|| (var->map[(int)var->y][0] != '1' && var->map[(int)var->y][0] != ' '))
+			return (ERROR);
+		var->y++;
+	}
 	return (0);
 }
 
@@ -61,23 +70,47 @@ int	invalid_char(char **map)
 	return (0);
 }
 
-int	check_inside(t_cub3d *var)
+void	find_player_pos(t_cub *var)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (var->map[i])
+	{
+		j = 0;
+		while (var->map[i][j])
+		{
+			if (var->map[i][j] == 'N' || var->map[i][j] == 'S' || \
+				var->map[i][j] == 'E' || var->map[i][j] == 'W')
+			{
+				var->p.p_pos_x = j * T_SIZE;
+				var->p.p_pos_y = i * T_SIZE;
+				var->p.dir = var->map[i][j];
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int	check_inside(t_cub *var)
 {
 	var->y = 1;
-	while (var->y < var->y_max - 2)
+	while (var->y < var->y_max - 1)
 	{
 		var->x = 0;
-		while (var->map[var->y][var->x])
+		while (var->map[(int)var->y][(int)var->x])
 		{
-			if (var->x == 0)
+			if (var->map[(int)var->y][(int)var->x] == '0')
 			{
-				if (var->map[var->y][var->x] != '1' && \
-					var->map[var->y][var->x] != ' ')
+				if (check_zero(var, var->x, var->y))
 					return (ERROR);
 			}
-			if (var->map[var->y][var->x] == ' ')
+			else if (var->map[(int)var->y][(int)var->x] == var->p.dir)
 			{
-				if (around_space(var, var->y, var->x))
+				if (check_player(var, var->x, var->y))
 					return (ERROR);
 			}
 			var->x++;
@@ -87,13 +120,16 @@ int	check_inside(t_cub3d *var)
 	return (0);
 }
 
-int	is_map_valid(t_cub3d *var)
+int	is_map_valid(t_cub *var)
 {
+	free_double_ptr(var->map);
 	var->map = ft_split(var->scene, '\n');
+	complete_map(var);
 	if (invalid_char(var->map))
 		return (ERROR);
 	if (check_suroundings(var))
 		return (ERROR);
+	find_player_pos(var);
 	if (check_inside(var))
 		return (ERROR);
 	return (0);

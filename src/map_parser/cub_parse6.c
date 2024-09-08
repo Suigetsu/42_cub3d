@@ -6,92 +6,70 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:03:19 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:47 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 09:55:52 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	check_x2(t_cub3d *var, int y, int x, int flag)
+void	complete_map(t_cub *var)
 {
-	var->x_max = ft_strlen(var->map[y]);
-	while (x < var->x_max - 2)
+	int	loop;
+
+	loop = 0;
+	var->y = 0;
+	while (var->map[(int)var->y])
 	{
-		if (var->map[y][x + 1] == ' ')
-			x += 1;
-		else if (var->map[y][x + 1] == '1')
-			break ;
-		else
-			return (0);
+		if (ft_strlen(var->map[(int)var->y]) < var->x_max)
+		{
+			loop = var->x_max - ft_strlen(var->map[(int)var->y]);
+			var->temp = ft_strdup(var->map[(int)var->y]);
+			free (var->map[(int)var->y]);
+			while (loop > 0)
+			{
+				var->line = ft_strjoin(var->temp, " ");
+				free(var->temp);
+				var->temp = ft_strdup(var->line);
+				free(var->line);
+				loop--;
+			}
+			var->map[(int)var->y] = ft_strdup(var->temp);
+			free(var->temp);
+		}
+		var->y++;
 	}
-	flag += 1;
-	return (flag);
 }
 
-int	check_x(t_cub3d *var, int y, int x, int flag)
+int	check_zero(t_cub *var, float x, float y)
 {
-	while (x > 0)
-	{
-		if (var->map[y][x - 1] == ' ')
-			x -= 1;
-		else if (var->map[y][x - 1] == '1')
-			break ;
-		else
-			return (0);
-	}
-	flag += 1;
-	return (flag);
-}
-
-int	check_y2(t_cub3d *var, int y, int x, int flag)
-{
-	while (y < var->y_max - 2)
-	{
-		if (var->map[y + 1][x] == ' ')
-			y += 1;
-		else if (var->map[y + 1][x] == '1')
-			break ;
-		else
-			return (0);
-	}
-	flag += 1;
-	return (flag);
-}
-
-int	check_y(t_cub3d *var, int y, int x, int flag)
-{
-	while (y > 0)
-	{
-		if (var->map[y - 1][x] == ' ')
-			y -= 1;
-		else if (var->map[y - 1][x] == '1')
-			break ;
-		else
-			return (0);
-	}
-	flag += 1;
-	return (flag);
-}
-
-int	around_space(t_cub3d *var, int y, int x)
-{
-	int	y_flag;
-	int	x_flag;
-
-	if (x == 0)
-	{
-		x_flag = check_x2(var, y, x, 0);
-		if (x_flag != 1)
-			return (ERROR);
-		return (0);
-	}
-	y_flag = check_y(var, y, x, 0);
-	y_flag = check_y2(var, y, x, y_flag);
-	if (y_flag != 2)
+	if (((int)x > (int)ft_strlen(var->map[(int)(y - 1)]) - 1) || \
+		(var->map[(int)y + 1][(int)x] != '1' && \
+		var->map[(int)y + 1][(int)x] != '0' && \
+		var->map[(int)y + 1][(int)x] != var->p.dir) || \
+		(var->map[(int)y - 1][(int)x] != '1' && \
+		var->map[(int)y - 1][(int)x] != '0' && \
+		var->map[(int)y - 1][(int)x] != var->p.dir) || \
+		(var->map[(int)y][(int)x + 1] != '1' && \
+		var->map[(int)y][(int)x + 1] != '0' && \
+		var->map[(int)y][(int)x + 1] != var->p.dir) || \
+		(var->map[(int)y][(int)x - 1] != '1' && \
+		var->map[(int)y][(int)x - 1] != '0' && \
+		var->map[(int)y][(int)x - 1] != var->p.dir))
 		return (ERROR);
-	x_flag = check_x(var, y, x, 0);
-	x_flag = check_x2(var, y, x, x_flag);
-	if (x_flag != 2)
+	return (0);
+}
+
+int	check_player(t_cub *var, float x, float y)
+{
+	if (((int)x > (int)ft_strlen(var->map[(int)(y - 1)]) - 1) || \
+		(var->map[(int)y + 1][(int)x] != '1' && \
+		var->map[(int)y + 1][(int)x] != '0') || \
+		(var->map[(int)y - 1][(int)x] != '1' && \
+		var->map[(int)y - 1][(int)x] != '0') || \
+		(var->map[(int)y][(int)x + 1] != '1' && \
+		var->map[(int)y][(int)x + 1] != '0') || \
+		(var->map[(int)y][(int)x - 1] != '1' && \
+		var->map[(int)y][(int)x - 1] != '0'))
 		return (ERROR);
 	return (0);
 }

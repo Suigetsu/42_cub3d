@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 11:35:30 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:17:54 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_filename(char *filename)
 	return (1);
 }
 
-int	parse_info(t_cub3d *var)
+int	parse_info(t_cub *var)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ int	parse_info(t_cub3d *var)
 		ft_strncmp(var->map[i], "EA ", 3) && \
 		ft_strncmp(var->map[i], "F ", 2) && \
 		ft_strncmp(var->map[i], "C ", 2))
-			return (free_double_ptr(var->map), ERROR);
+			return (ERROR);
 		i++;
 	}
 	if (split_info(var))
@@ -44,7 +44,7 @@ int	parse_info(t_cub3d *var)
 	return (0);
 }
 
-int	read_map(char *filename, t_cub3d *var)
+int	read_map(char *filename, t_cub *var)
 {
 	var->fd = open(filename, O_RDONLY);
 	if (var->fd < 0)

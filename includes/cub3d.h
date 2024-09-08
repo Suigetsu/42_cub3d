@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hrahmane <hrahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 10:22:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:04:41 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/30 15:59:14 by hrahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,51 +23,159 @@
 # include "../libs/libft/libft.h"
 # include "../libs/gnl/get_next_line.h"
 
-# define WIDTH 700
-# define HEIGHT 400
+# define T_SIZE 64
+# define WIDTH 1920
+# define HEIGHT 1024
 # define ERROR -1
+# define MINIMAP_SF 0.06
+# define V_AXIS 0
+# define H_AXIS 1
+# define TEXT_MIN 1600
+# define TEXT_MAX 4600
 
-typedef struct s_cub3d
+typedef struct s_ray
 {
-	int		x_max;
-	int		y_max;
-	int		x;
-	int		y;
-	int		f_r;
-	int		f_g;
-	int		f_b;
-	int		c_r;
-	int		c_g;
-	int		c_b;
-	int		fd;
-	char	**ids;
-	char	**split;
-	char	**north;
-	char	**south;
-	char	**west;
-	char	**east;
-	char	**floor;
-	char	**ceiling;
-	char	*scene;
-	char	**fc;
-	char	**map;
-	char	*line;
-	char	*temp;
-}				t_cub3d;
+	int		dx;
+	int		dy;
+	int		err;
+	int		e2;
+	float	inter_x;
+	float	inter_y;
+	int		step;
+	float	x0;
+	float	y0;
+	float	x1;
+	float	y1;
+	float	x;
+	float	y;
+	float	horizon;
+	float	vertical;
+	float	start;
+	float	endx_h;
+	float	endy_h;
+	float	endx_v;
+	float	endy_v;
+	float	step_x;
+	float	step_y;
+	float	distance;
+	float	inter_axis;
+}		t_ray;
 
-int		check_filename(char *filename);
-void	free_double_ptr(char **ptr);
-int		cub_atoi(const char *str);
-int		read_map(char *filename, t_cub3d *var);
-int		parse_info(t_cub3d *var);
-int		path_validity(t_cub3d *var);
-int		split_info(t_cub3d *var);
-int		path_validity(t_cub3d *var);
-int		color_validity(t_cub3d *var);
-void	free_for_exit(t_cub3d *var, int exit_status);
-void	free_for_map(t_cub3d *var);
-int		is_map_valid(t_cub3d *var);
-int		around_space(t_cub3d *var, int y, int x);
-int		check_map(char *filename, t_cub3d *var);
+typedef struct s_player
+{
+	double	radians;
+	float	fov;
+	float	rot_speed;
+	float	move_speed;
+	float	rotation_angle;
+	float	p_pos_x;
+	float	p_pos_y;
+	float	x;
+	float	y;
+	float	end_x;
+	float	end_y;
+	float	radius;
+	float	turn_dir;
+	float	walk_dir;
+	float	ray_angle;
+	float	direction;
+	float	ray_dir;
+	char	dir;
+}				t_player;
+
+typedef struct s_cub
+{
+	float			x_max;
+	float			y_max;
+	float			x;
+	float			y;
+	int				minix;
+	int				miniy;
+	int				i;
+	int				f_r;
+	int				f_g;
+	int				f_b;
+	int				c_r;
+	int				c_g;
+	int				c_b;
+	int				fd;
+	char			**ids;
+	char			**split;
+	char			**north;
+	char			**south;
+	char			**west;
+	char			**east;
+	char			**floor;
+	char			**ceiling;
+	char			*scene;
+	char			**fc;
+	char			**map;
+	char			*line;
+	char			*temp;
+	char			*paths[4];
+	int				x_step;
+	int				y_step;
+	float			wall_project;
+	int				mouse_x;
+	int				mouse_y;
+	int				mouse_pos;
+	int				intxt;
+	float			index;
+	float			dist;
+	float			corr_dis;
+	float			ny;
+	mlx_texture_t	*txt[4];
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	t_player		p;
+	t_ray			ray;
+}				t_cub;
+
+int			check_filename(char *filename);
+void		free_double_ptr(char **ptr);
+int			cub_atoi(const char *str);
+int			read_map(char *filename, t_cub *var);
+int			parse_info(t_cub *var);
+int			path_validity(t_cub *var);
+int			split_info(t_cub *var);
+int			path_validity(t_cub *var);
+int			color_validity(t_cub *var);
+int			is_map_valid(t_cub *var);
+float		get_direction(t_cub *var);
+int			check_zero(t_cub *var, float x, float y);
+int			check_map(char *filename, t_cub *var);
+int			init_vars(t_cub *var, int ac, char **av);
+int			run_mlx(t_cub *var);
+void		keyhook(void *param);
+void		find_player_pos(t_cub *var);
+void		draw_line(t_cub *var, mlx_image_t *img);
+void		draw_minimap(t_cub *var, mlx_image_t *img);
+void		draw_player_pixels(t_cub *var, int color, mlx_image_t *img);
+void		draw_pixels(float x, float y, int color, mlx_image_t *img);
+void		fix_any_angle(float	*angle);
+bool		check_wall(t_cub *var, float x, float y);
+void		cast_rays(t_cub *var);
+float		horizontal_distance(t_cub *var);
+float		vertical_distance(t_cub *var);
+int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void		init_window(t_cub *var);
+void		free_phase1(t_cub *var);
+int			facing_up_down(t_cub *var);
+int			facing_right_left(t_cub *var);
+int			facing_up_down(t_cub *var);
+int			facing_right_left(t_cub *var);
+void		complete_map(t_cub *var);
+int			left_move(t_cub *var);
+int			right_move(t_cub *var);
+int			down_move(t_cub *var);
+int			up_move(t_cub *var);
+int			checkwalls(t_cub *var, float x, float y, int flag);
+void		put_texture(t_cub *var);
+int			get_right_distance(t_cub *var);
+void		draw_textures(t_cub *var);
+uint32_t	get_color(mlx_texture_t *txt, int x, int y);
+int			get_tex(t_cub *var);
+void		update_player(void *param);
+int			check_player(t_cub *var, float x, float y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:29:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:34 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 12:08:52 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ char	**colors_split(char *str)
 	return (arr);
 }
 
-int	color_validity(t_cub3d *var)
+int	color_validity(t_cub *var)
 {
 	if (comma_count(var->floor[1]) != 2 || comma_count(var->ceiling[1]) != 2)
 		return (ERROR);
 	var->split = colors_split(var->floor[1]);
+	if (!var->split)
+		return (ERROR);
 	if (cub_atoi(var->split[0]) == ERROR || \
 		cub_atoi(var->split[1]) == ERROR || cub_atoi(var->split[2]) == ERROR)
 		return (ERROR);
@@ -69,6 +71,8 @@ int	color_validity(t_cub3d *var)
 	var->f_b = cub_atoi(var->split[2]);
 	free_double_ptr(var->split);
 	var->split = colors_split(var->ceiling[1]);
+	if (!var->split)
+		return (ERROR);
 	if (cub_atoi(var->split[0]) == ERROR || \
 		cub_atoi(var->split[1]) == ERROR || cub_atoi(var->split[2]) == ERROR)
 		return (ERROR);
@@ -78,21 +82,21 @@ int	color_validity(t_cub3d *var)
 	return (0);
 }
 
-int	path_validity(t_cub3d *var)
+int	path_validity(t_cub *var)
 {
-	var->fd = open(var->north[1], O_RDONLY);
+	var->fd = open(var->paths[0], O_RDONLY);
 	if (var->fd < 0)
 		return (ERROR);
 	close (var->fd);
-	var->fd = open(var->south[1], O_RDONLY);
+	var->fd = open(var->paths[1], O_RDONLY);
 	if (var->fd < 0)
 		return (ERROR);
 	close (var->fd);
-	var->fd = open(var->west[1], O_RDONLY);
+	var->fd = open(var->paths[2], O_RDONLY);
 	if (var->fd < 0)
 		return (ERROR);
 	close (var->fd);
-	var->fd = open(var->east[1], O_RDONLY);
+	var->fd = open(var->paths[3], O_RDONLY);
 	if (var->fd < 0)
 		return (ERROR);
 	close (var->fd);

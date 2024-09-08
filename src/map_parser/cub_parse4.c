@@ -6,13 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:48:07 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:41 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:10:40 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	skip_info(t_cub3d *var)
+void	skip_info(t_cub *var)
 {
 	int	count;
 
@@ -44,19 +44,21 @@ int	is_space_only(char *line)
 	return (1);
 }
 
-int	copy_map(t_cub3d *var)
+int	copy_map(t_cub *var)
 {
+	free(var->scene);
 	var->scene = ft_strdup("");
 	while (var->line)
 	{
 		if (ft_strncmp(var->line, "\n", 2) == 0 || \
 			ft_strlen(var->line) == 300 || var->y_max >= 300)
 			return (ERROR);
-		
 		var->temp = ft_strjoin(var->scene, var->line);
 		free (var->scene);
 		var->scene = ft_strdup(var->temp);
 		free (var->temp);
+		if (ft_strlen(var->line) > var->x_max)
+			var->x_max = ft_strlen(var->line) - 1;
 		var->y_max++;
 		free (var->line);
 		var->line = get_next_line(var->fd);
@@ -64,7 +66,7 @@ int	copy_map(t_cub3d *var)
 	return (0);
 }
 
-int	check_map(char *filename, t_cub3d *var)
+int	check_map(char *filename, t_cub *var)
 {
 	int	count;
 
@@ -78,6 +80,7 @@ int	check_map(char *filename, t_cub3d *var)
 		{
 			if (copy_map(var))
 			{
+				free(var->line);
 				close (var->fd);
 				return (ERROR);
 			}

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:15:45 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/09/04 13:05:51 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/09/29 12:08:02 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	free_double_ptr(char **ptr)
 	int	i;
 
 	i = 0;
-	if (ptr == NULL)
-		return ;
 	while (ptr[i])
 	{
 		free(ptr[i]);
@@ -31,21 +29,23 @@ void	free_double_ptr(char **ptr)
 
 int	cub_atoi(const char *str)
 {
-	int	i;
-	int	result;
+	int		i;
+	int		result;
+	char	*trim;
 
 	i = 0;
 	result = 0;
-	if (!(str[i] >= '0' && str[i] <= '9'))
+	trim = ft_strtrim(str, " ");
+	if (!(trim[i] >= '0' && trim[i] <= '9'))
 		return (ERROR);
-	while (str[i] >= '0' && str[i] <= '9')
+	while (trim[i] >= '0' && trim[i] <= '9')
 	{
-		result = result * 10 + str[i] - '0';
+		result = result * 10 + trim[i] - '0';
 		if (result > 255)
-			return (ERROR);
+			return (free(trim), ERROR);
 		i++;
 	}
-	if (str[i])
-		return (ERROR);
-	return (result);
+	if (trim[i])
+		return (free(trim), ERROR);
+	return (free(trim), result);
 }
